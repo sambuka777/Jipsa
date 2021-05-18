@@ -38,7 +38,7 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-        btnFCer = (Button)findViewById(R.id.btn_FCer);
+        btnFCer = (Button)findViewById(R.id.btn_Cer);
         btnCom = (Button)findViewById(R.id.btn_Com);
         btnOl = (Button)findViewById(R.id.btn_Ol);
         edjID = (EditText)findViewById(R.id.ed_JID);

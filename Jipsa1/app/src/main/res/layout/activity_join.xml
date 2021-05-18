@@ -185,7 +185,7 @@
                     android:textSize="28sp"/>
 
                 <Button
-                    android:id="@+id/ed_Cer"
+                    android:id="@+id/btn_Cer"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20sp"
