@@ -377,3 +377,4 @@ public class JoinActivity extends AppCompatActivity {
     }
 }
 
+인생현타오네
