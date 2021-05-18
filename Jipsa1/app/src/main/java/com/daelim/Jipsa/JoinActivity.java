@@ -378,3 +378,4 @@ public class JoinActivity extends AppCompatActivity {
     }
 }
 
+시발개같은거이걸해야하냐시발
