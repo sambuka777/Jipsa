@@ -18,26 +18,29 @@
     <EditText
         android:id="@+id/ed_ID"
         android:layout_width="320sp"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
         android:layout_gravity="center"
         android:layout_marginTop="20sp"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edge"
         android:ems="10"
+        android:gravity="center"
         android:hint="ID를 입력하세요."
         android:inputType="textPersonName"
-        android:textSize="28sp"
+        android:textSize="18sp"
         tools:hint="ID" />
 
     <EditText
         android:id="@+id/ed_PW"
         android:layout_width="320sp"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
         android:layout_gravity="center"
-        android:background="@drawable/edittext_style"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edge"
         android:ems="10"
         android:hint="PW를 입력하세요."
         android:inputType="textPassword"
-        android:textSize="28sp"
+        android:textSize="18sp"
         tools:hint="PW"
         tools:layout_marginTop="20sp" />
 
@@ -45,6 +48,7 @@
         android:id="@+id/btn_Log"
         android:layout_width="320sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:background="@drawable/button_style2"
         android:text="로그인"

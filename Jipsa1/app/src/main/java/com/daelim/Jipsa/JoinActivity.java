@@ -368,6 +368,7 @@ public class JoinActivity extends AppCompatActivity {
             numOfEmail = result.substring(60,66);
             flag_email=true;
             System.out.println(numOfEmail);
+
 //            tvData = (TextView)findViewById(R.id.tvData);
 //        tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
@@ -377,4 +378,3 @@ public class JoinActivity extends AppCompatActivity {
     }
 }
 
-인생현타오네
