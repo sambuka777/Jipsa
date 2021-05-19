@@ -90,17 +90,17 @@ router.post('/idck', (req, res) => {
     }
     res.end();
 });
-router.post('/idlogin', (req, res) => {
+router.post('/idlogin', async (req, res) => {
     var inputData = req.body;
     console.log(inputData);
 
     console.log("user_id : " + inputData.id);
 
-    var flag = database_idlogin(db, inputData.id);
+    var flag = await database_idlogin(db, inputData.id);
 
     if (flag) {
         console.log("아니 돼야 한다고 왜 안되는데");
-
+        console.log(pwdck);
         res.write(pwdck + "");
     } else {
         res.write("No!");
