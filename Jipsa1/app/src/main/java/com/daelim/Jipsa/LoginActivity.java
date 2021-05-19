@@ -51,16 +51,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                id = String.valueOf(edID.getText());
-//                pwd = String.valueOf(edPW.getText());
-//                JSONIdLogin Ji = new JSONIdLogin();
-//                Ji.content_idck(id);
-//                Ji.execute("http://192.168.6.1:3000/idlogin");
-//                if(flag_id&&flag_pwd){
-//                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-//                    JoinIntent.putExtra("id",id);
-//                    startActivity(JoinIntent);
-//                }
+                id = String.valueOf(edID.getText());
+                pwd = String.valueOf(edPW.getText());
+                JSONIdLogin Ji = new JSONIdLogin();
+                Ji.content_idck(id);
+                Ji.execute("http://192.168.6.1:3000/idlogin");
+                if(flag_id&&flag_pwd){
+                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+                    JoinIntent.putExtra("id",id);
+                    startActivity(JoinIntent);
+                }
 
             }
         });
