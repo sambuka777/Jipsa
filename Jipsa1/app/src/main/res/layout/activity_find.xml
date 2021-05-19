@@ -39,6 +39,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_style2"
             android:text="아이디 찾기"
+            android:fontFamily="@font/nx2gof"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -49,6 +50,7 @@
             android:layout_marginLeft="10sp"
             android:background="@drawable/button_style2"
             android:text="비밀번호 찾기"
+            android:fontFamily="@font/nx2gof"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 

@@ -26,74 +26,137 @@
 
     <TextView
         android:id="@+id/tv_FpID"
-        android:layout_width="370sp"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100sp"
         android:text="아이디"
-        android:textSize="24sp" />
+        android:paddingLeft="1dp"
+        android:fontFamily="@font/tb"
+        android:textColor="#000000"
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/ed_FpID"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
+        android:layout_width="350sp"
+        android:layout_height="40dp"
         android:background="@drawable/edittext_style"
         android:layout_gravity="center"
+        android:paddingLeft="5dp"
         android:layout_marginTop="5sp"
         android:ems="10"
-        android:hint="FPID"
+        android:hint="아이디"
         android:inputType="textPersonName"
-        android:textSize="28sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tv_FpName"
-        android:layout_width="370sp"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10sp"
         android:text="이름"
-        android:textSize="24sp" />
+        android:paddingLeft="1dp"
+        android:fontFamily="@font/tb"
+        android:textColor="#000000"
+        android:textSize="22sp" />
 
     <EditText
-        android:id="@+id/ed_FpName"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
+        android:id="@+id/ed_FpName1"
+        android:layout_width="350sp"
+        android:layout_height="40dp"
         android:background="@drawable/edittext_style"
         android:layout_gravity="center"
         android:layout_marginTop="5sp"
         android:ems="10"
-        android:hint="FPName"
+        android:hint="이름"
         android:inputType="textPersonName"
-        android:textSize="28sp"/>
+        android:paddingLeft="5dp"
+        android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/tv_FPphone"
-        android:layout_width="370sp"
+        android:id="@+id/tv_FEm"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:text="이메일"
+        android:paddingLeft="1dp"
+        android:fontFamily="@font/tb"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5sp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_Em1"
+            android:layout_width="230sp"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_style"
+            android:ems="10"
+            android:hint="이메일"
+            android:paddingLeft="5dp"
+            android:inputType="textPersonName"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/btn_FCer1"
+            android:layout_width="100sp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nx2gof"
+            android:background="@drawable/button_style"
+            android:text="인증하기"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10sp"
-        android:text="전화번호"
-        android:textSize="24sp" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/ed_FpPhone"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:layout_gravity="center"
-        android:layout_marginTop="5sp"
-        android:ems="10"
-        android:hint="FPName"
-        android:inputType="textPersonName"
-        android:textSize="28sp"/>
+        <EditText
+            android:id="@+id/ed_FCerNum1"
+            android:layout_width="230sp"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_style"
+            android:ems="10"
+            android:hint="인증번호"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_FCerC1"
+            android:layout_width="100sp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20sp"
+            android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:text="인증번호 확인"
+            android:fontFamily="@font/nx2gof"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/btn_FPCom"
+        android:id="@+id/btn_FPCom1"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20sp"
         android:background="@drawable/button_style"
+        android:fontFamily="@font/nx2gof"
         android:text="완료"
         android:textColor="#FFFFFF" />
 

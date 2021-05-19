@@ -88,8 +88,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/nx2gof"
             android:background="@drawable/button_style"
+            android:textColor="#FFFFFF"
             android:text="인증하기"
-            android:textColor="#FFFFFF" />
+             />
 
     </LinearLayout>
 
