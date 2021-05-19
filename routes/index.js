@@ -24,10 +24,10 @@ async function showdata(db) {
 }
 showdata(db);
 
-router.post('/post', async(req, res) => {
-    
+router.post('/post', async (req, res) => {
+
     console.log("user_id : " + inputData.id + " ,  name:" + inputData.name);
-    
+
     const aTuringRef = db.collection('members').doc(req.body.id);
 
     await aTuringRef.set({
@@ -42,7 +42,7 @@ router.post('/post', async(req, res) => {
 });
 
 
-router.post('/idck', async(req, res) => {
+router.post('/idck', async (req, res) => {
 
     console.log("user_id : " + req.body.id);
 
@@ -60,13 +60,13 @@ router.post('/idck', async(req, res) => {
     res.end();
 });
 
-router.post('/idlogin', async(req, res) => {
+router.post('/idlogin', async (req, res) => {
 
     console.log("user_id : " + req.body.id);
 
     const docRef = db.collection('members').doc(req.body.id + "");
     const doc = await docRef.get();
-    
+
     if (!doc.exists) {
         console.log('No matching documents.');
 
@@ -76,7 +76,7 @@ router.post('/idlogin', async(req, res) => {
 
         console.log(doc.data().pwd);
         pwdck = doc.data().pwd;
-        
+
         res.write(pwdck + "");
     }
     res.end();
