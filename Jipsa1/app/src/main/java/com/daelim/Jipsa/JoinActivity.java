@@ -47,7 +47,7 @@ public class JoinActivity extends AppCompatActivity {
         edName = (EditText)findViewById(R.id.ed_Name);
         edFEm =(EditText)findViewById(R.id.ed_Em);
         edpwck=(EditText)findViewById(R.id.ed_PWc);
-        edFCerNum=(EditText)findViewById(R.id.ed_FCerNum);
+        edFCerNum=(EditText)findViewById(R.id.ed_CerNum);
         edbirth=(EditText)findViewById(R.id.ed_Birth);
         btnOl.setOnClickListener(new View.OnClickListener() {
             @Override

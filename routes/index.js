@@ -128,35 +128,36 @@ async function database_idck(db, idck) {
         console.log(doc.data());
         return true;
     }
-    // const memberRef = db.collection('members').doc(idck);
+}
+async function database_idlogin(db, idck) {
+    const docRef = db.collection('members').doc(idck + "");
+    const doc = await docRef.get();
+    if (!doc.exists) {
+        console.log('No matching documents.');
+        return null;
+    } else {
+        setpwd(doc.data().pwd);
+        console.log(doc.data().pwd);
+        pwdck = doc.data().pwd;
+
+        return pwdck;
+    }
+    // const memberRef = db.collection('members').doc(idck+"");
     // const snapshot = await memberRef.where('id', '==', idck).get();
     // if (snapshot.empty) {
     //     console.log('No matching documents.');
     //     return false;
     // } else {
     //     snapshot.forEach(doc => {
-    //         console.log(doc.id, '=>', doc.data());
+    //         console.log(doc.id, '=>', doc.data().pwd);
+    //         pwdck = doc.data().pwd;
+    //         console.log(pwdck)
+    //         setpwd(pwdck);
     //     });
     //     return true;
     // }
 }
-async function database_idlogin(db, idck) {
-    const memberRef = db.collection('members');
-    const snapshot = await memberRef.where('id', '==', idck).get();
-    if (snapshot.empty) {
-        console.log('No matching documents.');
-        return false;
-    } else {
-        snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().pwd);
-            pwdck = doc.data().pwd;
-            console.log(pwdck)
-            setpwd(pwdck);
-        });
-        return true;
-    }
-}
-async function setpwd(pwd) {
+function setpwd(pwd) {
     this.pwdck = pwd;
 }
 module.exports = router;
