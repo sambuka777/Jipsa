@@ -3,12 +3,21 @@ package com.daelim.Jipsa;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
@@ -29,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLOG,btnFIND,btnJoin;
     String id,pwd;
     boolean flag_id, flag_pwd;
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,19 +46,21 @@ public class LoginActivity extends AppCompatActivity {
         edID = (EditText)findViewById(R.id.ed_ID);
         edPW = (EditText)findViewById(R.id.ed_PW);
         btnLOG = findViewById(R.id.btn_Log);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         btnLOG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                id = String.valueOf(edID.getText());
-                pwd = String.valueOf(edPW.getText());
-                JSONIdLogin Ji = new JSONIdLogin();
-                Ji.content_idck(id);
-                Ji.execute("http://192.168.6.1:3000/idlogin");
-                if(flag_id&&flag_pwd){
-                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    JoinIntent.putExtra("id",id);
-                    startActivity(JoinIntent);
-                }
+
+//                id = String.valueOf(edID.getText());
+//                pwd = String.valueOf(edPW.getText());
+//                JSONIdLogin Ji = new JSONIdLogin();
+//                Ji.content_idck(id);
+//                Ji.execute("http://192.168.6.1:3000/idlogin");
+//                if(flag_id&&flag_pwd){
+//                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+//                    JoinIntent.putExtra("id",id);
+//                    startActivity(JoinIntent);
+//                }
 
             }
         });
@@ -71,6 +83,48 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+//    private void readUser(){
+//        mDatabase.child("members").setaddValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                if(dataSnapshot.getValue(User.class) != null){
+//                    User post = dataSnapshot.getValue(User.class);
+//                    Log.w("FireBaseData", "getData" + post.toString());
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "아이디 없음", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w("FireBaseData", "loadPost:onCancelled", databaseError.toException());
+//            }
+//        });
+//    }
+    @IgnoreExtraProperties
+    public class User{
+        public String db_id;
+        public User(){
+
+        }
+        public User(String db_id) {
+            this.db_id = db_id;
+        }
+
+        public String getDb_id() {
+            return db_id;
+        }
+
+        public void setUserName(String db_id) {
+            this.db_id = db_id;
+        }
+
+
+
+    }
+
     public class JSONIdLogin extends AsyncTask<String, String, String> {
         String id;
         @Override
