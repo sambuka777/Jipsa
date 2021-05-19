@@ -58,8 +58,10 @@ public class LoginActivity extends AppCompatActivity {
                 Ji.execute("http://192.168.6.1:3000/idlogin");
                 if(flag_id&&flag_pwd){
                     Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    JoinIntent.putExtra("id",id);
+                    //JoinIntent.putExtra("id",id);
                     startActivity(JoinIntent);
+                }else{
+                    System.out.println("첫번쨰 실행안되는 이유가 이거지않을까 싶습니다");
                 }
 
             }
