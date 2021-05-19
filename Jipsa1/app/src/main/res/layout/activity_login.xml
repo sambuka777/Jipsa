@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/ed_ID"
         android:layout_width="320sp"
-        android:layout_height="35sp"
+        android:layout_height="38sp"
         android:layout_gravity="center"
         android:layout_marginTop="20sp"
         android:background="@drawable/edge"
@@ -26,20 +26,22 @@
         android:gravity="center"
         android:hint="ID를 입력하세요."
         android:inputType="textPersonName"
+        android:fontFamily="@font/nx2gm"
         android:textSize="18sp"
         tools:hint="ID" />
 
     <EditText
         android:id="@+id/ed_PW"
         android:layout_width="320sp"
-        android:layout_height="35sp"
+        android:layout_height="38sp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edge"
         android:ems="10"
         android:hint="PW를 입력하세요."
         android:inputType="textPassword"
+        android:fontFamily="@font/nx2gm"
         android:textSize="18sp"
         tools:hint="PW"
         tools:layout_marginTop="20sp" />
@@ -48,10 +50,11 @@
         android:id="@+id/btn_Log"
         android:layout_width="320sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:background="@drawable/button_style2"
         android:text="로그인"
+        android:fontFamily="@font/nx2gm"
         android:textColor="#FFFFFF"
         tools:layout_marginTop="30sp" />
 
@@ -68,6 +71,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_style2"
             android:text="ID / PW 찾기"
+            android:fontFamily="@font/nx2gm"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -77,6 +81,7 @@
             android:layout_marginLeft="20sp"
             android:background="@drawable/button_style2"
             android:text="회원가입"
+            android:fontFamily="@font/nx2gm"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>
