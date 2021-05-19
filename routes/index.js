@@ -142,20 +142,6 @@ async function database_idlogin(db, idck) {
 
         return pwdck;
     }
-    // const memberRef = db.collection('members').doc(idck+"");
-    // const snapshot = await memberRef.where('id', '==', idck).get();
-    // if (snapshot.empty) {
-    //     console.log('No matching documents.');
-    //     return false;
-    // } else {
-    //     snapshot.forEach(doc => {
-    //         console.log(doc.id, '=>', doc.data().pwd);
-    //         pwdck = doc.data().pwd;
-    //         console.log(pwdck)
-    //         setpwd(pwdck);
-    //     });
-    //     return true;
-    // }
 }
 function setpwd(pwd) {
     this.pwdck = pwd;

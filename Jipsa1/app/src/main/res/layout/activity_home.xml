@@ -126,34 +126,24 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/Ib_lost1"
-                android:layout_width="100sp"
-                android:layout_height="125sp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/dogprofile1" />
+            <ImageView
+                android:id="@+id/MissPetImage1"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/chat_img1" />
+            <TextView
+                android:id="@+id/MissPetText1"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
 
-            <ImageButton
-                android:id="@+id/Ib_lost2"
-                android:layout_width="100sp"
-                android:layout_height="125sp"
-                android:layout_marginLeft="20sp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/dogprofile2" />
-
-            <ImageButton
-                android:id="@+id/Ib_lost3"
-                android:layout_width="100sp"
-                android:layout_height="125sp"
-                android:layout_marginLeft="20sp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/dogprofile3" />
+                />
         </LinearLayout>
 
     </LinearLayout>
