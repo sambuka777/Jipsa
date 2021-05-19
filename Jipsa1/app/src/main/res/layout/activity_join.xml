@@ -37,12 +37,13 @@
 
             <TextView
                 android:id="@+id/tv_ID"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20sp"
-                android:paddingLeft="4dp"
+                android:paddingLeft="1dp"
                 android:textColor="#000000"
+                android:fontFamily="@font/tb"
                 android:text="아이디"
                 android:textSize="22sp" />
 
@@ -58,7 +59,7 @@
                     android:id="@+id/ed_JID"
                     android:layout_width="230sp"
                     android:layout_height="38dp"
-                    android:background="@drawable/edge"
+                    android:background="@drawable/edittext_style"
                     android:ems="10"
                     android:hint="아이디"
                     android:paddingLeft="5dp"
@@ -73,17 +74,19 @@
                     android:layout_marginLeft="20sp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
+                    android:fontFamily="@font/nx2gof"
                     android:text="중복검사"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_JPW"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20sp"
-                android:paddingLeft="4dp"
+                android:layout_marginTop="25sp"
+                android:paddingLeft="1dp"
+                android:fontFamily="@font/tb"
                 android:text="비밀번호"
                 android:textColor="#000000"
                 android:textSize="22sp" />
@@ -92,7 +95,7 @@
                 android:id="@+id/ed_JPW"
                 android:layout_width="350sp"
                 android:layout_height="38dp"
-                android:background="@drawable/edge"
+                android:background="@drawable/edittext_style"
                 android:layout_gravity="center"
                 android:layout_marginTop="5sp"
                 android:ems="10"
@@ -103,20 +106,21 @@
 
             <TextView
                 android:id="@+id/tw_PWc"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="25sp"
+                android:fontFamily="@font/tb"
                 android:text="비밀번호 확인"
                 android:textColor="#000000"
-                android:paddingLeft="4dp"
+                android:paddingLeft="1dp"
                 android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/ed_PWc"
                 android:layout_width="350sp"
                 android:layout_height="38dp"
-                android:background="@drawable/edge"
+                android:background="@drawable/edittext_style"
                 android:layout_gravity="center"
                 android:layout_marginTop="5sp"
                 android:ems="10"
@@ -127,20 +131,21 @@
 
             <TextView
                 android:id="@+id/tv_Name"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="25sp"
+                android:fontFamily="@font/tb"
                 android:text="이름"
                 android:textColor="#000000"
-                android:paddingLeft="4dp"
+                android:paddingLeft="1dp"
                 android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/ed_Name"
                 android:layout_width="350sp"
                 android:layout_height="38dp"
-                android:background="@drawable/edge"
+                android:background="@drawable/edittext_style"
                 android:layout_gravity="center"
                 android:layout_marginTop="5sp"
                 android:ems="10"
@@ -151,20 +156,21 @@
 
             <TextView
                 android:id="@+id/tv_Birth"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="25sp"
+                android:paddingLeft="1dp"
+                android:fontFamily="@font/tb"
                 android:text="생년월일"
                 android:textColor="#000000"
-                android:paddingLeft="4dp"
                 android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/ed_Birth"
                 android:layout_width="350sp"
                 android:layout_height="38dp"
-                android:background="@drawable/edge"
+                android:background="@drawable/edittext_style"
                 android:layout_gravity="center"
                 android:layout_marginTop="5sp"
                 android:ems="10"
@@ -175,13 +181,14 @@
 
             <TextView
                 android:id="@+id/tv_FEm"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="25sp"
                 android:text="이메일"
+                android:fontFamily="@font/tb"
                 android:textColor="#000000"
-                android:paddingLeft="4dp"
+                android:paddingLeft="1dp"
                 android:textSize="22sp" />
 
             <LinearLayout
@@ -196,7 +203,7 @@
                     android:id="@+id/ed_Em"
                     android:layout_width="230sp"
                     android:layout_height="38dp"
-                    android:background="@drawable/edge"
+                    android:background="@drawable/edittext_style"
                     android:ems="10"
                     android:hint="이메일"
                     android:paddingLeft="5dp"
@@ -210,6 +217,7 @@
                     android:layout_marginLeft="20sp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
+                    android:fontFamily="@font/nx2gof"
                     android:text="인증하기"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
@@ -226,7 +234,7 @@
                     android:id="@+id/ed_CerNum"
                     android:layout_width="230sp"
                     android:layout_height="38dp"
-                    android:background="@drawable/edge"
+                    android:background="@drawable/edittext_style"
                     android:ems="10"
                     android:hint="인증번호"
                     android:paddingLeft="5dp"
@@ -240,6 +248,7 @@
                     android:layout_marginLeft="20sp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
+                    android:fontFamily="@font/nx2gof"
                     android:text="인증번호 확인"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
