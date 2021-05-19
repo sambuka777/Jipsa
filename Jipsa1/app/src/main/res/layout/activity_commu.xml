@@ -12,117 +12,484 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_ComuWT"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="커뮤니티"
-            android:textColor="#000000"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/btn_Write"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="200sp"
-            android:background="@drawable/button_style2"
-            android:text="글쓰기"
-            android:textColor="#FFFFFF" />
+            android:text="커뮤니티"
+            android:fontFamily="@font/tb"
+            android:textColor="#000000"
+            android:textSize="27sp" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_Write"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_style2"
+        android:text="글쓰기"
+        android:fontFamily="@font/nx2gof"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle1"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname1"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate1"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle2"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname2"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate2"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle3"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname3"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate3"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle4"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname4"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate4"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/commu_style"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Ed_ctitle5"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:gravity="left|bottom"
+                android:hint="글10"
+                android:textSize="20dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:inputType="textPersonName"
+                android:text="제목" />
+
+            <TextView
+                android:id="@+id/Ed_cname5"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/commu_style"
+                android:text="이름"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/Ed_cdate5"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/commu_style"
+                android:textSize="20dp"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:text="날짜" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/commu_style"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Ed_ctitle6"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:gravity="left|bottom"
+                android:hint="글10"
+                android:textSize="20dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:inputType="textPersonName"
+                android:text="제목" />
+
+            <TextView
+                android:id="@+id/Ed_cname6"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/commu_style"
+                android:text="이름"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/Ed_cdate6"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/commu_style"
+                android:textSize="20dp"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:text="날짜" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/commu_style"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Ed_ctitle7"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:gravity="left|bottom"
+                android:hint="글10"
+                android:textSize="20dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:inputType="textPersonName"
+                android:text="제목" />
+
+            <TextView
+                android:id="@+id/Ed_cname7"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/commu_style"
+                android:text="이름"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/Ed_cdate7"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/commu_style"
+                android:textSize="20dp"
+                android:gravity="left|bottom"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:text="날짜" />
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle8"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname8"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate8"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle9"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname9"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate9"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/commu_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Ed_ctitle10"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="textPersonName"
+            android:text="제목" />
+
+        <TextView
+            android:id="@+id/Ed_cname10"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/commu_style"
+            android:text="이름"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Ed_cdate10"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/commu_style"
+            android:textSize="20dp"
+            android:gravity="left|bottom"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:text="날짜" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/Ed_Write1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
-        android:ems="10"
-        android:hint="글1"
-        android:inputType="textPersonName"
-        android:text="Name" />
 
-    <EditText
-        android:id="@+id/Ed_Write2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글2"
-        android:inputType="textPersonName"
-        android:text="Name" />
 
-    <EditText
-        android:id="@+id/Ed_Write3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글4"
-        android:inputType="textPersonName"
-        android:text="Name" />
 
-    <EditText
-        android:id="@+id/Ed_Write4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글4"
-        android:inputType="textPersonName"
-        android:text="Name" />
 
-    <EditText
-        android:id="@+id/Ed_Write5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글5"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/Ed_Write6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글6"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/Ed_Write7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글7"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/Ed_Write8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글8"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/Ed_Write9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글9"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/Ed_Write10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="글10"
-        android:inputType="textPersonName"
-        android:text="Name" />
 
 </LinearLayout>
