@@ -80,12 +80,13 @@ router.post('/idck', (req, res) => {
 
     var flag = database_idck(db, inputData.id);
 
-    if (flag) {
+    if (!flag) {
         console.log("아니 돼야 한다고 왜 안되는데");
 
         res.write("OK!");
     } else {
         res.write("No!");
+        console.log("아니 안돼야 한다고 왜 안되는데");
     }
     res.end();
 });
@@ -103,14 +104,14 @@ router.post('/idlogin', (req, res) => {
         res.write(pwdck + "");
     } else {
         res.write("No!");
+
     }
     res.end();
 });
 async function database_init(db, id, pwd, name, birth, email) {
-    const aTuringRef = db.collection('members').doc();
+    const aTuringRef = db.collection('members').doc(id);
 
     await aTuringRef.set({
-        'id': id,
         'pwd': pwd,
         'name': name,
         'birth': birth,
@@ -118,17 +119,26 @@ async function database_init(db, id, pwd, name, birth, email) {
     });
 }
 async function database_idck(db, idck) {
-    const memberRef = db.collection('members');
-    const snapshot = await memberRef.where('id', '==', idck).get();
-    if (snapshot.empty) {
+    const docRef = db.collection('members').doc(idck + "");
+    const doc = await docRef.get();
+    if (!doc.exists) {
         console.log('No matching documents.');
         return false;
     } else {
-        snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data());
-        });
+        console.log(doc.data());
         return true;
     }
+    // const memberRef = db.collection('members').doc(idck);
+    // const snapshot = await memberRef.where('id', '==', idck).get();
+    // if (snapshot.empty) {
+    //     console.log('No matching documents.');
+    //     return false;
+    // } else {
+    //     snapshot.forEach(doc => {
+    //         console.log(doc.id, '=>', doc.data());
+    //     });
+    //     return true;
+    // }
 }
 async function database_idlogin(db, idck) {
     const memberRef = db.collection('members');
