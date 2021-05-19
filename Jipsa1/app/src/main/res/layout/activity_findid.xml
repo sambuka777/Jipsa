@@ -26,33 +26,40 @@
 
     <TextView
         android:id="@+id/tv_FName"
-        android:layout_width="370sp"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100sp"
         android:text="이름"
-        android:textSize="24sp" />
+        android:paddingLeft="1dp"
+        android:fontFamily="@font/tb"
+        android:textColor="#000000"
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/ed_FName"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
+        android:layout_width="350sp"
+        android:layout_height="40dp"
         android:background="@drawable/edittext_style"
         android:layout_gravity="center"
         android:layout_marginTop="5sp"
+        android:paddingLeft="5dp"
         android:ems="10"
-        android:hint="FIName"
+        android:hint="이름"
         android:inputType="textPersonName"
-        android:textSize="28sp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/tv_FEm"
-        android:layout_width="370sp"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20sp"
-        android:text="E-mail"
-        android:textSize="24sp" />
+        android:layout_marginTop="35dp"
+        android:text="이메일"
+        android:paddingLeft="1dp"
+        android:fontFamily="@font/tb"
+        android:textColor="#000000"
+        android:textSize="22sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,37 +71,27 @@
 
         <EditText
             android:id="@+id/ed_Em"
-            android:layout_width="250sp"
-            android:layout_height="wrap_content"
+            android:layout_width="230sp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_style"
             android:ems="10"
-            android:hint="FIEmail"
+            android:hint="이메일"
+            android:paddingLeft="5dp"
             android:inputType="textPersonName"
-            android:textSize="28sp"/>
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/btn_FCer"
             android:layout_width="100sp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="20sp"
             android:layout_weight="1"
+            android:fontFamily="@font/nx2gof"
             android:background="@drawable/button_style"
             android:text="인증하기"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/ed_Com"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:layout_gravity="center"
-        android:layout_marginTop="5sp"
-        android:ems="10"
-        android:hint="FICom"
-        android:inputType="textPersonName"
-        android:textSize="28sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -106,22 +103,24 @@
 
         <EditText
             android:id="@+id/ed_FCerNum"
-            android:layout_width="250sp"
-            android:layout_height="wrap_content"
+            android:layout_width="230sp"
+            android:layout_height="40dp"
             android:background="@drawable/edittext_style"
             android:ems="10"
-            android:hint="FCerNum"
+            android:hint="인증번호"
             android:inputType="textPersonName"
-            android:textSize="28sp"/>
+            android:paddingLeft="5dp"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btn_FCerC"
             android:layout_width="100sp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="20sp"
             android:layout_weight="1"
             android:background="@drawable/button_style"
             android:text="인증번호 확인"
+            android:fontFamily="@font/nx2gof"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
@@ -130,9 +129,10 @@
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_style"
         android:text="완료"
+        android:fontFamily="@font/nx2gof"
         android:textColor="#FFFFFF" />
 
 

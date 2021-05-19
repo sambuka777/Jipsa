@@ -26,7 +26,7 @@ import java.net.URL;
 
 public class JoinActivity extends AppCompatActivity {
 
-    EditText edjID, edEm, edName,edpwd,edFEm,edpwck,edFCom,edbirth;
+    EditText edjID, edEm, edName,edpwd,edFEm,edpwck,edFCerNum,edbirth;
     Button btnOl, btnCer, btnCom,btnFCer;
     TextView tvData;
     String id,pwd,name,email,numOfEmail,numOfEmailck,pwdck,birth;
@@ -47,7 +47,7 @@ public class JoinActivity extends AppCompatActivity {
         edName = (EditText)findViewById(R.id.ed_Name);
         edFEm =(EditText)findViewById(R.id.ed_Em);
         edpwck=(EditText)findViewById(R.id.ed_PWc);
-        edFCom=(EditText)findViewById(R.id.ed_Com);
+        edFCerNum=(EditText)findViewById(R.id.ed_FCerNum);
         edbirth=(EditText)findViewById(R.id.ed_Birth);
         btnOl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class JoinActivity extends AppCompatActivity {
                 pwdck = String.valueOf(edpwck.getText());
                 name= String.valueOf(edName.getText());
                 birth = String.valueOf(edbirth.getText());
-                numOfEmailck=String.valueOf(edFCom.getText());
+                numOfEmailck=String.valueOf(edFCerNum.getText());
                 System.out.println(name+pwd);
                 if (flag_idok) {
                     if(!edpwd.getText().toString().equals("")

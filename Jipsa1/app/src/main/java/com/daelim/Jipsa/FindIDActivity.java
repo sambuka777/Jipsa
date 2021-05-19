@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class FindIDActivity extends AppCompatActivity {
 
     TextView TvFname, TvFEmail;
-    EditText EdFname, EdFEmail, EdFCom;
+    EditText EdFname, EdFEmail,EdFCerNum;
     Button BtnFICom;
 
     @Override
@@ -22,7 +22,7 @@ public class FindIDActivity extends AppCompatActivity {
 
         EdFname = findViewById(R.id.ed_FName);
         EdFEmail = findViewById(R.id.ed_Em);
-        EdFCom = findViewById(R.id.ed_Com);
+        EdFCerNum= findViewById(R.id.ed_FCerNum);
 
         BtnFICom = findViewById(R.id.btn_FPCom);
         BtnFICom.setOnClickListener(new View.OnClickListener() {
