@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentMyPage fragmentmypage;
     private FragmentChatRoom fragmentchatroom;
     private FragmentComuWrite fragmentcomuwrite;
+    private FragmentCommuView fragmentCommuView;
    /* private FragmentLost fragmentLost ;*/
 
     @Override
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentchatroom = new FragmentChatRoom();
         fragmentcomuwrite = new FragmentComuWrite();
         /*fragmentLost = new FragmentLost();*/
+        fragmentCommuView = new FragmentCommuView();
 
         setFrag(0); //첫 시작 프래그먼트 화면 지정
 
@@ -116,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.MainFrame, fragmentLost);
                 ft.commit();
                 break;*/
+            case 8 :
+                ft.replace(R.id.MainFrame, fragmentCommuView);
+                ft.commit();
+                break;
         }
     }
 
