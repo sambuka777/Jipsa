@@ -63,25 +63,35 @@ public class LoginActivity extends AppCompatActivity {
                 id = String.valueOf(edID.getText());
                 pwd = String.valueOf(edPW.getText());
                 if(!id.equals("")&&!pwd.equals("")){
-                    readUser(id,pwd);
-                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(JoinIntent);
+                    db = FirebaseFirestore.getInstance();
+
+                    DocumentReference docRef = db.collection("members").document(id);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
+                                    if(pwd.equals(document.get("pwd"))){
+                                        Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                        Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(JoinIntent);
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                }
+                            } else {
+                                Log.d(TAG, "get failed with ", task.getException());
+                            }
+                        }
+                    });
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "입력좀", Toast.LENGTH_SHORT).show();
                 }
-
-
-//                JSONIdLogin Ji = new JSONIdLogin();
-//                Ji.content_idck(id);
-//                Ji.execute("http://192.168.6.1:3000/idlogin");
-//                if(flag_id&&pwdOfDb.equals(pwd)){
-//                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-//                    //JoinIntent.putExtra("id",id);
-//                    startActivity(JoinIntent);
-//                }else{
-//                    System.out.println("첫번쨰 실행안되는 이유가 이거지않을까 싶습니다");
-//                    Toast.makeText(getApplicationContext(), "비번 없음", Toast.LENGTH_SHORT).show();
-//                }
-
-//                db.collection("members").;
 
 
             }
@@ -106,57 +116,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    private boolean readUser(String idck,String pwd){
-        db = FirebaseFirestore.getInstance();
-        final String[] temp = {""};
-        String pwdck;
-        DocumentReference docRef = db.collection("members").document(idck);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
-                        temp[0] = (String) document.get("pwd");
-//                        System.out.println(document.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("pwd")));
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-        pwdck = String.valueOf(temp[0]);
-        System.out.println(pwdck+"배열확인");
-        if(pwd.equals(pwdck)){
-            return true;
-        }else
-            return false;
-    }
-    @IgnoreExtraProperties
-    public class User{
-        public String db_id;
-        public User(){
-
-        }
-        public User(String db_id) {
-            this.db_id = db_id;
-        }
-
-        public String getDb_id() {
-            return db_id;
-        }
-
-        public void setUserName(String db_id) {
-            this.db_id = db_id;
-        }
-
-
-
-    }
-
     public class JSONIdLogin extends AsyncTask<String, String, String> {
         String id;
         @Override
