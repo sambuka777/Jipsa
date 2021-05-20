@@ -22,128 +22,65 @@ async function showdata(db) {
         console.log(doc.id, '=>', doc.data());
     });
 }
-showdata(db)
-// let users = [
-//     {
-//         id: 1,
-//         name: 'alice'
-//     },
-//     {
-//         id: 2,
-//         name: 'bek'
-//     },
-//     {
-//         id: 3,
-//         name: 'chris'
-//     }
-// ]
+showdata(db);
 
-// router.get('/users', (req, res) => {
-//     console.log('who get in here/users');
-//     res.json(users)
-// });
+router.post('/post', async (req, res) => {
 
-router.post('/post', (req, res) => {
-    console.log('who get in here post /users');
-
-    var inputData = req.body;
-
-    console.log(inputData);
     console.log("user_id : " + inputData.id + " ,  name:" + inputData.name);
-    database_init(db, inputData.id, inputData.pwd, inputData.name, inputData.birth, inputData.email);
+
+    const aTuringRef = db.collection('members').doc(req.body.id);
+
+    await aTuringRef.set({
+        'pwd': req.body.pwd,
+        'name': req.body.name,
+        'birth': req.body.birth,
+        'email': ereq.body.mail.email
+    });
 
     res.write("OK!");
     res.end();
-    // console.log('who get in here post /users');
-    // var inputData;
-    // req.on('data', (data) => {
-    //     console.log(data)
-    //     inputData = JSON.parse(data);
-    // });
-
-
-    // req.on('end', () => {
-    //     console.log(inputData);
-    //     console.log("user_id : " + inputData.id + " ,  name:" + inputData.name);
-    //     database_init(db, inputData.id, inputData.pwd, inputData.name);
-
-    // });
-
-    // res.write("OK!");
-    // res.end();
 });
-router.post('/idck', (req, res) => {
-    var inputData = req.body;
-    console.log(inputData);
 
-    console.log("user_id : " + inputData.id);
 
-    var flag = database_idck(db, inputData.id);
+router.post('/idck', async (req, res) => {
 
-    if (!flag) {
-        console.log("아니 돼야 한다고 왜 안되는데");
+    console.log("user_id : " + req.body.id);
 
-        res.write("OK!");
-    } else {
-        res.write("No!");
-        console.log("아니 안돼야 한다고 왜 안되는데");
-    }
-    res.end();
-});
-router.post('/idlogin', (req, res) => {
-    var inputData = req.body;
-    console.log(inputData);
-
-    console.log("user_id : " + inputData.id);
-
-    var flag = database_idlogin(db, inputData.id);
-
-    if (flag) {
-        console.log("아니 돼야 한다고 왜 안되는데");
-
-        res.write(pwdck + "");
-    } else {
-        res.write("No!");
-
-    }
-    res.end();
-});
-async function database_init(db, id, pwd, name, birth, email) {
-    const aTuringRef = db.collection('members').doc(id);
-
-    await aTuringRef.set({
-        'pwd': pwd,
-        'name': name,
-        'birth': birth,
-        'email': email
-    });
-}
-async function database_idck(db, idck) {
-    const docRef = db.collection('members').doc(idck + "");
+    const docRef = db.collection('members').doc(req.body.id + "");
     const doc = await docRef.get();
+
     if (!doc.exists) {
         console.log('No matching documents.');
-        return false;
+        res.write("No!");
     } else {
         console.log(doc.data());
-        return true;
+        res.write("OK!");
     }
-}
-async function database_idlogin(db, idck) {
-    const docRef = db.collection('members').doc(idck + "");
+
+    res.end();
+});
+
+router.post('/idlogin', async (req, res) => {
+
+    console.log("user_id : " + req.body.id);
+
+    const docRef = db.collection('members').doc(req.body.id + "");
     const doc = await docRef.get();
+
     if (!doc.exists) {
         console.log('No matching documents.');
-        return null;
+
+        res.write("No!");
     } else {
-        setpwd(doc.data().pwd);
+        this.pwdck = doc.data().pwd;
+
         console.log(doc.data().pwd);
         pwdck = doc.data().pwd;
 
-        return pwdck;
+        res.write(pwdck + "");
     }
-}
-function setpwd(pwd) {
-    this.pwdck = pwd;
-}
+    res.end();
+});
+
+
 module.exports = router;
