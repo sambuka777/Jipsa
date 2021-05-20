@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentChatRoom fragmentchatroom;
     private FragmentComuWrite fragmentcomuwrite;
     private FragmentLost fragmentLost ;
+    private FragmentCommuView fragmentCommuView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentchatroom = new FragmentChatRoom();
         fragmentcomuwrite = new FragmentComuWrite();
         fragmentLost = new FragmentLost();
+        fragmentCommuView = new FragmentCommuView();
 
         setFrag(0); //첫 시작 프래그먼트 화면 지정
 
@@ -111,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 7 :
                 ft.replace(R.id.MainFrame, fragmentLost);
+                ft.commit();
+                break;
+            case 8 :
+                ft.replace(R.id.MainFrame, fragmentCommuView);
                 ft.commit();
                 break;
         }

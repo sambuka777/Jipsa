@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ public class FragmentCommu extends Fragment {
     private View view;
     Button btn_write;
     MainActivity mainActivity;
+    LinearLayout cbl1,cbl2,cbl3;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -39,6 +41,31 @@ public class FragmentCommu extends Fragment {
                 mainActivity.setFrag(6);
             }
         });
+
+        cbl1 = view.findViewById(R.id.CBL1);
+        cbl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+            }
+        });
+
+        cbl2 = view.findViewById(R.id.CBL2);
+        cbl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+            }
+        });
+
+        cbl3 = view.findViewById(R.id.CBL3);
+        cbl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+            }
+        });
+
 
         return view;    }
 }
