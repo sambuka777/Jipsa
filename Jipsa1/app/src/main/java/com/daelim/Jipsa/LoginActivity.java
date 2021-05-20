@@ -12,12 +12,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.protobuf.StringValue;
 
 import org.json.JSONObject;
 
@@ -38,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLOG,btnFIND,btnJoin;
     String id,pwd,pwdOfDb;
     boolean flag_id, flag_pwd;
-    private DatabaseReference mDatabase;
+    FirebaseFirestore db;
+    private static final String TAG = "LoginActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,26 +55,37 @@ public class LoginActivity extends AppCompatActivity {
         edID = (EditText)findViewById(R.id.ed_ID);
         edPW = (EditText)findViewById(R.id.ed_PW);
         btnLOG = findViewById(R.id.btn_Log);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         btnLOG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 id = String.valueOf(edID.getText());
                 pwd = String.valueOf(edPW.getText());
-                JSONIdLogin Ji = new JSONIdLogin();
-                Ji.content_idck(id);
-                Ji.execute("http://192.168.6.1:3000/idlogin");
-                if(flag_id&&pwdOfDb.equals(pwd)){
+                if(!id.equals("")&&!pwd.equals("")){
+                    readUser(id,pwd);
                     Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    //JoinIntent.putExtra("id",id);
                     startActivity(JoinIntent);
-                }else{
-                    System.out.println("첫번쨰 실행안되는 이유가 이거지않을까 싶습니다");
-                    Toast.makeText(getApplicationContext(), "비번 없음", Toast.LENGTH_SHORT).show();
                 }
 
+
+//                JSONIdLogin Ji = new JSONIdLogin();
+//                Ji.content_idck(id);
+//                Ji.execute("http://192.168.6.1:3000/idlogin");
+//                if(flag_id&&pwdOfDb.equals(pwd)){
+//                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+//                    //JoinIntent.putExtra("id",id);
+//                    startActivity(JoinIntent);
+//                }else{
+//                    System.out.println("첫번쨰 실행안되는 이유가 이거지않을까 싶습니다");
+//                    Toast.makeText(getApplicationContext(), "비번 없음", Toast.LENGTH_SHORT).show();
+//                }
+
+//                db.collection("members").;
+
+
             }
+
         });
         btnJoin = findViewById(R.id.btn_Join);
         btnJoin.setOnClickListener(new View.OnClickListener() {
@@ -86,26 +106,35 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-//    private void readUser(){
-//        mDatabase.child("members").setaddValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                if(dataSnapshot.getValue(User.class) != null){
-//                    User post = dataSnapshot.getValue(User.class);
-//                    Log.w("FireBaseData", "getData" + post.toString());
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "아이디 없음", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w("FireBaseData", "loadPost:onCancelled", databaseError.toException());
-//            }
-//        });
-//    }
+    private boolean readUser(String idck,String pwd){
+        db = FirebaseFirestore.getInstance();
+        final String[] temp = {""};
+        String pwdck;
+        DocumentReference docRef = db.collection("members").document(idck);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
+                        temp[0] = (String) document.get("pwd");
+//                        System.out.println(document.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("pwd")));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+        pwdck = String.valueOf(temp[0]);
+        System.out.println(pwdck+"배열확인");
+        if(pwd.equals(pwdck)){
+            return true;
+        }else
+            return false;
+    }
     @IgnoreExtraProperties
     public class User{
         public String db_id;
