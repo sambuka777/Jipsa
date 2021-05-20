@@ -1,7 +1,10 @@
 package com.daelim.Jipsa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentMyPage fragmentmypage;
     private FragmentChatRoom fragmentchatroom;
     private FragmentComuWrite fragmentcomuwrite;
-    private FragmentLost fragmentLost ;
+   /* private FragmentLost fragmentLost ;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentmypage = new FragmentMyPage();
         fragmentchatroom = new FragmentChatRoom();
         fragmentcomuwrite = new FragmentComuWrite();
-        fragmentLost = new FragmentLost();
+        /*fragmentLost = new FragmentLost();*/
 
         setFrag(0); //첫 시작 프래그먼트 화면 지정
 
@@ -109,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.MainFrame, fragmentcomuwrite);
                 ft.commit();
                 break;
-            case 7 :
+           /* case 7 :
                 ft.replace(R.id.MainFrame, fragmentLost);
                 ft.commit();
-                break;
+                break;*/
         }
     }
 
