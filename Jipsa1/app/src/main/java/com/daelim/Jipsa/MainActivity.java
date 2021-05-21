@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent getId = getIntent();
+        String id = getId.getExtras().getString("id");
 
         //바텀 내비게이션 뷰
         bottomNavigationView = findViewById(R.id.bottom_nav);

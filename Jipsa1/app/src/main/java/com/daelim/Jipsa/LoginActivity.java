@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if(pwd.equals(document.get("pwd"))){
                                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                         Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        JoinIntent.putExtra("id",id);
                                         startActivity(JoinIntent);
                                     }else{
                                         Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
