@@ -33,6 +33,7 @@ public class FragmentHome extends Fragment {
     private FragmentStateAdapter pagerAdapter;
     private int num_page = 4;
     private CircleIndicator3 mIndicator;
+    private String id;
 
     ImageView ViewPager;
     TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4, TvLostAnimal;
@@ -55,7 +56,7 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
-
+        System.out.println(id);
         //ViewPager2
         mPager = view.findViewById(R.id.ViewPager_lost);
         //Adapter
@@ -144,6 +145,9 @@ public class FragmentHome extends Fragment {
         });
 
         return view;
+    }
+    public void set_id(String id){
+        this.id = id;
     }
 
 

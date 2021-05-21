@@ -49,6 +49,7 @@ public class FragmentCommu extends Fragment {
     ArrayList<String> db_date = new ArrayList<String>();
     ArrayList<Integer> db_viewnum = new ArrayList<Integer>();
     int temp = 0;
+    String id;
     private static final String TAG = "FragmentCommu";
     public void onAttach(Context context){
         super.onAttach(context);
@@ -67,18 +68,18 @@ public class FragmentCommu extends Fragment {
         System.out.println("실행 2");
         view = inflater.inflate(R.layout.activity_commu, container, false);
 //db
-        edt_title1 = view.findViewById(R.id.Ed_ctitle1);
-        edt_title2 = view.findViewById(R.id.Ed_ctitle2);
-        edt_title3 = view.findViewById(R.id.Ed_ctitle3);
-        edt_date1 = view.findViewById(R.id.Ed_cdate1);
-        edt_date2 = view.findViewById(R.id.Ed_cdate2);
-        edt_date3 = view.findViewById(R.id.Ed_cdate3);
-        edt_name1 = view.findViewById(R.id.Ed_cname1);
-        edt_name2 = view.findViewById(R.id.Ed_cname2);
-        edt_name3 = view.findViewById(R.id.Ed_cname3);
-        edt_views1 = view.findViewById(R.id.Ed_views1);
-        edt_views2 = view.findViewById(R.id.Ed_views2);
-        edt_views3 = view.findViewById(R.id.Ed_views3);
+//        edt_title1 = view.findViewById(R.id.Ed_ctitle1);
+//        edt_title2 = view.findViewById(R.id.Ed_ctitle2);
+//        edt_title3 = view.findViewById(R.id.Ed_ctitle3);
+//        edt_date1 = view.findViewById(R.id.Ed_cdate1);
+//        edt_date2 = view.findViewById(R.id.Ed_cdate2);
+//        edt_date3 = view.findViewById(R.id.Ed_cdate3);
+//        edt_name1 = view.findViewById(R.id.Ed_cname1);
+//        edt_name2 = view.findViewById(R.id.Ed_cname2);
+//        edt_name3 = view.findViewById(R.id.Ed_cname3);
+//        edt_views1 = view.findViewById(R.id.Ed_views1);
+//        edt_views2 = view.findViewById(R.id.Ed_views2);
+//        edt_views3 = view.findViewById(R.id.Ed_views3);
         db = FirebaseFirestore.getInstance();
 
         db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -139,6 +140,9 @@ public class FragmentCommu extends Fragment {
 
 
         return view;
+    }
+    public void set_id(String id){
+        this.id = id;
     }
 }
 

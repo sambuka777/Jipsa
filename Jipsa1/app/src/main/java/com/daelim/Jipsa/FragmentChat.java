@@ -21,7 +21,7 @@ public class FragmentChat extends Fragment {
     Button cp_btn1,cp_btn2;
     MainActivity mainActivity;
     LinearLayout chat1,chat2;
-
+    String id;
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -39,7 +39,7 @@ public class FragmentChat extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_chat, container, false);
-
+        System.out.println(id);
         chat1 = view.findViewById(R.id.chat_1);
         chat1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,9 @@ public class FragmentChat extends Fragment {
 
 
         return view;    }
-
+    public void set_id(String id){
+        this.id = id;
+    }
 
 }
 

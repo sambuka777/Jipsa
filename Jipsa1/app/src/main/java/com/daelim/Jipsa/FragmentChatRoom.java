@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 public class FragmentChatRoom extends Fragment {
 
     private View view;
-
+    String id;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -20,5 +20,8 @@ public class FragmentChatRoom extends Fragment {
 
 
         return view;    }
+    public void set_id(String id){
+        this.id = id;
+    }
 }
 

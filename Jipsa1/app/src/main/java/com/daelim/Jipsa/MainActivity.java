@@ -69,14 +69,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         fragmenthome = new FragmentHome();
+        fragmenthome.set_id(id);
         fragmentchat = new FragmentChat();
+        fragmentchat.set_id(id);
         fragmentcommu = new FragmentCommu();
+        fragmentcommu.set_id(id);
         fragmentsearch = new FragmentSearch();
+        fragmentsearch.set_id(id);
         fragmentmypage = new FragmentMyPage();
+        fragmentmypage.set_id(id);
         fragmentchatroom = new FragmentChatRoom();
+        fragmentchatroom.set_id(id);
         fragmentcomuwrite = new FragmentComuWrite();
+        fragmentcomuwrite.set_id(id);
         /*fragmentLost = new FragmentLost();*/
         fragmentCommuView = new FragmentCommuView();
+        fragmentCommuView.set_id(id);
 
         setFrag(0); //첫 시작 프래그먼트 화면 지정
 

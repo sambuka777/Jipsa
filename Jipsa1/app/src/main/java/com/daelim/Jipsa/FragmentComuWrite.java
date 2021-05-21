@@ -16,7 +16,7 @@ public class FragmentComuWrite extends Fragment {
     private View view;
     Button BtnUpload;
     MainActivity mainActivity;
-
+    String id;
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -41,5 +41,8 @@ public class FragmentComuWrite extends Fragment {
         });
 
         return view;    }
+    public void set_id(String id){
+        this.id = id;
+    }
 }
 

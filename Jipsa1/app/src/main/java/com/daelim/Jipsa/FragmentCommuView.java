@@ -14,10 +14,13 @@ import androidx.fragment.app.Fragment;
 public class FragmentCommuView extends Fragment {
 
     private View view;
-
+    String id;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          view = inflater.inflate(R.layout.activity_commuview, container, false);
 
 
         return view;    }
+    public void set_id(String id){
+        this.id = id;
+    }
 }
