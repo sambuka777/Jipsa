@@ -1,6 +1,7 @@
 package com.daelim.Jipsa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,6 +122,15 @@ public class FragmentHome extends Fragment {
             public void onClick(View view) {
 
                 mainActivity.setFrag(7);
+            }
+        });
+
+        Button LostBtn = view.findViewById(R.id.btn_LostAniMore);
+        LostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mainActivity.getApplicationContext(), FragmentLost.class);
+                startActivity(intent);
             }
         });
 

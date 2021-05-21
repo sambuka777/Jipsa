@@ -40,6 +40,8 @@
         <activity android:name=".FindActivity" />
         <activity android:name=".FindIDActivity" />
         <activity android:name=".FindPWActivity" />
+        <activity android:name=".FragmentLost"/>
+
 
         <service
             android:name=".MyFirebaseMessagingService">
