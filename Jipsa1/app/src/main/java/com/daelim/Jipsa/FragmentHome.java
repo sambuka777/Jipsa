@@ -135,15 +135,6 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        Button LostBtn = view.findViewById(R.id.btn_LostAniMore);
-        LostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mainActivity.getApplicationContext(), FragmentLost.class);
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
     public void set_id(String id){

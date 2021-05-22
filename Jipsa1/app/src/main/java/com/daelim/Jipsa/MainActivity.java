@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentChatRoom fragmentchatroom;
     private FragmentComuWrite fragmentcomuwrite;
     private FragmentCommuView fragmentCommuView;
-   /* private FragmentLost fragmentLost ;*/
+    private FragmentLost fragmentLost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentchatroom.set_id(id);
         fragmentcomuwrite = new FragmentComuWrite();
         fragmentcomuwrite.set_id(id);
-        /*fragmentLost = new FragmentLost();*/
+        fragmentLost = new FragmentLost();
         fragmentCommuView = new FragmentCommuView();
         fragmentCommuView.set_id(id);
 
@@ -124,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.MainFrame, fragmentcomuwrite);
                 ft.commit();
                 break;
-           /* case 7 :
+            case 7 :
                 ft.replace(R.id.MainFrame, fragmentLost);
                 ft.commit();
-                break;*/
+                break;
             case 8 :
                 ft.replace(R.id.MainFrame, fragmentCommuView);
                 ft.commit();
