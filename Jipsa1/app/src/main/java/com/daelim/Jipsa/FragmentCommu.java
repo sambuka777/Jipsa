@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +37,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class FragmentCommu extends Fragment {
+
+    //ListView 변수
+    static final String[] LIST_MENU = {"fff", "LIST2", "LIST3"} ;
+    //ListView 변수
 
     private View view;
     Button btn_write;
@@ -67,7 +74,31 @@ public class FragmentCommu extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         System.out.println("실행 2");
         view = inflater.inflate(R.layout.activity_commu, container, false);
+        //새로운 코드(List View) 시작
+
+        ArrayAdapter Adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, LIST_MENU) ;
+
+        ListView listview = (ListView) view.findViewById(R.id.listview1) ;
+        listview.setAdapter(Adapter) ;
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            // 코드 계속 ...
+
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+
+                mainActivity.setFrag(8);
+
+            }
+        }) ;
+
+
+        //새로운 코드(List View) 끝
 //db
+
+        
+        //원래코드 변수스타트
+
 //        edt_title1 = view.findViewById(R.id.Ed_ctitle1);
 //        edt_title2 = view.findViewById(R.id.Ed_ctitle2);
 //        edt_title3 = view.findViewById(R.id.Ed_ctitle3);
@@ -80,6 +111,10 @@ public class FragmentCommu extends Fragment {
 //        edt_views1 = view.findViewById(R.id.Ed_views1);
 //        edt_views2 = view.findViewById(R.id.Ed_views2);
 //        edt_views3 = view.findViewById(R.id.Ed_views3);
+
+
+        //원래코드 변수끝
+
         db = FirebaseFirestore.getInstance();
 
         db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -113,30 +148,33 @@ public class FragmentCommu extends Fragment {
                 mainActivity.setFrag(6);
             }
         });
+        
+        //원래 코드 스타트
 
-        cbl1 = view.findViewById(R.id.CBL1);
-        cbl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
-            }
-        });
-
-        cbl2 = view.findViewById(R.id.CBL2);
-        cbl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
-            }
-        });
-
-        cbl3 = view.findViewById(R.id.CBL3);
-        cbl3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
-            }
-        });
+//        cbl1 = view.findViewById(R.id.CBL1);
+//        cbl1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+//            }
+//        });
+//
+//        cbl2 = view.findViewById(R.id.CBL2);
+//        cbl2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+//            }
+//        });
+//
+//        cbl3 = view.findViewById(R.id.CBL3);
+//        cbl3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+//            }
+//        });
+        //원래코드 끝
 
 
         return view;
