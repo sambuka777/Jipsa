@@ -93,6 +93,19 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "입력좀", Toast.LENGTH_SHORT).show();
                 }
+                id = String.valueOf(edID.getText());
+                pwd = String.valueOf(edPW.getText());
+                JSONIdLogin Ji = new JSONIdLogin();
+                Ji.content_idck(id);
+                Ji.execute("http://192.168.6.1:3000/idlogin");
+                if(flag_id&&pwdOfDb.equals(pwd)){
+                    Intent JoinIntent = new Intent(LoginActivity.this, MainActivity.class);
+                    JoinIntent.putExtra("id",id);
+                    startActivity(JoinIntent);
+                }else{
+                    System.out.println("첫번쨰 실행안되는 이유가 이거지않을까 싶습니다");
+                    Toast.makeText(getApplicationContext(), "비번 없음", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
