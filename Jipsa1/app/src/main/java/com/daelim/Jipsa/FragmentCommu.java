@@ -111,15 +111,18 @@ public class FragmentCommu extends Fragment {
         //원래코드 끝
 
 
-        cbl3 = view.findViewById(R.id.CBL3);
-        cbl3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
-            }
-        });
+//        cbl3 = view.findViewById(R.id.CBL3);
+//        cbl3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mainActivity.setFrag(8);//일단 글쓰는곳으로 임시 이동 연결
+//            }
+//        });
 
 
         return view;    }
+    public void set_id(String id){
+        this.id = id;
+    }
 }
 
