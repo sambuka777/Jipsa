@@ -11,11 +11,14 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,9 +47,19 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,12 +68,11 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
 
         private GoogleMap mMap;
-        private Marker currentMarker = null;
 
         private static final String TAG = "googlemap";
         private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-        private static final int UPDATE_INTERVAL_MS = 60000;  // 60초
-        private static final int FASTEST_UPDATE_INTERVAL_MS = 30000; // 30초
+        private static final int UPDATE_INTERVAL_MS = 5000;  // 5초
+        private static final int FASTEST_UPDATE_INTERVAL_MS = 1000; // 1초
 
 
         // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
@@ -101,6 +113,8 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
 
             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+
         }
 
         @Override
@@ -112,6 +126,10 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
             mapView.onCreate(savedInstanceState);
 
             mapView.getMapAsync(this);
+
+            //마커 클릭 전 정보창 숨기기
+            LinearLayout petinfobox = (LinearLayout) mLayout.findViewById(R.id.petinfobox);
+            petinfobox.setVisibility(View.INVISIBLE);
 
             return mLayout;
         }
@@ -212,32 +230,23 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
         LocationCallback locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
+            super.onLocationResult(locationResult);
 
-                List<Location> locationList = locationResult.getLocations();
+            List<Location> locationList = locationResult.getLocations();
 
-                if (locationList.size() > 0) {
-                    location = locationList.get(locationList.size() - 1);
-                    //location = locationList.get(0);
+            if (locationList.size() > 0) {
+                location = locationList.get(locationList.size() - 1);
+                //location = locationList.get(0);
 
-                    currentPosition
-                            = new LatLng(location.getLatitude(), location.getLongitude());
+                currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
 
+                String markerSnippet = "위도:" + String.valueOf(location.getLatitude()) + " 경도:" + String.valueOf(location.getLongitude());
 
-                    String markerTitle = getCurrentAddress(currentPosition);
-                    String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
-                            + " 경도:" + String.valueOf(location.getLongitude());
+               /* Log.d(TAG, "onLocationResult : " + markerSnippet);*/
 
-                    Log.d(TAG, "onLocationResult : " + markerSnippet);
-
-
-                    //현재 위치에 마커 생성하고 이동
-                    setCurrentLocation(location, markerTitle, markerSnippet);
-
-                    mCurrentLocatiion = location;
-                }
-
-
+                //현재 위치로 이동
+                setCurrentLocation(location);
+            }
             }
 
         };
@@ -356,25 +365,88 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
         }
 
 
-        public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
-
-
-            if (currentMarker != null) currentMarker.remove();
-
+        public void setCurrentLocation(Location location) {
 
             LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(currentLatLng);
-            markerOptions.title(markerTitle);
-            markerOptions.snippet(markerSnippet);
-            markerOptions.draggable(true);
 
 
-            currentMarker = mMap.addMarker(markerOptions);
+            //마커찍기
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+            CollectionReference docRef = db.collection("petofmiss");
+            docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            String lost_petname = (String) document.get("petname");
+                            String lost_petchr = (String) document.get("petchr");
+                            String lost_petsex = (String) document.get("petsex");
+
+                            GeoPoint geoPoint = document.getGeoPoint("gps");
+
+                            double lostlat = geoPoint.getLatitude();
+                            double lostlng = geoPoint.getLongitude();
+
+                            LatLng markersLatLng = new LatLng(lostlat , lostlng);
+
+                            MarkerOptions markerOptions = new MarkerOptions();
+                            markerOptions.position(markersLatLng);
+                            markerOptions.title(lost_petname);
+                            markerOptions.snippet(lost_petchr);
+                            /*markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lostpet));*/ // 커스텀 이미지
+
+                            Marker lostMarkers = mMap.addMarker(markerOptions);
+
+                            lostMarkers.hideInfoWindow();
+                            lostMarkers.setTag(lost_petsex);
+
+                            mMap.setOnMarkerClickListener(markerClickListener); // 마커 클릭 이벤트
+                        }
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                }
+
+                //마커 클릭 이벤트
+                GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+
+                        // 정보세팅
+                        TextView petname = (TextView)getActivity().findViewById(R.id.info_petname); //펫 이름
+                        TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
+                        TextView petichr = (TextView)getActivity().findViewById(R.id.info_petchr); // 펫 정보
+
+                        Log.d(TAG, marker.getSnippet());
+                        petname.setText(marker.getTitle());
+                        petsex.setText((String)marker.getTag());
+                        petichr.setText(Html.fromHtml(marker.getSnippet().replaceAll("InE", "<br/>")));
+
+                        //박스 이름
+                        TextView boxname = (TextView)getActivity().findViewById(R.id.boxname);
+                        boxname.setText("실종신고 펫 정보");
+
+                        //펫 정보창 보여주기
+                        LinearLayout petinfobox = (LinearLayout) mLayout.findViewById(R.id.petinfobox);
+                        petinfobox.setVisibility(View.VISIBLE);
+
+                        return true;
+                    }
+                };
+            });
+
+
+            //현재 위치 표시
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
-            mMap.moveCamera(cameraUpdate);
+
+            if(mCurrentLocatiion ==  null || location.getLatitude() != mCurrentLocatiion.getLatitude() && location.getLongitude() != mCurrentLocatiion.getLongitude()){
+                //현재 위치가 변했을때
+                mMap.moveCamera(cameraUpdate);
+                mCurrentLocatiion = location;
+            }
 
         }
 
@@ -384,19 +456,6 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
             //디폴트 위치, Seoul
             LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
-            String markerTitle = "위치정보 가져올 수 없음";
-            String markerSnippet = "위치 퍼미션과 GPS 활성 요부 확인하세요";
-
-
-            if (currentMarker != null) currentMarker.remove();
-
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(DEFAULT_LOCATION);
-            markerOptions.title(markerTitle);
-            markerOptions.snippet(markerSnippet);
-            markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-            currentMarker = mMap.addMarker(markerOptions);
 
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 15);
             mMap.moveCamera(cameraUpdate);
