@@ -74,7 +74,31 @@ public class FragmentCommu extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         System.out.println("실행 2");
         view = inflater.inflate(R.layout.activity_commu, container, false);
+//db
+        db = FirebaseFirestore.getInstance();
 
+        db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+                        db_id.add(document.get("id").toString());
+                        db_title.add(document.get("title").toString());
+                        db_memo.add(document.get("memo").toString());
+                        Date from = new Date( document.getTimestamp("date").toDate().getTime());
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String to = transFormat.format(from);
+                        System.out.println(to);
+                        db_date.add(to);
+                        db_viewnum.add(Integer.parseInt(document.get("viewnum").toString()));
+                        temp++;
+                    }
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
+            }
+        });
         btn_write = view.findViewById(R.id.btn_Write);
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
