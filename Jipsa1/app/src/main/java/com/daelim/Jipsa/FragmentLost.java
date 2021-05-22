@@ -1,6 +1,7 @@
 package com.daelim.Jipsa;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,7 +12,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -32,6 +35,9 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -45,13 +51,13 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class FragmentLost extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
+public class FragmentLost extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
 
 
         private GoogleMap mMap;
         private Marker currentMarker = null;
 
-        private static final String TAG = "googlemap_example";
+        private static final String TAG = "googlemap";
         private static final int GPS_ENABLE_REQUEST_CODE = 2001;
         private static final int UPDATE_INTERVAL_MS = 60000;  // 60초
         private static final int FASTEST_UPDATE_INTERVAL_MS = 30000; // 30초
@@ -75,19 +81,12 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
         private Location location;
 
 
-        private View mLayout;  // Snackbar 사용하기 위해서는 View가 필요합니다.
-        // (참고로 Toast에서는 Context가 필요했습니다.)
+        View mLayout;
+        MapView mapView;
 
         @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
+        public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
-                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-            setContentView(R.layout.activity_lost);
-
-            mLayout = findViewById(R.id.layout_main);
 
             locationRequest = new LocationRequest()
                     .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -101,17 +100,47 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
             builder.addLocationRequest(locationRequest);
 
 
-            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         }
 
         @Override
-        public void onMapReady(final GoogleMap googleMap) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+            mLayout = inflater.inflate(R.layout.activity_lost, container, false);
+
+            mapView = (MapView) mLayout.findViewById(R.id.map);
+            mapView.onCreate(savedInstanceState);
+
+            mapView.getMapAsync(this);
+
+            return mLayout;
+        }
+
+        @Override
+        public void onResume() {
+            mapView.onResume();
+            super.onResume();
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            mapView.onDestroy();
+        }
+
+        @Override
+        public void onLowMemory() {
+            super.onLowMemory();
+            mapView.onLowMemory();
+        }
+
+
+
+    @Override
+        public void onMapReady(GoogleMap googleMap) {
             Log.d(TAG, "onMapReady :");
+            MapsInitializer.initialize(this.getActivity());
+
 
             mMap = googleMap;
 
@@ -123,10 +152,8 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
 
             //런타임 퍼미션 처리
             // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
-            int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION);
-            int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION);
+            int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(),  Manifest.permission.ACCESS_FINE_LOCATION);
+            int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(getActivity(),  Manifest.permission.ACCESS_COARSE_LOCATION);
 
 
 
@@ -143,7 +170,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
             }else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
                 // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])) {
 
                     // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
                     Snackbar.make(mLayout, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.",
@@ -153,8 +180,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                         public void onClick(View view) {
 
                             // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                            ActivityCompat.requestPermissions( FragmentLost.this, REQUIRED_PERMISSIONS,
-                                    PERMISSIONS_REQUEST_CODE);
+                            requestPermissions( REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
                         }
                     }).show();
 
@@ -162,8 +188,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                 } else {
                     // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
                     // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                    ActivityCompat.requestPermissions( this, REQUIRED_PERMISSIONS,
-                            PERMISSIONS_REQUEST_CODE);
+                    requestPermissions( REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
                 }
 
             }
@@ -227,10 +252,8 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                 showDialogForLocationServiceSetting();
             }else {
 
-                int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_FINE_LOCATION);
-                int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION);
+                int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(),  Manifest.permission.ACCESS_FINE_LOCATION);
+                int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(getActivity(),  Manifest.permission.ACCESS_COARSE_LOCATION);
 
 
 
@@ -255,7 +278,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
 
 
         @Override
-        protected void onStart() {
+        public void onStart() {
             super.onStart();
 
             Log.d(TAG, "onStart");
@@ -275,7 +298,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
 
 
         @Override
-        protected void onStop() {
+        public void onStop() {
 
             super.onStop();
 
@@ -292,7 +315,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
         public String getCurrentAddress(LatLng latlng) {
 
             //지오코더... GPS를 주소로 변환
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
             List<Address> addresses;
 
@@ -304,17 +327,17 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                         1);
             } catch (IOException ioException) {
                 //네트워크 문제
-                Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
                 return "지오코더 서비스 사용불가";
             } catch (IllegalArgumentException illegalArgumentException) {
-                Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
                 return "잘못된 GPS 좌표";
 
             }
 
 
             if (addresses == null || addresses.size() == 0) {
-                Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "주소 미발견", Toast.LENGTH_LONG).show();
                 return "주소 미발견";
 
             } else {
@@ -326,7 +349,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
 
 
         public boolean checkLocationServicesStatus() {
-            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
             return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                     || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -384,10 +407,8 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
         //여기부터는 런타임 퍼미션 처리을 위한 메소드들
         private boolean checkPermission() {
 
-            int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION);
-            int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION);
+            int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity() ,Manifest.permission.ACCESS_FINE_LOCATION);
+            int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION);
 
 
 
@@ -435,8 +456,8 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                 else {
                     // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
 
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
-                            || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])
+                            || ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[1])) {
 
 
                         // 사용자가 거부만 선택한 경우에는 앱을 다시 실행하여 허용을 선택하면 앱을 사용할 수 있습니다.
@@ -446,7 +467,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                             @Override
                             public void onClick(View view) {
 
-                                finish();
+                                getActivity().finish();
                             }
                         }).show();
 
@@ -460,7 +481,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
                             @Override
                             public void onClick(View view) {
 
-                                finish();
+                                getActivity().finish();
                             }
                         }).show();
                     }
@@ -473,7 +494,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
         //여기부터는 GPS 활성화를 위한 메소드들
         private void showDialogForLocationServiceSetting() {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(FragmentLost.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("위치 서비스 비활성화");
             builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                     + "위치를 서비스를 허용하시겠습니까?");
@@ -497,7 +518,7 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
 
 
         @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
 
             switch (requestCode) {
@@ -521,4 +542,3 @@ public class FragmentLost extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
     }
-
