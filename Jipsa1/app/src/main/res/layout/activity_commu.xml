@@ -7,9 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--    ListView 쓸려면 슬라이드X-->
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,192 +47,205 @@
         android:fontFamily="@font/nx2gof"
         android:textColor="#FFFFFF" />
 
-    <LinearLayout
-        android:id="@+id/CBL1"
-        android:layout_width="350dp"
-        android:layout_height="70dp"
-        android:background="@drawable/commu_style"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+<!--        원래 디자인 start-->
 
-        <TextView
-            android:id="@+id/Ed_ctitle1"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:gravity="left|bottom"
-            android:hint="글10"
-            android:textSize="20dp"
-            android:paddingLeft="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="#000000"
-            android:fontFamily="@font/tway_air"
-            android:text="금토일 알바 ㅈ같네여" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/CBL1"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:background="@drawable/commu_style"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:orientation="vertical">-->
 
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
+<!--        <TextView-->
+<!--            android:id="@+id/Ed_ctitle1"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:gravity="left|bottom"-->
+<!--            android:hint="글10"-->
+<!--            android:textSize="20dp"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingBottom="5dp"-->
+<!--            android:textColor="#000000"-->
+<!--            android:fontFamily="@font/tway_air"-->
+<!--            android:text="금토일 알바 ㅈ같네여" />-->
 
-            <TextView
-                android:id="@+id/Ed_cname1"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="장준철"
-                android:textSize="15dp" />
+<!--        <LinearLayout-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/Ed_cdate1"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="2021-05-20"
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/Ed_views1"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="조회수:"
-                android:textSize="15dp" />
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_cname1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="장준철"-->
+<!--                android:textSize="15dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_cdate1"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="2021-05-20"-->
+<!--                android:textSize="15dp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_views1"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="조회수:"-->
+<!--                android:textSize="15dp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+<!--        //2번째글 시작-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/CBL2"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:background="@drawable/commu_style"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_ctitle2"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:hint="글10"-->
+<!--                android:textSize="20dp"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:textColor="#000000"-->
+<!--                android:fontFamily="@font/tway_air"-->
+<!--                android:text="내가 뭘 검색하려고 했지?" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="350dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/Ed_cname2"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_gravity="top"-->
+<!--                    android:gravity="left|bottom"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="장준철"-->
+<!--                    android:textSize="15dp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/Ed_cdate2"-->
+<!--                    android:layout_width="97dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_gravity="top"-->
+<!--                    android:gravity="left|bottom"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="2021-05-20"-->
+<!--                    android:textSize="15dp" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Ed_views2"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_gravity="top"-->
+<!--                    android:gravity="left|bottom"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="조회수:"-->
+<!--                    android:textSize="15dp" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout> //2번째글 끝-->
+
+<!--    //3번째글 시작-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/CBL3"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:background="@drawable/commu_style"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Ed_ctitle3"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:gravity="left|bottom"-->
+<!--            android:hint="글10"-->
+<!--            android:textSize="20dp"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingBottom="5dp"-->
+<!--            android:textColor="#000000"-->
+<!--            android:fontFamily="@font/tway_air"-->
+<!--            android:text="게거품 보글보글" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_cname3"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="장준철"-->
+<!--                android:textSize="15dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_cdate3"-->
+<!--                android:layout_width="97dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="2021-05-20"-->
+<!--                android:textSize="15dp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/Ed_views3"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:gravity="left|bottom"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:text="조회수:"-->
+<!--                android:textSize="15dp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout> // 3번째글 끝-->
+
+<!--            원래 디자인 END-->
+
+            <ListView
+                android:id="@+id/listview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+
         </LinearLayout>
-    </LinearLayout>
-
-        //2번째글 시작
-        <LinearLayout
-            android:id="@+id/CBL2"
-            android:layout_width="350dp"
-            android:layout_height="70dp"
-            android:background="@drawable/commu_style"
-            android:layout_marginTop="0dp"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/Ed_ctitle2"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:gravity="left|bottom"
-                android:hint="글10"
-                android:textSize="20dp"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:textColor="#000000"
-                android:fontFamily="@font/tway_air"
-                android:text="내가 뭘 검색하려고 했지?" />
-
-            <LinearLayout
-                android:layout_width="350dp"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Ed_cname2"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="top"
-                    android:gravity="left|bottom"
-                    android:paddingLeft="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="장준철"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/Ed_cdate2"
-                    android:layout_width="97dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="top"
-                    android:gravity="left|bottom"
-                    android:paddingLeft="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="2021-05-20"
-                    android:textSize="15dp" />
-                <TextView
-                    android:id="@+id/Ed_views2"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="top"
-                    android:gravity="left|bottom"
-                    android:paddingLeft="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="조회수:"
-                    android:textSize="15dp" />
-            </LinearLayout>
-        </LinearLayout> //2번째글 끝
-
-    //3번째글 시작
-    <LinearLayout
-        android:id="@+id/CBL3"
-        android:layout_width="350dp"
-        android:layout_height="70dp"
-        android:background="@drawable/commu_style"
-        android:layout_marginTop="0dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/Ed_ctitle3"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:gravity="left|bottom"
-            android:hint="글10"
-            android:textSize="20dp"
-            android:paddingLeft="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="#000000"
-            android:fontFamily="@font/tway_air"
-            android:text="게거품 보글보글" />
-
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/Ed_cname3"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="장준철"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/Ed_cdate3"
-                android:layout_width="97dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="2021-05-20"
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/Ed_views3"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top"
-                android:gravity="left|bottom"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-                android:text="조회수:"
-                android:textSize="15dp" />
-        </LinearLayout>
-    </LinearLayout> // 3번째글 끝
-        </LinearLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
+<!--    ListView 쓸려면 슬라이드X-->
     </LinearLayout>
 
 

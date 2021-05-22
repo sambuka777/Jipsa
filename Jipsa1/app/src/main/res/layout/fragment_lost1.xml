@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="278dp"
+        android:layout_height="@dimen/frameSize"
         android:layout_marginLeft="@dimen/pageMarginAndOffset"
         android:layout_marginRight="@dimen/pageMarginAndOffset"
         android:orientation="vertical">
@@ -26,7 +26,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/edittext_style"
             android:hint="이름"
             android:textSize="16sp" />
 
@@ -38,7 +39,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="85dp"
+            android:background="@drawable/edittext_style"
             android:hint="성별"
             android:textSize="16sp" />
 
@@ -50,7 +52,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="115dp"
+            android:layout_marginTop="130dp"
+            android:background="@drawable/edittext_style"
             android:hint="거주지"
             android:textSize="16sp" />
 
@@ -62,7 +65,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="165dp"
+            android:layout_marginTop="175dp"
+            android:background="@drawable/edittext_style"
             android:hint="주요특징"
             android:textSize="16sp" />
 
