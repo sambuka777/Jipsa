@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,10 +60,7 @@ public class FragmentComuWrite extends Fragment {
                 comm.put("title",ed_title.getText().toString());
                 comm.put("memo",ed_memo.getText().toString());
                 comm.put("viewnum",0);
-                long now = System.currentTimeMillis();
-                Date mDate = new Date(now);
-                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                comm.put("date", simpleDate.format(mDate));
+                comm.put("date", Timestamp.now());
                 db = FirebaseFirestore.getInstance();
                 db.collection("commity")
                         .add(comm)
