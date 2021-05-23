@@ -8,19 +8,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="400sp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="400sp" />
+
+        <Button
+            android:id="@+id/btn_lost"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:background="@drawable/button_style2"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"
+            android:text="실종신고"/>
+
+        <Button
+            android:id="@+id/btn_find"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:elevation="10dp"
+            android:background="@drawable/button_style2"
+            android:layout_toRightOf="@id/btn_lost"
+            android:textColor="@color/white"
+            android:text="발견신고"/>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_weight="1"
-        android:scrollbars="none">
+        android:layout_weight="1">
 
         <LinearLayout
             android:id="@+id/petinfobox"

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_border">
+
+        <TextView
+            android:id="@+id/write_title"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:fontFamily="@font/tb"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:text="펫 실종신고"/>
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="15dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/close"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        `<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tway_air"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:text="등록할 펫의 이름을 작성해주세요."/>
+
+            <EditText
+                android:id="@+id/wpet_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/tway_air"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:text="펫의 성별은 무엇인가요?"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/sex_m"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/nx2gof"
+                    android:textSize="16dp"
+                    android:text="남자"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/radiobutton"/>
+
+                <RadioButton
+                    android:id="@+id/sex_f"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/nx2gof"
+                    android:textSize="16dp"
+                    android:text="여자"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/radiobutton" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/wpet_chr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/tway_air"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:text="펫의 특징을 적어주세요."/>
+
+            <EditText
+                android:inputType="textMultiLine"
+                android:lines="15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:padding="10dp"
+                android:gravity="start"
+                android:background="@drawable/edge"
+                android:scrollbars="vertical"
+                android:fontFamily="@font/nx2gof"
+                android:textSize="15dp"
+                android:hint="펫의 생김새, 특이사항을 적어주세요."/>
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_style"
+                android:textColor="@color/white"
+                android:fontFamily="@font/tb"
+                android:textSize="18dp"
+                android:text="등록하기"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

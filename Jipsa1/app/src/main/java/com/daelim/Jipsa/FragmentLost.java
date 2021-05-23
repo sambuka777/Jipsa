@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +24,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -38,12 +37,9 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -51,22 +47,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 
 public class FragmentLost extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
 
-
+        String id;
         private GoogleMap mMap;
 
         private static final String TAG = "googlemap";
@@ -95,6 +88,8 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
         View mLayout;
         MapView mapView;
+        MainActivity mainActivity;
+        Button lostpet_btn, findpet_btn;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,7 +113,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
 
             mLayout = inflater.inflate(R.layout.activity_lost, container, false);
 
@@ -126,6 +121,25 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
             mapView.onCreate(savedInstanceState);
 
             mapView.getMapAsync(this);
+
+
+            lostpet_btn = mLayout.findViewById(R.id.btn_lost);
+            lostpet_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), LostFindPet.class);
+                    startActivity(intent);
+                }
+            });
+
+            Button findpet_btn = mLayout.findViewById(R.id.btn_find);
+            findpet_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), LostFindPet.class);
+                    startActivity(intent);
+                }
+            });
 
             //마커 클릭 전 정보창 숨기기
             LinearLayout petinfobox = (LinearLayout) mLayout.findViewById(R.id.petinfobox);
@@ -420,7 +434,6 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                         TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
                         TextView petichr = (TextView)getActivity().findViewById(R.id.info_petchr); // 펫 정보
 
-                        Log.d(TAG, marker.getSnippet());
                         petname.setText(marker.getTitle());
                         petsex.setText((String)marker.getTag());
                         petichr.setText(Html.fromHtml(marker.getSnippet().replaceAll("InE", "<br/>")));
@@ -600,4 +613,8 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                     break;
             }
         }
+
+    public void set_id(String id){
+        this.id = id;
     }
+}

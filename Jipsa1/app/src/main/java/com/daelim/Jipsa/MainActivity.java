@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentcomuwrite = new FragmentComuWrite();
         fragmentcomuwrite.set_id(id);
         fragmentLost = new FragmentLost();
+        fragmentLost.set_id(id);
         fragmentCommuView = new FragmentCommuView();
         fragmentCommuView.set_id(id);
 
