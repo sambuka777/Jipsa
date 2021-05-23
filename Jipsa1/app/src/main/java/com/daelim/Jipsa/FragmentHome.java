@@ -52,16 +52,6 @@ public class FragmentHome extends Fragment {
 
     MainActivity mainActivity;
 
-//    ViewPager viewPager;
-//    int images[] = {R.drawable.cat1, R.drawable.cat2, R.drawable.cat3};
-//    MyCustomPagerAdapter myCustomPagerAdapter;
-//    int currentPage = 0;
-//
-//    Timer timer;
-//    final int num_pages = images.length;
-//    final long delay_ms = 3000;
-//    final long period_ms = 5000;
-
     //ViewPager 이미지 슬라이드
     class FragmentAdapter extends FragmentPagerAdapter {
 
@@ -113,15 +103,6 @@ public class FragmentHome extends Fragment {
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-
-
-
-
-
-
-
-
-
         mPager.setCurrentItem(1000);
         mPager.setOffscreenPageLimit(3);
 
@@ -141,27 +122,6 @@ public class FragmentHome extends Fragment {
             }
         });
 
-//        final float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMargin);
-//        final float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offset);
-
-//        mPager.setPageTransformer(new ViewPager2.PageTransformer() {
-//            @Override
-//            public void transformPage(@NonNull View page, float position) {
-//                float myOffset = position * -(2 * pageOffset + pageMargin);
-//                if (mPager.getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL) {
-//                    if (ViewCompat.getLayoutDirection(mPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-//                        page.setTranslationX(-myOffset);
-//                    }
-//                    else {
-//                        page.setTranslationX(myOffset);
-//                    }
-//                }
-//                else {
-//                    page.setTranslationY(myOffset);
-//                }
-//            }
-//        });
-
         BtnComuMore = view.findViewById(R.id.btn_ComuMore);
         BtnComuMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,49 +140,31 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        ArrayList<Integer> listImage = new ArrayList<>();
+        listImage.add(R.drawable.cat1);
+        listImage.add(R.drawable.cat2);
+        listImage.add(R.drawable.cat3);
+
+        ViewPager viewPager = view.findViewById(R.id.Image_Slide);
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getActivity().getSupportFragmentManager());
+        viewPager.setAdapter(fragmentAdapter);
+
+        for (int i = 0; i < listImage.size(); i++) {
+            FragmentImage imageFragment = new FragmentImage();
+            Bundle bundle = new Bundle();
+            bundle.putInt("imgRes", listImage.get(i));
+            imageFragment.setArguments(bundle);
+            fragmentAdapter.addItem(imageFragment);
+        }
+        fragmentAdapter.notifyDataSetChanged();
+
         return view;
     }
+
     public void set_id(String id){
         this.id = id;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        final Handler handler = new Handler();
-//        final Runnable Update = new Runnable() {
-//            @Override
-//            public void run() {
-//                currentPage = viewPager.getCurrentItem();
-//                int nextPage = currentPage + 1;
-//
-//                if (nextPage >= num_pages) {
-//                    nextPage = 0;
-//                }
-//                viewPager.setCurrentItem(nextPage, true);
-//                currentPage = nextPage;
-//            }
-//        };
-//
-//        timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handler.post(Update);
-//            }
-//        }, delay_ms, period_ms);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//
-//        if (timer != null) {
-//            timer.cancel();
-//            timer = null;
-//        }
-//    }
 }
 
 
