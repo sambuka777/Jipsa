@@ -3,15 +3,9 @@ package com.daelim.Jipsa;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -36,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent getId = getIntent();
         String id = getId.getExtras().getString("id");
+        Integer frag = getId.getExtras().getInt("frag");
 
         //바텀 내비게이션 뷰
         bottomNavigationView = findViewById(R.id.bottom_nav);
@@ -87,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentCommuView = new FragmentCommuView();
         fragmentCommuView.set_id(id);
 
-        setFrag(0); //첫 시작 프래그먼트 화면 지정
+        if(frag == 7){
+            setFrag(7);//실종신고 취소 or 등록 후 화면 지정
+        }else{
+            setFrag(0); //첫 시작 프래그먼트 화면 지정
+        }
+
 
     }
 
