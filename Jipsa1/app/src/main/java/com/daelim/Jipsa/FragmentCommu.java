@@ -37,7 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class FragmentCommu extends Fragment {
+public class FragmentCommu extends Fragment implements Runnable{
 
     //ListView 변수
 
@@ -69,12 +69,17 @@ public class FragmentCommu extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mainActivity = (MainActivity) getActivity();
+        //
+        run();
+        System.out.println("실행 1");
+
+
     }
 
     public void onDetach() {
         super.onDetach();
         mainActivity = null;
-        temp = 0;
+
     }
 
     @Nullable
@@ -84,10 +89,19 @@ public class FragmentCommu extends Fragment {
         view = inflater.inflate(R.layout.activity_commu, container, false);
 
 
-        actors = new ArrayList<>();
-        actors.add(new Actor("name",/*"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",*/"date", "memo", "title", "viewn"));
-        actors.add(new Actor("name1",/*"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",*/"date1", "memo1", "title1", "viewn1"));
+//..리스트뷰
+//        actors = new ArrayList<>();
+//        for(int i =  0; i<=temp-1; i++) {
+//            actors.add(new Actor(db_id.get(i), db_date.get(i), db_memo.get(i), db_title.get(i), db_viewnum.get(i).toString()));
+////            actors.add(new Actor("name1", "date1", "memo1", "title1", "viewn1"));
+//        }
+//db
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         customListView = (ListView) view.findViewById(R.id.listview);
         CustomAdapter customAdapter = new CustomAdapter(getContext(), actors);
         customListView.setAdapter(customAdapter);
@@ -102,31 +116,6 @@ public class FragmentCommu extends Fragment {
         });
 
 
-//db
-        db = FirebaseFirestore.getInstance();
-
-        db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                        db_id.add(document.get("id").toString());
-                        db_title.add(document.get("title").toString());
-                        db_memo.add(document.get("memo").toString());
-                        Date from = new Date(document.getTimestamp("date").toDate().getTime());
-                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        String to = transFormat.format(from);
-                        System.out.println(to);
-                        db_date.add(to);
-                        db_viewnum.add(Integer.parseInt(document.get("viewnum").toString()));
-                        temp++;
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.getException());
-                }
-            }
-        });
         btn_write = view.findViewById(R.id.btn_Write);
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +166,39 @@ public class FragmentCommu extends Fragment {
 
     public void set_id(String id) {
         this.id = id;
+    }
+
+    @Override
+    public void run() {
+        actors = new ArrayList<>();
+        actors.add(new Actor("name1", "date1", "memo1", "title1", "viewn1"));
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+                        db_id.add(document.get("id").toString());
+                        db_title.add(document.get("title").toString());
+                        db_memo.add(document.get("memo").toString());
+                        Date from = new Date(document.getTimestamp("date").toDate().getTime());
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String to = transFormat.format(from);
+                        System.out.println(to);
+                        db_date.add(to);
+                        db_viewnum.add(Integer.parseInt(document.get("viewnum").toString()));
+                        temp++;
+                        System.out.println(document.get("id").toString());
+                        actors.add(new Actor(document.get("id").toString(), to, document.get("memo").toString(), document.get("title").toString(), document.get("viewnum").toString()));
+                        actors.add(new Actor("name21", "dat3e1", "memo1", "title1", "viewn1"));
+                    }
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
+            }
+        });
     }
 
 
