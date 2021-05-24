@@ -40,7 +40,7 @@ import java.util.Objects;
 public class FragmentCommu extends Fragment {
 
     //ListView 변수
-    static final String[] LIST_MENU = {"fff", "LIST2", "LIST3"} ;
+
     //ListView 변수
 
 
@@ -54,10 +54,8 @@ public class FragmentCommu extends Fragment {
     private View view;
     Button btn_write;
     MainActivity mainActivity;
-    EditText edt_title1,edt_title2,edt_title3,edt_name1
-            ,edt_name2,edt_name3,edt_date1,edt_date2,edt_date3
-            ,edt_views1,edt_views2,edt_views3;
-    LinearLayout cbl1,cbl2,cbl3;
+    EditText edt_title1, edt_title2, edt_title3, edt_name1, edt_name2, edt_name3, edt_date1, edt_date2, edt_date3, edt_views1, edt_views2, edt_views3;
+    LinearLayout cbl1, cbl2, cbl3;
     FirebaseFirestore db;
     ArrayList<String> db_id = new ArrayList<String>();
     ArrayList<String> db_title = new ArrayList<String>();
@@ -67,12 +65,13 @@ public class FragmentCommu extends Fragment {
     int temp = 0;
     String id;
     private static final String TAG = "FragmentCommu";
-    public void onAttach(Context context){
+
+    public void onAttach(Context context) {
         super.onAttach(context);
-        mainActivity= (MainActivity) getActivity();
+        mainActivity = (MainActivity) getActivity();
     }
 
-    public void onDetach(){
+    public void onDetach() {
         super.onDetach();
         mainActivity = null;
         temp = 0;
@@ -86,11 +85,8 @@ public class FragmentCommu extends Fragment {
 
 
         actors = new ArrayList<>();
-        actors.add(new Actor("Robert Downey Jr.", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg", "로버트 존 다우니 2세는 미국의 배우, 영화 제작자, 극작가이자, 싱어송라이터, 코미디언이다. 스크린 데뷔작은 1970년 만 5세 때 아버지 로버트 다우니 시니어의 영화 작품 《파운드》이다."));
-        actors.add(new Actor("Scarlett Johansson", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg", "1984년 뉴욕에서 태어난 스칼렛 요한슨은 여덟 살 때 에단 호크가 주연한 〈소피스트리〉라는 연극에 출연하면서 연기를 시작했다. 로버트 레드포드 감독의 〈호스 위스퍼러〉에서 경주 사고로 정신적인 충격을 받은 십대 소녀 그레이스를 연기해 전세계적으로 알려진 스칼렛 요한슨은 소피아 코폴라 감독의 〈사랑도 통역이 되나요?〉로 2003 베니스 영화제 여우주연상을 수상해 세계의 주목을 받는 기대주가 되었다."));
-        actors.add(new Actor("Cho Yeo-jeong", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5MgWM8pkUiYkj9MEaEpO0Ir1FD9.jpg", "Cho Yeo-jeong (조여정) is a South Korean actress. Born on February 10, 1981, she began her career as a model in 1997 at the age of 16 and launched her acting career two years later. She is best known for her roles in the provocative period films “The Servant” (2010) and “The Concubine” (2012) and the television dramas “I Need Romance” (2011), “Haeundae Lovers” (2012), “Divorce Lawyer in Love” (2015) and “Perfect Wife” (2017)."));
-        actors.add(new Actor("Scarlett Johansson", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg", "1984년 뉴욕에서 태어난 스칼렛 요한슨은 여덟 살 때 에단 호크가 주연한 〈소피스트리〉라는 연극에 출연하면서 연기를 시작했다. 로버트 레드포드 감독의 〈호스 위스퍼러〉에서 경주 사고로 정신적인 충격을 받은 십대 소녀 그레이스를 연기해 전세계적으로 알려진 스칼렛 요한슨은 소피아 코폴라 감독의 〈사랑도 통역이 되나요?〉로 2003 베니스 영화제 여우주연상을 수상해 세계의 주목을 받는 기대주가 되었다."));
-        actors.add(new Actor("Robert Downey Jr.", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg", "로버트 존 다우니 2세는 미국의 배우, 영화 제작자, 극작가이자, 싱어송라이터, 코미디언이다. 스크린 데뷔작은 1970년 만 5세 때 아버지 로버트 다우니 시니어의 영화 작품 《파운드》이다."));
+        actors.add(new Actor("name",/*"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",*/"date", "memo", "title", "viewn"));
+        actors.add(new Actor("name1",/*"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",*/"date1", "memo1", "title1", "viewn1"));
 
         customListView = (ListView) view.findViewById(R.id.listview);
         CustomAdapter customAdapter = new CustomAdapter(getContext(), actors);
@@ -100,7 +96,8 @@ public class FragmentCommu extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                 //각 아이템을 분간 할 수 있는 position과 뷰
                 String selectedItem = (String) view.findViewById(R.id.Ed_cname3).getTag().toString();
-                Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Clicked: " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
+                mainActivity.setFrag(8);
             }
         });
 
@@ -117,7 +114,7 @@ public class FragmentCommu extends Fragment {
                         db_id.add(document.get("id").toString());
                         db_title.add(document.get("title").toString());
                         db_memo.add(document.get("memo").toString());
-                        Date from = new Date( document.getTimestamp("date").toDate().getTime());
+                        Date from = new Date(document.getTimestamp("date").toDate().getTime());
                         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String to = transFormat.format(from);
                         System.out.println(to);
@@ -137,7 +134,7 @@ public class FragmentCommu extends Fragment {
                 mainActivity.setFrag(6);
             }
         });
-        
+
         //원래 코드 스타트
 
 //        cbl1 = view.findViewById(R.id.CBL1);
@@ -175,37 +172,56 @@ public class FragmentCommu extends Fragment {
 //        });
 
 
-        return view;    }
-    public void set_id(String id){
+        return view;
+    }
+
+    public void set_id(String id) {
         this.id = id;
     }
 
 
     class Actor {
         private String name;
-        private String summary;
-        private String thumb_url;
+        private String cdate;
+        private String memo;
+        private String title;
+        private String viewn;
+        //private String thumb_url;
 
-        public Actor(String name, String thumb_url, String summary) {
+        public Actor(String name, /*String thumb_url,*/ String cdate, String memo, String title, String viewn) {
             this.name = name;
-            this.summary = summary;
-            this.thumb_url = thumb_url;
+            this.cdate = cdate;
+            this.memo = memo;
+            this.title = title;
+            this.viewn = viewn;
+            //this.thumb_url = thumb_url;
         }
 
         public String getName() {
             return name;
         }
 
-        public String getSummary() {
-            return summary;
+        public String getdate() {
+            return cdate;
         }
 
-        public String getThumb_url() {
-            return thumb_url;
+        public String getmemo() {
+            return memo;
         }
+
+        public String getviewn() {
+            return viewn;
+        }
+
+        public String gettitle() {
+            return title;
+        }
+
+//        public String getThumb_url() {
+//            return thumb_url;
+//        }
+
+
     }
-
-
-
 }
 

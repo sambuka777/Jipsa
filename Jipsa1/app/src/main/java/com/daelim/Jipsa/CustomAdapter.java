@@ -31,12 +31,16 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+
     }
 
     class ViewHolder {
-        public TextView tv_name;
-        public TextView tv_summary;
-        public ImageView iv_thumb;
+        public TextView ed_name;
+        public TextView ed_date; //tv_summary
+        public TextView ed_memo;
+        public TextView ed_title;
+        public TextView ed_viewn;
+        //public ImageView iv_thumb;
     }
 
 
@@ -50,19 +54,25 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
         }
 
         viewHolder = new ViewHolder();
-        viewHolder.tv_name = (TextView) convertView.findViewById(R.id.Ed_cname3);
-        viewHolder.tv_summary = (TextView) convertView.findViewById(R.id.Ed_cdate3);
-        viewHolder.iv_thumb = (ImageView) convertView.findViewById(R.id.imageView_thumb);
+        viewHolder.ed_name = (TextView) convertView.findViewById(R.id.Ed_cname3);
+        viewHolder.ed_title = (TextView) convertView.findViewById(R.id.Ed_ctitle3);
+        viewHolder.ed_memo = (TextView) convertView.findViewById(R.id.Ed_cmemo3);
+        viewHolder.ed_date = (TextView) convertView.findViewById(R.id.Ed_cdate3);
+        viewHolder.ed_viewn = (TextView) convertView.findViewById(R.id.Ed_views3);
+        //viewHolder.iv_thumb = (ImageView) convertView.findViewById(R.id.imageView_thumb);
 
         final FragmentCommu.Actor actor = (FragmentCommu.Actor) list.get(position);
-        viewHolder.tv_name.setText(actor.getName());
-        viewHolder.tv_summary.setText(actor.getSummary());
-        Glide
-                .with(context)
-                .load(actor.getThumb_url())
-                .apply(new RequestOptions().override(250, 350))
-                .into(viewHolder.iv_thumb);
-        viewHolder.tv_name.setTag(actor.getName());
+        viewHolder.ed_name.setText(actor.getName());
+        viewHolder.ed_date.setText(actor.getdate());
+        viewHolder.ed_memo.setText(actor.getmemo());
+        viewHolder.ed_title.setText(actor.gettitle());
+        viewHolder.ed_viewn.setText(actor.getviewn());
+//        Glide
+//                .with(context)
+//                .load(actor.getThumb_url())
+//                .apply(new RequestOptions().override(250, 350))
+//                .into(viewHolder.iv_thumb);
+        viewHolder.ed_name.setTag(actor.getName());
 
 
 //        //아이템 클릭 방법2 - 클릭시 아이템 반전 효과가 안 먹힘

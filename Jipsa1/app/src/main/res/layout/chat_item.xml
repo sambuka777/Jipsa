@@ -10,7 +10,7 @@
     //3번째글 시작
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         android:background="@drawable/commu_style"
         android:layout_marginTop="0dp"
         android:layout_gravity="center"
@@ -29,6 +29,18 @@
             android:fontFamily="@font/tway_air"
             android:text="게거품 보글보글" />
 
+        <TextView
+            android:id="@+id/Ed_cmemo3"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:gravity="left|bottom"
+            android:hint="글10"
+            android:textSize="10dp"
+            android:paddingLeft="5dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/tway_air"
+            android:text="게거품 보글보글" />
+
         <LinearLayout
             android:layout_width="350dp"
             android:layout_height="30dp"
@@ -36,7 +48,7 @@
 
             <TextView
                 android:id="@+id/Ed_cname3"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_gravity="top"
                 android:gravity="left|bottom"
