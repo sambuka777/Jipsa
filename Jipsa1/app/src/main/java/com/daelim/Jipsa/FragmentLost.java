@@ -128,6 +128,9 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), LostFindPet.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("text","실종");
+
                     startActivity(intent);
                 }
             });
@@ -137,6 +140,9 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), LostFindPet.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("text","발견");
+
                     startActivity(intent);
                 }
             });
