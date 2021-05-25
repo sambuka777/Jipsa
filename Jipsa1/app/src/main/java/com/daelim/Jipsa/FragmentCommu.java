@@ -57,7 +57,7 @@ public class FragmentCommu extends Fragment{
     EditText edt_title1, edt_title2, edt_title3, edt_name1, edt_name2, edt_name3, edt_date1, edt_date2, edt_date3, edt_views1, edt_views2, edt_views3;
     LinearLayout cbl1, cbl2, cbl3;
     FirebaseFirestore db;
-    ArrayList<String> db_id = new ArrayList<String>();
+    ArrayList<String> db_id;
     ArrayList<String> db_title = new ArrayList<String>();
     ArrayList<String> db_memo = new ArrayList<String>();
     ArrayList<String> db_date = new ArrayList<String>();
@@ -87,6 +87,7 @@ public class FragmentCommu extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         System.out.println("실행 2");
         actors = new ArrayList<>();
+        db_id = new ArrayList<String>();
         view = inflater.inflate(R.layout.activity_commu, container, false);
         db = FirebaseFirestore.getInstance();
 //        CollectionReference citiesRef = db.collection("commity");
