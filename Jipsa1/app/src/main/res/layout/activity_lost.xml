@@ -18,27 +18,32 @@
             android:layout_width="match_parent"
             android:layout_height="400sp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_lost"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_margin="20dp"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="13dp"
+            android:padding="3dp"
             android:elevation="10dp"
-            android:background="@drawable/button_style2"
-            android:layout_alignParentLeft="true"
-            android:textColor="@color/white"
-            android:text="실종신고"/>
+            android:background="@color/white"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_lostpet"
+            android:scaleType="fitCenter"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_find"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="13dp"
+            android:padding="5dp"
             android:elevation="10dp"
-            android:background="@drawable/button_style2"
-            android:layout_toRightOf="@id/btn_lost"
-            android:textColor="@color/white"
-            android:text="발견신고"/>
+            android:background="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/btn_lost"
+            android:src="@drawable/ic_findpet"
+            android:scaleType="fitCenter"/>
     </RelativeLayout>
 
     <ScrollView

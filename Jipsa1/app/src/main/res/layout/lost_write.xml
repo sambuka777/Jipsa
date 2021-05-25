@@ -38,7 +38,8 @@
         `<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="60dp"
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
@@ -124,6 +125,85 @@
                 android:textSize="15dp"
                 android:hint="펫의 생김새, 특이사항을 적어주세요."/>
 
+            <TextView
+                android:id="@+id/Lpet_gps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/tway_air"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:text="펫이 실종된 위치가 현재 위치와 같은가요?"/>
+
+            <TextView
+                android:id="@+id/Fpet_gps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/tway_air"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:text="펫이 발견된 위치가 현재 위치와 같은가요?"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/gps_yes"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/nx2gof"
+                    android:textSize="16dp"
+                    android:text="같습니다."
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/radiobutton"/>
+
+                <RadioButton
+                    android:id="@+id/gps_no"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/nx2gof"
+                    android:textSize="16dp"
+                    android:text="다릅니다."
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/radiobutton" />
+
+            </RadioGroup>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map_location"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
+                <ImageButton
+                    android:id="@+id/btn_find"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/gps_marker"
+                    android:scaleType="fitCenter" />
+
+            </RelativeLayout>
             <Button
                 android:layout_width="200dp"
                 android:layout_height="50dp"

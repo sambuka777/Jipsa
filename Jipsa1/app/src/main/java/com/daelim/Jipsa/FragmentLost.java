@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,7 +90,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
         View mLayout;
         MapView mapView;
         MainActivity mainActivity;
-        Button lostpet_btn, findpet_btn;
+        ImageButton lostpet_btn, findpet_btn;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,7 +136,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                 }
             });
 
-            Button findpet_btn = mLayout.findViewById(R.id.btn_find);
+            findpet_btn = mLayout.findViewById(R.id.btn_find);
             findpet_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
