@@ -89,7 +89,9 @@ public class FragmentCommu extends Fragment{
         actors = new ArrayList<>();
         view = inflater.inflate(R.layout.activity_commu, container, false);
         db = FirebaseFirestore.getInstance();
-        db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//        CollectionReference citiesRef = db.collection("commity");
+//        db.collection("commity").get;
+        db.collection("commity").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
