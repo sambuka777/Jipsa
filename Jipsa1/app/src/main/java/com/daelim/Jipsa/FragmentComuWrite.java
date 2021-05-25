@@ -76,7 +76,7 @@ public class FragmentComuWrite extends Fragment {
                                 Log.w(TAG, "Error adding document", e);
                             }
                         });
-                mainActivity.setFrag(2);
+                mainActivity.setFrag(2,null);
             }
         });
 

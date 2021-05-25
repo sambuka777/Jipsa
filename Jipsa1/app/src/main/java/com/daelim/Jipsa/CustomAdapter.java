@@ -31,6 +31,7 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+        System.out.println("이게실행되는가");
 
     }
 

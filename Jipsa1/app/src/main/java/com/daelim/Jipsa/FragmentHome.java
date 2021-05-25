@@ -127,7 +127,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View view) {
 
-                mainActivity.setFrag(2);
+                mainActivity.setFrag(2,null);
             }
         });
 
@@ -136,7 +136,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View view) {
 
-                mainActivity.setFrag(7);
+                mainActivity.setFrag(7,null);
             }
         });
 

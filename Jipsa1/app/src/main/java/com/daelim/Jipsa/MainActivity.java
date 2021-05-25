@@ -44,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.HomeItem :
-                        setFrag(0);
+                        setFrag(0,null);
                         break;
                     case R.id.ChatItem :
-                        setFrag(1);
+                        setFrag(1,null);
                         break;
                     case R.id.CommuItem :
-                        setFrag(2);
+                        setFrag(2,null);
                         break;
                     case R.id.SearchItem :
-                        setFrag(3);
+                        setFrag(3,null);
                         break;
                     case R.id.MyPageItem :
-                        setFrag(4);
+                        setFrag(4,null);
                         break;
                 }
 
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentCommuView.set_id(id);
 
         if(frag == 7){
-            setFrag(7);//실종신고 취소 or 등록 후 화면 지정
+            setFrag(7,null);//실종신고 취소 or 등록 후 화면 지정
         }else{
-            setFrag(0); //첫 시작 프래그먼트 화면 지정
+            setFrag(0,null); //첫 시작 프래그먼트 화면 지정
         }
 
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 바텀 내비게이션 뷰
     // 프래그먼트 교체가 일어나는 실행문
-    void setFrag(int n) {
+    void setFrag(int n,String temp_id) {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
@@ -131,8 +131,11 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 8 :
+                fragmentCommuView.set_commid(temp_id);
                 ft.replace(R.id.MainFrame, fragmentCommuView);
                 ft.commit();
+
+
                 break;
         }
     }
