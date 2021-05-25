@@ -15,27 +15,29 @@
         android:gravity="center"
         android:textColor="#000000"
         android:textSize="30dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textSize="20dp"
-        android:text="제목은 여기에~"
-        android:gravity="center"
-        android:textColor="#000000"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textSize="20dp"
-        android:text="글쓴이는 여기에~"
-        android:gravity="right"
-        android:paddingRight="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000000"
-        />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="제목은 여기에~"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txt_id"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:text="글쓴이는 여기에~"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txt_memo"
         android:layout_width="350dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"

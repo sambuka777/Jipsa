@@ -46,7 +46,7 @@ public class FragmentCommu extends Fragment{
 
     private Context context;
     private List list;
-    ArrayList<Actor> actors;
+    ArrayList<Actor> actors ;
     ListView customListView;
     private static CustomAdapter customAdapter;
 
@@ -64,6 +64,7 @@ public class FragmentCommu extends Fragment{
     ArrayList<Integer> db_viewnum = new ArrayList<Integer>();
     int temp = 0;
     String id;
+    String docu_id;
     private static final String TAG = "FragmentCommu";
 
     public void onAttach(Context context) {
@@ -85,10 +86,8 @@ public class FragmentCommu extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         System.out.println("실행 2");
-        view = inflater.inflate(R.layout.activity_commu, container, false);
-
         actors = new ArrayList<>();
-
+        view = inflater.inflate(R.layout.activity_commu, container, false);
         db = FirebaseFirestore.getInstance();
         db.collection("commity").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -96,47 +95,44 @@ public class FragmentCommu extends Fragment{
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
-                        db_id.add(document.get("id").toString());
-                        db_title.add(document.get("title").toString());
-                        db_memo.add(document.get("memo").toString());
 
                         Date from = new Date(document.getTimestamp("date").toDate().getTime());
                         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String to = transFormat.format(from);
                         System.out.println(to);
 
-                        db_date.add(to);
-                        db_viewnum.add(Integer.parseInt(document.get("viewnum").toString()));
-
                         temp++;
 
                         actors.add(new Actor(document.get("id").toString(), to, document.get("memo").toString(), document.get("title").toString(), document.get("viewnum").toString()));
-
-
-                        customListView = (ListView) view.findViewById(R.id.listview);
-                        CustomAdapter customAdapter = new CustomAdapter(getContext(), actors);
-                        customListView.setAdapter(customAdapter);
-                        customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                                //각 아이템을 분간 할 수 있는 position과 뷰
-                                String selectedItem = (String) view.findViewById(R.id.Ed_cname3).getTag().toString();
-                                Toast.makeText(getContext(), "Clicked: " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
-                                mainActivity.setFrag(8);
-                            }
-                        });
+                        db_id.add(document.getId());
+                        System.out.println(document.getId()+"이거또한 4번 나와야하는문장");
                     }
+                    customListView = (ListView) view.findViewById(R.id.listview);
+                    CustomAdapter customAdapter = new CustomAdapter(getContext(), actors);
+                    customListView.setAdapter(customAdapter);
+                    customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                            //각 아이템을 분간 할 수 있는 position과 뷰
+                            String selectedItem = (String) view.findViewById(R.id.Ed_cname3).getTag().toString();
+                            Toast.makeText(getContext(), "Clicked: " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
+                            mainActivity.setFrag(8,db_id.get(position));
+                        }
+                    });
+
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
         });
 
+
+
         btn_write = view.findViewById(R.id.btn_Write);
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.setFrag(6);
+                mainActivity.setFrag(6,null);
             }
         });
 
