@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -48,7 +50,7 @@ public class FragmentHome extends Fragment {
     ImageView ViewPager;
     TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4, TvLostAnimal;
     Button BtnComuMore, BtnLostAniMore;
-    ImageButton IbLost1, IbLost2, IbLost3;
+    ImageButton IbLost1, IbLost2, IbLost3,BtnMenu;
 
     MainActivity mainActivity;
 
@@ -87,6 +89,9 @@ public class FragmentHome extends Fragment {
         mainActivity = null;
     }
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,6 +124,14 @@ public class FragmentHome extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 mIndicator.animatePageSelected(position % num_page);
+            }
+        });
+
+        BtnMenu = view.findViewById(R.id.menubtn);
+        BtnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
