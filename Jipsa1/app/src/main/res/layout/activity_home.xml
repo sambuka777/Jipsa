@@ -6,13 +6,73 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:id="@+id/menuu"
+            android:orientation="horizontal"
+
+            >
+
+
+            <ImageButton
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:background="#FFFFFF"
+                android:id="@+id/menubtn"
+                android:src="@drawable/ic_menu" />
+
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="65dp"
+                android:background="@color/white"
+                android:src="@drawable/logo"/>
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:background="@color/white"
+                android:src="@drawable/wit" />
+
+
+
+        </LinearLayout>
+
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/main_navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/main_drawer_navigation"
+        app:menu="@menu/main_drawer_navi">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="65dp"
             android:orientation="vertical" >
 
             <androidx.viewpager.widget.ViewPager
@@ -175,5 +235,5 @@
     </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+    </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
