@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const pwdmailRouter = require('./routes/pwdmail');
 app.use(express.json());
 const port = 3000;
 
 app.use('/', indexRouter);
 app.use('/mail', userRouter);
-
+app.use('/pwdmail', pwdmailRouter);
 
 app.listen(port, function () {
     console.log('Example app listening on port : ' + port);

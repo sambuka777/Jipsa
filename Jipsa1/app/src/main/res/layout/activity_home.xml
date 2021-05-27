@@ -6,9 +6,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left">
+
+        <ImageButton
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="#FFFFFF"
+            android:id="@+id/menubtn"
+            android:src="@drawable/ic_menu" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginRight="65dp"
+            android:src="@drawable/logo"/>
+
+    </LinearLayout>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+    <!--    슬라이드-->
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/main_navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/main_drawer_navigation"
+        app:menu="@menu/main_drawer_navi">
+
+    </com.google.android.material.navigation.NavigationView>
+
+    <!--    슬라이드-->
+
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,5 +220,5 @@
     </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+    </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
