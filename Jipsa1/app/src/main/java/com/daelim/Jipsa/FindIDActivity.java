@@ -93,10 +93,15 @@ public class FindIDActivity extends AppCompatActivity {
         btn_Email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONEmail Ji = new JSONEmail();
                 email= EdFEmail.getText().toString();
-                Ji.setEmail(email);
-                Ji.execute("http://192.168.6.1:3000/mail");
+                if(!email.equals("")){
+                    JSONEmail Ji = new JSONEmail();
+                    Ji.setEmail(email);
+                    Ji.execute("http://192.168.6.1:3000/mail");
+                }else{
+                    Toast.makeText(FindIDActivity.this, "이메일을 입력해주십시오", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         btn_EmailCk = findViewById(R.id.btn_FCerC);

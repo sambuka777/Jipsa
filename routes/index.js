@@ -82,5 +82,7 @@ router.post('/idlogin', async (req, res) => {
     res.end();
 });
 
+console.log(Math.random().toString(36).slice(2));
+
 
 module.exports = router;
