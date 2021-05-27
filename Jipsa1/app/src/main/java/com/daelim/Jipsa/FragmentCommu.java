@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ public class FragmentCommu extends Fragment{
 
 
     private View view;
-    Button btn_write;
+    ImageButton btn_write,btn_home;
     MainActivity mainActivity;
     EditText edt_title1, edt_title2, edt_title3, edt_name1, edt_name2, edt_name3, edt_date1, edt_date2, edt_date3, edt_views1, edt_views2, edt_views3;
     LinearLayout cbl1, cbl2, cbl3;
@@ -131,16 +132,24 @@ public class FragmentCommu extends Fragment{
 
 
 
-        btn_write = view.findViewById(R.id.btn_Write);
+        btn_write = view.findViewById(R.id.writw_btn);
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainActivity.setFrag(6,null);
             }
         });
+        btn_home = view.findViewById(R.id.home_btn);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(0,null);
+            }
+        });
 
         return view;
     }
+
 
     public void set_id(String id) {
         this.id = id;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,6 +77,14 @@ public class FragmentComuWrite extends Fragment {
                                 Log.w(TAG, "Error adding document", e);
                             }
                         });
+                mainActivity.setFrag(2,null);
+            }
+        });
+
+        ImageButton btnback = view.findViewById(R.id.backbtn);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 mainActivity.setFrag(2,null);
             }
         });
