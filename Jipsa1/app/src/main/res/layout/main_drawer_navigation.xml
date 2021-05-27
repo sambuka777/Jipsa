@@ -3,28 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:padding="20dp"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/header_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/chat_img2"/>
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/menu_st"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:text="Bong Can Do"/>
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="89dp"
+        android:background="@drawable/slide_menu_st"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#EB554C4C"
-        android:text="tistory.bongcando.com"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Bong Can Do"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="tistory.bongcando.com"
+            android:textColor="#EB554C4C"
+            android:textSize="15dp" />
+    </LinearLayout>
 </LinearLayout>
