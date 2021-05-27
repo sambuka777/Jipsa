@@ -10,8 +10,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -32,22 +36,35 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import showcurrent.Showcu;
+
 public class LostFindPet extends AppCompatActivity implements AutoPermissionsListener, GoogleMap.OnCameraMoveListener {
 
-    String id;
+    String id, isdiscovery, ismissing, value, sex;
     ImageButton close_btn;
-
+    EditText name,chr;
 
     double mlatitude, mlongitude;
+    LatLng Clatlng;
 
     LocationManager locationManager;
     GoogleMap mMap;
     GPSListener gpsListener;
     SupportMapFragment mapFragment;
 
+    FirebaseFirestore db;
 
 
     @Override
@@ -65,32 +82,95 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
         }
 
         Intent intent = getIntent();
+        value = intent.getStringExtra("text");
 
         // 신고, 발견에 따른 값 세팅
         TextView title = (TextView)findViewById(R.id.write_title);
-        title.setText("펫 " + intent.getStringExtra("text")+"신고");
+        title.setText("펫 " + value +"신고");
 
         TextView P_gps = (TextView)findViewById(R.id.pet_gps);
-        P_gps.setText("펫이 " + intent.getStringExtra("text")+"된 위치가 현재 위치와 같은가요?");
+        P_gps.setText("펫이 " + value +"된 위치가 현재 위치와 같은가요?");
 
-        // 지도 숨기기
-        RelativeLayout map_location = (RelativeLayout)findViewById(R.id.map);
-        map_location.setVisibility(View.GONE);
 
-        //지도 보여주기 숨기기 이벤트
+        //위치 같은지 여부
         RadioGroup R_map = (RadioGroup)findViewById(R.id.radioGroup2);
         R_map.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == R.id.gps_no){
-                    map_location.setVisibility(View.VISIBLE);
+                    Clatlng = new LatLng(mlatitude , mlongitude);
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(Clatlng);
+                    mMap.moveCamera(cameraUpdate);
+
                 }else if(checkedId == R.id.gps_yes){
-                    map_location.setVisibility(View.GONE);
+                    mMap.setOnCameraMoveListener(LostFindPet.this::onCameraMove);
                 }
             }
         });
 
+        if(value == "실종"){
+            isdiscovery = "true";
+            ismissing = "false";
+        }else if(value == "발견"){
+            isdiscovery = "false";
+            ismissing = "true";
+        }
 
+        chr = (EditText)findViewById(R.id.wpet_chr);
+        name = (EditText)findViewById(R.id.wpet_name);
+
+
+        RadioGroup P_sex = (RadioGroup)findViewById(R.id.radioGroup);
+        P_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.sex_m){
+                    sex = "남자";
+                }else if(checkedId == R.id.gps_yes){
+                    sex = "여자";
+                }
+            }
+        });
+
+        Button BtnUpload = (Button)findViewById(R.id.btn_Upload);
+        BtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,Object> write = new HashMap<>();
+                
+                write.put("id",id);
+                write.put("isdiscovery",isdiscovery);
+                write.put("ismissing",ismissing);
+                write.put("petchr", chr.getText().toString().replaceAll("<br/>", "InE"));
+                write.put("petname", name.getText().toString());
+                write.put("petsex",sex);
+                write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
+
+                System.out.println(write);
+               /* db = FirebaseFirestore.getInstance();
+                db.collection("petofmiss")
+                        .add(write)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                System.out.println("Error adding document"+ e);
+                            }
+                        });*/
+                Intent intent = new Intent(LostFindPet.this, MainActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("frag",7);
+                startActivity(intent);
+            }
+        });
+
+
+        //지도 현재 위치 가져오기
         mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map_location);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @SuppressLint("MissingPermission")
@@ -99,8 +179,6 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                 mMap = googleMap;
 
                 setDefaultLocation();
-
-                mMap.setOnCameraMoveListener(LostFindPet.this::onCameraMove);
             }
         });
 
@@ -290,7 +368,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
         CameraPosition position = mMap.getCameraPosition();
         LatLng target = position.target;
 
-        System.out.println(target.latitude);
+        Clatlng = target;
     }
 
     public void set_id(String id) {
