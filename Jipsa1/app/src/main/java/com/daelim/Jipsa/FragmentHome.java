@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -27,6 +29,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -46,11 +50,15 @@ public class FragmentHome extends Fragment {
     private int num_page = 4;
     private CircleIndicator3 mIndicator;
     private String id;
+    private DrawerLayout dw;
+    private NavigationView dwv;
 
     ImageView ViewPager;
     TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4, TvLostAnimal;
     Button BtnComuMore, BtnLostAniMore;
     ImageButton IbLost1, IbLost2, IbLost3,BtnMenu;
+    LinearLayout menuu;
+
 
     MainActivity mainActivity;
 
@@ -110,6 +118,9 @@ public class FragmentHome extends Fragment {
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         mPager.setCurrentItem(1000);
         mPager.setOffscreenPageLimit(3);
+        menuu = view.findViewById(R.id.menuu);
+
+        menuu.bringToFront();
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -127,10 +138,13 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        dw =view.findViewById(R.id.main_drawer_layout);
+        dwv = view.findViewById(R.id.main_navigationView);
         BtnMenu = view.findViewById(R.id.menubtn);
         BtnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dw.openDrawer(dwv);
 
             }
         });

@@ -13,18 +13,6 @@
 
 
 
-    <!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar_main"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="180dp"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:src="@drawable/logo" />-->
-
-<!--    </androidx.appcompat.widget.Toolbar>-->
 
     <FrameLayout
         android:id="@+id/MainFrame"
