@@ -53,7 +53,11 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.Buffer;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,6 +65,7 @@ import java.util.Locale;
 public class FragmentLost extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
 
         String id;
+    Boolean dis_miss;
         private GoogleMap mMap;
 
         private static final String TAG = "googlemap";
@@ -89,7 +94,6 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
         View mLayout;
         MapView mapView;
-        MainActivity mainActivity;
         ImageButton lostpet_btn, findpet_btn;
 
         @Override
@@ -405,6 +409,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                             String lost_petname = (String) document.get("petname");
                             String lost_petchr = (String) document.get("petchr");
                             String lost_petsex = (String) document.get("petsex");
+                            dis_miss = (Boolean) document.get("isdiscovery");
 
                             GeoPoint geoPoint = document.getGeoPoint("gps");
 
@@ -435,7 +440,6 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                 GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
-
                         // 정보세팅
                         TextView petname = (TextView)getActivity().findViewById(R.id.info_petname); //펫 이름
                         TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
@@ -447,8 +451,13 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
                         //박스 이름
                         TextView boxname = (TextView)getActivity().findViewById(R.id.boxname);
-                        boxname.setText("실종신고 펫 정보");
 
+                        /*if(dis_miss.equals("false")){
+                            boxname.setText("실종신고 펫 정보");
+                        }else if(dis_miss.equals("true")){
+                            boxname.setText("발견신고 펫 정보");
+                        }*/
+                        boxname.setText("실종신고 펫 정보");
                         //펫 정보창 보여주기
                         LinearLayout petinfobox = (LinearLayout) mLayout.findViewById(R.id.petinfobox);
                         petinfobox.setVisibility(View.VISIBLE);
