@@ -149,7 +149,6 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                     write.put("petname", name.getText().toString());
                     write.put("petsex",sex);
                     write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
-/*
                     db = FirebaseFirestore.getInstance();
                     db.collection("petofmiss")
                             .add(write)
@@ -164,7 +163,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                                 public void onFailure(@NonNull Exception e) {
                                     System.out.println("Error adding document"+ e);
                                 }
-                            });*/
+                            });
                     Intent intent = new Intent(LostFindPet.this, MainActivity.class);
                     intent.putExtra("id",id);
                     intent.putExtra("frag",7);
