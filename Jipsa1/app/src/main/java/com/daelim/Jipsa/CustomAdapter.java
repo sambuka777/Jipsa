@@ -57,7 +57,7 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
         viewHolder = new ViewHolder();
         viewHolder.ed_name = (TextView) convertView.findViewById(R.id.Ed_cname3);
         viewHolder.ed_title = (TextView) convertView.findViewById(R.id.Ed_ctitle3);
-        viewHolder.ed_memo = (TextView) convertView.findViewById(R.id.Ed_cmemo3);
+//        viewHolder.ed_memo = (TextView) convertView.findViewById(R.id.Ed_cmemo3);
         viewHolder.ed_date = (TextView) convertView.findViewById(R.id.Ed_cdate3);
         viewHolder.ed_viewn = (TextView) convertView.findViewById(R.id.Ed_views3);
         //viewHolder.iv_thumb = (ImageView) convertView.findViewById(R.id.imageView_thumb);
@@ -65,7 +65,7 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
         final FragmentCommu.Actor actor = (FragmentCommu.Actor) list.get(position);
         viewHolder.ed_name.setText(actor.getName());
         viewHolder.ed_date.setText(actor.getdate());
-        viewHolder.ed_memo.setText(actor.getmemo());
+//        viewHolder.ed_memo.setText(actor.getmemo());
         viewHolder.ed_title.setText(actor.gettitle());
         viewHolder.ed_viewn.setText(actor.getviewn());
 //        Glide

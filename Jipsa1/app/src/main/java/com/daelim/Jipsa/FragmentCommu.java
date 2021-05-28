@@ -107,7 +107,7 @@ public class FragmentCommu extends Fragment{
 
                         temp++;
 
-                        actors.add(new Actor(document.get("id").toString(), to, document.get("memo").toString(), document.get("title").toString(), document.get("viewnum").toString()));
+                        actors.add(new Actor(document.get("id").toString(), to, /*document.get("memo").toString(),*/ document.get("title").toString(), document.get("viewnum").toString()));
                         db_id.add(document.getId());
                         System.out.println(document.getId()+"이거또한 4번 나와야하는문장");
                     }
@@ -159,15 +159,15 @@ public class FragmentCommu extends Fragment{
     class Actor {
         private String name;
         private String cdate;
-        private String memo;
+//        private String memo;
         private String title;
         private String viewn;
         //private String thumb_url;
 
-        public Actor(String name, /*String thumb_url,*/ String cdate, String memo, String title, String viewn) {
+        public Actor(String name, /*String thumb_url,*/ String cdate, /*String memo,*/ String title, String viewn) {
             this.name = name;
             this.cdate = cdate;
-            this.memo = memo;
+//            this.memo = memo;
             this.title = title;
             this.viewn = viewn;
             //this.thumb_url = thumb_url;
@@ -181,9 +181,9 @@ public class FragmentCommu extends Fragment{
             return cdate;
         }
 
-        public String getmemo() {
-            return memo;
-        }
+//        public String getmemo() {
+//            return memo;
+//        }
 
         public String getviewn() {
             return viewn;

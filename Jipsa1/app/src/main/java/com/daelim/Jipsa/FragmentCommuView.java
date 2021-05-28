@@ -1,5 +1,6 @@
 package com.daelim.Jipsa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,23 @@ import java.util.Date;
 
 public class FragmentCommuView extends Fragment {
 
+    MainActivity mainActivity;
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) getActivity();
+
+        System.out.println("실행 1");
+
+
+    }
+
+    public void onDetach() {
+        super.onDetach();
+        mainActivity = null;
+
+    }
+
     private View view;
     String id,commid;
     TextView txt_title,txt_memo,txt_id;
@@ -39,7 +58,7 @@ public class FragmentCommuView extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_commuview, container, false);
         viewAnInt=0;
-        txt_id = view.findViewById(R.id.txt_id);
+        txt_id = view.findViewById(R.id.comuv_name);
         txt_memo = view.findViewById(R.id.txt_memo);
         txt_title = view.findViewById(R.id.txt_title);
         System.out.println(commid);
@@ -64,6 +83,13 @@ public class FragmentCommuView extends Fragment {
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
+            }
+        });
+        ImageButton btnback = view.findViewById(R.id.backcomu);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(2,null);
             }
         });
 

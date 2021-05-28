@@ -3,6 +3,7 @@ package com.daelim.Jipsa;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -10,8 +11,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,13 +18,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -38,7 +37,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -48,13 +46,12 @@ import com.pedro.library.AutoPermissionsListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import showcurrent.Showcu;
-
 public class LostFindPet extends AppCompatActivity implements AutoPermissionsListener, GoogleMap.OnCameraMoveListener {
 
-    String id, isdiscovery, ismissing, value, sex;
+    String id, value, sex;
     ImageButton close_btn;
     EditText name,chr;
+    boolean isdiscovery, ismissing;
 
     double mlatitude, mlongitude;
     LatLng Clatlng;
@@ -83,6 +80,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
 
         Intent intent = getIntent();
         value = intent.getStringExtra("text");
+        id = intent.getStringExtra("id");
 
         // 신고, 발견에 따른 값 세팅
         TextView title = (TextView)findViewById(R.id.write_title);
@@ -98,22 +96,25 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == R.id.gps_no){
+
+                    mMap.setOnCameraMoveListener(LostFindPet.this::onCameraMove);
+
+                }else if(checkedId == R.id.gps_yes){
+
                     Clatlng = new LatLng(mlatitude , mlongitude);
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(Clatlng);
                     mMap.moveCamera(cameraUpdate);
-
-                }else if(checkedId == R.id.gps_yes){
-                    mMap.setOnCameraMoveListener(LostFindPet.this::onCameraMove);
                 }
             }
         });
 
-        if(value == "실종"){
-            isdiscovery = "true";
-            ismissing = "false";
-        }else if(value == "발견"){
-            isdiscovery = "false";
-            ismissing = "true";
+
+        if(value.equals("실종")){
+            isdiscovery = false;
+            ismissing = true;
+        }else if(value.equals("발견")){
+            isdiscovery = true;
+            ismissing = false;
         }
 
         chr = (EditText)findViewById(R.id.wpet_chr);
@@ -136,38 +137,51 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String,Object> write = new HashMap<>();
-                
-                write.put("id",id);
-                write.put("isdiscovery",isdiscovery);
-                write.put("ismissing",ismissing);
-                write.put("petchr", chr.getText().toString().replaceAll("<br/>", "InE"));
-                write.put("petname", name.getText().toString());
-                write.put("petsex",sex);
-                write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
 
-                System.out.println(write);
-               /* db = FirebaseFirestore.getInstance();
-                db.collection("petofmiss")
-                        .add(write)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
+                if(chr.getText().toString() != "" && name.getText().toString() != "" && sex != null){
+
+                    Map<String,Object> write = new HashMap<>();
+
+                    write.put("id",id);
+                    write.put("isdiscovery",isdiscovery);
+                    write.put("ismissing",ismissing);
+                    write.put("petchr", chr.getText().toString());
+                    write.put("petname", name.getText().toString());
+                    write.put("petsex",sex);
+                    write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
+/*
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("petofmiss")
+                            .add(write)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    System.out.println("Error adding document"+ e);
+                                }
+                            });*/
+                    Intent intent = new Intent(LostFindPet.this, MainActivity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("frag",7);
+                    startActivity(intent);
+                }else{
+                    new AlertDialog.Builder(LostFindPet.this)
+                        .setMessage("모든 값을 입력하세요!")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                System.out.println("Error adding document"+ e);
-                            }
-                        });*/
-                Intent intent = new Intent(LostFindPet.this, MainActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("frag",7);
-                startActivity(intent);
+                        .show();
+                }
             }
         });
+
 
 
         //지도 현재 위치 가져오기
@@ -369,10 +383,6 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
         LatLng target = position.target;
 
         Clatlng = target;
-    }
-
-    public void set_id(String id) {
-        this.id = id;
     }
 
     @Override
