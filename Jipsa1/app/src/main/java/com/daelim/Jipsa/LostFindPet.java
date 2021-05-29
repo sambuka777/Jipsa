@@ -188,7 +188,10 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                     write.put("id",id);
                     write.put("isdiscovery",isdiscovery);
                     write.put("ismissing",ismissing);
-                    write.put("petchr", chr.getText().toString());
+                    memo = chr.getText().toString();
+                    memo = memo.replaceAll("(\r\n|\r|\n|\n\r)", "InE");
+                    System.out.println(memo);
+                    write.put("petchr", memo);
                     write.put("petname", name.getText().toString());
                     write.put("petsex",sex);
                     write.put("image", imagepath);

@@ -32,7 +32,7 @@ public class FragmentComuWrite extends Fragment {
     Button BtnUpload;
     MainActivity mainActivity;
     EditText ed_title,ed_memo;
-    String id;
+    String id,memo;
     FirebaseFirestore db;
     private static final String TAG = "LoginActivity";
     public void onAttach(Context context){
@@ -69,7 +69,9 @@ public class FragmentComuWrite extends Fragment {
                                 comm.put("id",id);
                                 comm.put("name",document.get("name"));
                                 comm.put("title",ed_title.getText().toString());
-                                comm.put("memo",ed_memo.getText().toString());
+                                memo = ed_memo.getText().toString();
+                                memo = memo.replaceAll("(\r\n|\r|\n|\n\r)", "InE");
+                                comm.put("memo",memo);
                                 comm.put("viewnum",0);
                                 comm.put("date", Timestamp.now());
                                 db.collection("commity")
