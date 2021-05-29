@@ -51,7 +51,7 @@ public class FragmentCommuView extends Fragment {
 
     private View view;
     String id,commid;
-    TextView txt_title,txt_memo,txt_id;
+    TextView txt_title,txt_memo,txt_id,txt_viewnum,txt_date;
     int viewAnInt;
     private static final String TAG = "FragmentCommu";
     FirebaseFirestore db;
@@ -61,6 +61,8 @@ public class FragmentCommuView extends Fragment {
         txt_id = view.findViewById(R.id.comuv_name);
         txt_memo = view.findViewById(R.id.txt_memo);
         txt_title = view.findViewById(R.id.txt_title);
+        txt_viewnum = view.findViewById(R.id.comuv_vn);
+        txt_date = view.findViewById(R.id.comuv_wd);
         System.out.println(commid);
         //db
         db = FirebaseFirestore.getInstance();
@@ -72,10 +74,17 @@ public class FragmentCommuView extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("title")+document.get("memo"));
-                        txt_id.setText(document.get("id").toString());
+                        txt_id.setText(document.get("name").toString());
                         txt_memo.setText(document.get("memo").toString());
                         txt_title.setText(document.get("title").toString());
                         viewAnInt = Integer.parseInt(document.get("viewnum").toString());
+                        viewAnInt =viewAnInt+1;
+                        txt_viewnum.setText(viewAnInt+"");
+                        Date from = new Date(document.getTimestamp("date").toDate().getTime());
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        String to = transFormat.format(from);
+                        System.out.println(to);
+                        txt_date.setText(to);
                         db.collection("commity").document(commid).update("viewnum",viewAnInt+1);
                     } else {
                         Log.d(TAG, "No such document");

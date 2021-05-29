@@ -92,13 +92,13 @@ public class FragmentCommu extends Fragment{
                         Log.d(TAG, document.getId() + " => " + document.getData());
 
                         Date from = new Date(document.getTimestamp("date").toDate().getTime());
-                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
                         String to = transFormat.format(from);
                         System.out.println(to);
 
                         temp++;
 
-                        actors.add(new Actor(document.get("id").toString(), to, /*document.get("memo").toString(),*/ document.get("title").toString(), document.get("viewnum").toString()));
+                        actors.add(new Actor(document.get("name").toString(), to, /*document.get("memo").toString(),*/ document.get("title").toString(), document.get("viewnum").toString()));
                         db_id.add(document.getId());
                         System.out.println(document.getId()+"이거또한 4번 나와야하는문장");
                     }
