@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentNotice fragmentNotice;
     private FragmentQnA fragmentQnA;
     private FragmentQnAPre fragmentQnAPre;
+    private FragmentNoticeView fragmentNoticeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentUser = new FragmentUser();
         fragmentUser.set_id(id);
         fragmentQnAPre = new FragmentQnAPre();
+        fragmentNoticeView = new FragmentNoticeView();
 
         if(frag == 7){
             setFrag(7,null);//실종신고 취소 or 등록 후 화면 지정
@@ -158,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 12 :
                 ft.replace(R.id.MainFrame, fragmentQnAPre);
+                ft.commit();
+                break;
+            case 13 :
+                ft.replace(R.id.MainFrame, fragmentNoticeView);
                 ft.commit();
                 break;
         }

@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btn_NoticeBack"
+            android:id="@+id/Imgbtn_NoticeBack"
             android:layout_width="45dp"
             android:layout_height="25dp"
             android:scaleType="centerInside"
@@ -54,4 +54,11 @@
             />
 
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_Notice"
+        android:layout_width="380sp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp" />
 </LinearLayout>
