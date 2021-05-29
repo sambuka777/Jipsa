@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentNotice = new FragmentNotice();
         fragmentQnA = new FragmentQnA();
         fragmentUser = new FragmentUser();
+        fragmentUser.set_id(id);
         fragmentQnAPre = new FragmentQnAPre();
 
         if(frag == 7){
