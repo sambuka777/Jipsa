@@ -22,7 +22,7 @@
 
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_main"
+                android:id="@+id/toolbar_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent">
@@ -80,7 +80,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_JPW"
+                android:id="@+id/tv_PW"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -180,7 +180,7 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/tv_FEm"
+                android:id="@+id/tv_EM"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

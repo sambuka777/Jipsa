@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private FragmentComuWrite fragmentcomuwrite;
     private FragmentCommuView fragmentCommuView;
     private FragmentLost fragmentLost;
+    private FragmentUser fragmentUser;
+    private FragmentNotice fragmentNotice;
+    private FragmentQnA fragmentQnA;
+    private FragmentQnAPre fragmentQnAPre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentLost.set_id(id);
         fragmentCommuView = new FragmentCommuView();
         fragmentCommuView.set_id(id);
+        fragmentNotice = new FragmentNotice();
+        fragmentQnA = new FragmentQnA();
+        fragmentUser = new FragmentUser();
+        fragmentQnAPre = new FragmentQnAPre();
 
         if(frag == 7){
             setFrag(7,null);//실종신고 취소 or 등록 후 화면 지정
@@ -134,8 +142,22 @@ public class MainActivity extends AppCompatActivity {
                 fragmentCommuView.set_commid(temp_id);
                 ft.replace(R.id.MainFrame, fragmentCommuView);
                 ft.commit();
-
-
+                break;
+            case 9 :
+                ft.replace(R.id.MainFrame, fragmentNotice);
+                ft.commit();
+                break;
+            case 10 :
+                ft.replace(R.id.MainFrame, fragmentQnA);
+                ft.commit();
+                break;
+            case 11 :
+                ft.replace(R.id.MainFrame, fragmentUser);
+                ft.commit();
+                break;
+            case 12 :
+                ft.replace(R.id.MainFrame, fragmentQnAPre);
+                ft.commit();
                 break;
         }
     }

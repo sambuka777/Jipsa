@@ -32,7 +32,6 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:background="#ffffff"
-
                     android:paddingLeft="5dp"
                     android:src="@drawable/prev" />
                 <View
@@ -57,7 +56,7 @@
 
 
                 <ImageButton
-                    android:id="@+id/writw_btn"
+                    android:id="@+id/write_btn"
                     android:layout_width="45dp"
                     android:scaleType="centerInside"
                     android:paddingRight="10dp"
