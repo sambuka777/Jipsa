@@ -78,13 +78,13 @@
 
         <EditText
             android:id="@+id/ed_WContents"
+            android:inputType="textMultiLine"
             android:layout_width="350sp"
             android:layout_height="500sp"
             android:layout_gravity="center"
             android:layout_marginTop="15sp"
             android:gravity="left|top"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="글의 내용을 입력하시오" />
 
         <Button

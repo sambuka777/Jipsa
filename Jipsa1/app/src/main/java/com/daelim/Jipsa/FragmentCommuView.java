@@ -3,6 +3,7 @@ package com.daelim.Jipsa;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +76,7 @@ public class FragmentCommuView extends Fragment {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("title")+document.get("memo"));
                         txt_id.setText(document.get("name").toString());
-                        txt_memo.setText(document.get("memo").toString());
+                        txt_memo.setText(Html.fromHtml(document.get("memo").toString().replaceAll("InE", "<br/>")));
                         txt_title.setText(document.get("title").toString());
                         viewAnInt = Integer.parseInt(document.get("viewnum").toString());
                         viewAnInt =viewAnInt+1;
@@ -85,7 +86,7 @@ public class FragmentCommuView extends Fragment {
                         String to = transFormat.format(from);
                         System.out.println(to);
                         txt_date.setText(to);
-                        db.collection("commity").document(commid).update("viewnum",viewAnInt+1);
+                        db.collection("commity").document(commid).update("viewnum",viewAnInt);
                     } else {
                         Log.d(TAG, "No such document");
                     }
