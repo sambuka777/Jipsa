@@ -34,7 +34,7 @@ router.post('/post', async (req, res) => {
         'pwd': req.body.pwd,
         'name': req.body.name,
         'birth': req.body.birth,
-        'email': ereq.body.mail.email
+        'email': req.body.email
     });
 
     res.write("OK!");

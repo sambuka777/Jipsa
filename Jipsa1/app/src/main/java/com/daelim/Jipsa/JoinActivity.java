@@ -298,7 +298,6 @@ public class JoinActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("OK!")){
-
             }
 //            tvData = (TextView)findViewById(R.id.tvData);
 //        tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부

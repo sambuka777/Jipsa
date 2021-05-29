@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,7 @@ public class FragmentMyPage extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-
+    TextView txt_username,txt_useremail;
     LinearLayout LayoutNotice, LayoutQnA, LayoutUser, LayoutLogout;
 
     public void onAttach(Context context){
