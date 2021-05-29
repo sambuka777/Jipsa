@@ -64,7 +64,7 @@ import java.util.Map;
 public class LostFindPet extends AppCompatActivity implements AutoPermissionsListener, GoogleMap.OnCameraMoveListener {
 
     private static final int GET_GALLERY_IMAGE = 200;
-    String id, value, sex, imagepath;
+    String id, value, sex, imagepath,memo;
     ImageButton close_btn;
     Button imgBtn;
     Uri imguri;
