@@ -26,7 +26,7 @@ showdata(db);
 
 router.post('/post', async (req, res) => {
 
-    console.log("user_id : " + inputData.id + " ,  name:" + inputData.name);
+    console.log("user_id : " + req.body.id + " ,  name:" + req.body.name);
 
     const aTuringRef = db.collection('members').doc(req.body.id);
 
@@ -81,8 +81,4 @@ router.post('/idlogin', async (req, res) => {
     }
     res.end();
 });
-
-console.log(Math.random().toString(36).slice(2));
-
-
 module.exports = router;

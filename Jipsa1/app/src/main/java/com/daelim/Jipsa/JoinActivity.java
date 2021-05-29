@@ -27,7 +27,7 @@ import java.net.URL;
 public class JoinActivity extends AppCompatActivity {
 
     EditText edjID, edEm, edName,edpwd,edFEm,edpwck,edFCerNum,edbirth;
-    Button btnOl, btnCer, btnCom,btnFCer;
+    Button btnOl, btnCer, btnCom,btnFCer,btn_emailck;
     TextView tvData;
     String id,pwd,name,email,numOfEmail,numOfEmailck,pwdck,birth;
     boolean flag_idok=false,flag_email=false;
@@ -41,6 +41,7 @@ public class JoinActivity extends AppCompatActivity {
         btnFCer = (Button)findViewById(R.id.btn_Cer);
         btnCom = (Button)findViewById(R.id.btn_Com);
         btnOl = (Button)findViewById(R.id.btn_Ol);
+        btn_emailck = findViewById(R.id.btn_FCerC);
         edjID = (EditText)findViewById(R.id.ed_JID);
         edpwd = (EditText)findViewById(R.id.ed_JPW);
         edpwck = (EditText)findViewById(R.id.ed_PWc);
@@ -71,24 +72,21 @@ public class JoinActivity extends AppCompatActivity {
                 pwdck = String.valueOf(edpwck.getText());
                 name= String.valueOf(edName.getText());
                 birth = String.valueOf(edbirth.getText());
-                numOfEmailck=String.valueOf(edFCerNum.getText());
+
                 System.out.println(name+pwd);
                 if (flag_idok) {
                     if(!edpwd.getText().toString().equals("")
                             &&!edpwck.getText().toString().equals("")&&!edName.getText().toString().equals("")
                             &&!edbirth.getText().toString().equals("")){
                         if(pwd.equals(pwdck)){
-                            if(flag_email){
-                                if(numOfEmail.equals(numOfEmailck)){
-                                    JSONTask js = new JSONTask();
-                                    js.content(id,pwd,name,birth,email);
-                                    js.execute("http://192.168.6.1:3000/post");
-                                    Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
-                                    Intent JoinIntent = new Intent(JoinActivity.this, LoginActivity.class);
-                                    startActivity(JoinIntent);
-                                }else{
-                                    Toast.makeText(getApplicationContext(), "이메일 인증 실패 ", Toast.LENGTH_SHORT).show();
-                                }
+                            if (flag_email) {
+                                JSONTask js = new JSONTask();
+                                js.content(id, pwd, name, birth, email);
+                                js.execute("http://192.168.6.1:3000/post");
+                                Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
+                                Intent JoinIntent = new Intent(JoinActivity.this, LoginActivity.class);
+                                startActivity(JoinIntent);
+
                             }else{
                                 Toast.makeText(getApplicationContext(), "이메일인증을 완료해 주십시오", Toast.LENGTH_SHORT).show();
                             }
@@ -110,9 +108,29 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 email =String.valueOf(edFEm.getText());
-                JSONEmail JE = new JSONEmail();
-                JE.setEmail(email);
-                JE.execute("http://192.168.6.1:3000/mail");
+                if(!email.equals("")) {
+                    JSONEmail JE = new JSONEmail();
+                    JE.setEmail(email);
+                    JE.execute("http://192.168.6.1:3000/mail");
+                }else{
+                    Toast.makeText(getApplicationContext(), "이메일을 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btn_emailck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!edFCerNum.getText().toString().equals("")){
+                    numOfEmailck=String.valueOf(edFCerNum.getText());
+                    if(numOfEmail.equals(numOfEmailck)){
+                        flag_email=true;
+                        Toast.makeText(getApplicationContext(), "이메일 인증 성공", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "인증번호를 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -189,7 +207,7 @@ public class JoinActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result.equals("OK!")) {
+            if(result.equals("No!")) {
                 Toast.makeText(getApplicationContext(), "Pressed OK", Toast.LENGTH_SHORT).show();
                 btnOl.setEnabled(false);
                 flag_idok = true;
@@ -366,7 +384,7 @@ public class JoinActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             numOfEmail = result.substring(60,66);
-            flag_email=true;
+
             System.out.println(numOfEmail);
 
 //            tvData = (TextView)findViewById(R.id.tvData);
