@@ -6,11 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +28,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,16 +47,28 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LostFindPet extends AppCompatActivity implements AutoPermissionsListener, GoogleMap.OnCameraMoveListener {
 
-    String id, value, sex;
+    private static final int GET_GALLERY_IMAGE = 200;
+    String id, value, sex, imagepath;
     ImageButton close_btn;
+    Button imgBtn;
+    Uri imguri;
+    ImageView imageView;
     EditText name,chr;
     boolean isdiscovery, ismissing;
 
@@ -140,6 +159,30 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
 
                 if(chr.getText().toString() != "" && name.getText().toString() != "" && sex != null){
 
+                    FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+
+                    StorageReference storageRef = firebaseStorage.getReference();
+                    Uri file = imguri; // 절대경로uri를 file에 할당
+
+                    // stroage images에 절대경로파일 저장
+                    StorageReference riversRef = storageRef.child("lostpet/" + imagepath);
+                    UploadTask uploadTask = riversRef.putFile(file);
+
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Log.v("알림", "사진 업로드 실패");
+                            exception.printStackTrace();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            Log.v("알림", "사진 업로드 성공 ");
+                        }
+
+                    });
+
                     Map<String,Object> write = new HashMap<>();
 
                     write.put("id",id);
@@ -148,6 +191,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                     write.put("petchr", chr.getText().toString());
                     write.put("petname", name.getText().toString());
                     write.put("petsex",sex);
+                    write.put("image", imagepath);
                     write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
                     db = FirebaseFirestore.getInstance();
                     db.collection("petofmiss")
@@ -229,16 +273,55 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
         close_btn = findViewById(R.id.btn_close);
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent intent = new Intent(LostFindPet.this, MainActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("frag",7);
+                intent.putExtra("id", id);
+                intent.putExtra("frag", 7);
                 startActivity(intent);
+            }
+        });
+
+        imageView = findViewById(R.id.image);
+        imgBtn = findViewById(R.id.img_Upload);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, GET_GALLERY_IMAGE);
             }
         });
 
         AutoPermissions.Companion.loadAllPermissions(this, 101);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            //선택한 이미지의 경로 얻어오기
+            imguri= data.getData();
+            imageView.setImageURI(imguri);
+
+            String [] proj = {MediaStore.Images.Media.DATA};
+            CursorLoader cursorLoader = new CursorLoader(this,imguri,proj,null,null,null);
+
+            Cursor cursor = cursorLoader.loadInBackground();
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+
+            imagepath = cursor.getString(index);
+
+            System.out.println(imagepath);
+            imagepath = imagepath.substring(imagepath.lastIndexOf("/")+1);
+
+            TextView imgname = (TextView) findViewById(R.id.img_name);
+            imgname.setText(imagepath);
+            //이미지 경로 가져오기 끝
+
+        }
     }
 
 

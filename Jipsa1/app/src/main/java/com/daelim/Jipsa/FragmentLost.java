@@ -52,6 +52,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -81,6 +83,8 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
         // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
         String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
+
+        String[] img;
 
 
         Location mCurrentLocatiion;
@@ -409,7 +413,6 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                             String lost_petname = (String) document.get("petname");
                             String lost_petchr = (String) document.get("petchr");
                             String lost_petsex = (String) document.get("petsex");
-                            dis_miss = (Boolean) document.get("isdiscovery");
 
                             GeoPoint geoPoint = document.getGeoPoint("gps");
 
@@ -430,16 +433,20 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                             lostMarkers.setTag(lost_petsex);
 
                             mMap.setOnMarkerClickListener(markerClickListener); // 마커 클릭 이벤트
+
                         }
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 }
 
+
                 //마커 클릭 이벤트
                 GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
+                        FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+                        StorageReference storageRef = firebaseStorage.getReference();
                         // 정보세팅
                         TextView petname = (TextView)getActivity().findViewById(R.id.info_petname); //펫 이름
                         TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
