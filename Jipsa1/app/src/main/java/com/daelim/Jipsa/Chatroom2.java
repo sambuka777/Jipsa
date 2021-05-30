@@ -49,7 +49,10 @@ public class Chatroom2 extends AppCompatActivity {
     public RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ChatData> chatList;
+<<<<<<< Updated upstream
     private String nick = "nick1"; // ID 전달 받아서 넣기
+=======
+>>>>>>> Stashed changes
     private String id;
     private EditText EditText_chat;
     private Button Button_send;
@@ -59,6 +62,8 @@ public class Chatroom2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatroom2);
+        // ID 전달 받아서 넣기
+        String nick = setnick();
 
         Button_send = (Button)findViewById(R.id.Button_send);
         EditText_chat = (EditText)findViewById(R.id.EditText_chat);
@@ -85,13 +90,13 @@ public class Chatroom2 extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         chatList = new ArrayList<>();
-        mAdapter = new ChatAdapter(chatList, Chatroom2.this, nick);
+        mAdapter = new ChatAdapter(chatList, Chatroom2.this, setnick());
 
         mRecyclerView.setAdapter(mAdapter);
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("jipsa-e1d62-default-rtdb");
+        myRef = database.getReference("admin - admin2");
 
         //caution!!!
 
@@ -124,6 +129,11 @@ public class Chatroom2 extends AppCompatActivity {
             }
         });
 
-
     }
+    public String setnick(){
+        Intent getIntent = getIntent();
+        System.out.println(getIntent.getExtras().getString("id"));
+        return getIntent.getExtras().getString("id");
+    }
+
 }
