@@ -44,6 +44,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -434,7 +435,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                             markerOptions.position(markersLatLng);
                             markerOptions.title(lost_petname);
                             markerOptions.snippet(lost_petchr);
-                            /*markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lostpet));*/ // 커스텀 이미지
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.findpet_marker1)); // 커스텀 이미지
 
                             Marker lostMarkers = mMap.addMarker(markerOptions);
 
