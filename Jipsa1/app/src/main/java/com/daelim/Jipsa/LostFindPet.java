@@ -158,7 +158,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
             public void onClick(View view) {
 
                 if(chr.getText().toString() != "" && name.getText().toString() != "" && sex != null){
-System.out.println(imagepath);
+
                     if(imagepath != null){
                         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
 

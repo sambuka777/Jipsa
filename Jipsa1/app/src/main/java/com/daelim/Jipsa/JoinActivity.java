@@ -1,15 +1,29 @@
 package com.daelim.Jipsa;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONObject;
 
@@ -26,11 +40,17 @@ import java.net.URL;
 
 public class JoinActivity extends AppCompatActivity {
 
+    private static final int GET_GALLERY_IMAGE = 200;
     EditText edjID, edEm, edName,edpwd,edFEm,edpwck,edFCerNum,edbirth;
-    Button btnOl, btnCer, btnCom,btnFCer,btn_emailck;
-    TextView tvData;
-    String id,pwd,name,email,numOfEmail,numOfEmailck,pwdck,birth;
+    Button btnOl, btnCer, btnCom,btnFCer,btn_emailck, imgBtn;
+    TextView tvData, pro_name;
+    ImageView img_pro;
+    String id,pwd,name,email,numOfEmail,numOfEmailck,pwdck,birth, imagepath;
     boolean flag_idok=false,flag_email=false;
+
+    LinearLayout layout;
+
+    Uri imguri;
 
 
 
@@ -50,6 +70,13 @@ public class JoinActivity extends AppCompatActivity {
         edpwck=(EditText)findViewById(R.id.ed_PWc);
         edFCerNum=(EditText)findViewById(R.id.ed_CerNum);
         edbirth=(EditText)findViewById(R.id.ed_Birth);
+        pro_name=(TextView)findViewById(R.id.pro_name);
+        img_pro=(ImageView)findViewById(R.id.profile);
+        imgBtn=(Button)findViewById(R.id.proflie_Upload);
+        layout=(LinearLayout)findViewById(R.id.join_profile);
+
+        layout.setVisibility(View.GONE);
+
         btnOl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +92,16 @@ public class JoinActivity extends AppCompatActivity {
 //                }
             }
         });
+
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, GET_GALLERY_IMAGE);
+            }
+        });
+
         btnCom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,8 +117,36 @@ public class JoinActivity extends AppCompatActivity {
                             &&!edbirth.getText().toString().equals("")){
                         if(pwd.equals(pwdck)){
                             if (flag_email) {
+                                if(imagepath != null){
+                                    FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+
+                                    StorageReference storageRef = firebaseStorage.getReference();
+                                    Uri file = imguri; // 절대경로uri를 file에 할당
+
+                                    // stroage images에 절대경로파일 저장
+                                    StorageReference riversRef = storageRef.child("profle/" + imagepath);
+                                    UploadTask uploadTask = riversRef.putFile(file);
+
+                                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception exception) {
+                                            Log.v("알림", "사진 업로드 실패");
+                                            exception.printStackTrace();
+                                        }
+                                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            Log.v("알림", "사진 업로드 성공 ");
+                                        }
+
+                                    });
+                                }else{
+                                    imagepath = "null";
+                                }
+
                                 JSONTask js = new JSONTask();
-                                js.content(id, pwd, name, birth, email);
+                                js.content(id, pwd, name, birth, email, imagepath);
                                 js.execute("http://192.168.6.1:3000/post");
                                 Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
                                 Intent JoinIntent = new Intent(JoinActivity.this, LoginActivity.class);
@@ -134,6 +199,35 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            //선택한 이미지의 경로 얻어오기
+            imguri= data.getData();
+            img_pro.setImageURI(imguri);
+
+            String [] proj = {MediaStore.Images.Media.DATA};
+            CursorLoader cursorLoader = new CursorLoader(this,imguri,proj,null,null,null);
+
+            Cursor cursor = cursorLoader.loadInBackground();
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+
+            imagepath = cursor.getString(index);
+
+            imagepath = imagepath.substring(imagepath.lastIndexOf("/")+1);
+
+            pro_name.setText(imagepath);
+            //이미지 경로 가져오기 끝
+
+            layout.setVisibility(View.VISIBLE);
+
+        }
+    }
+
     public class JSONIdck extends AsyncTask<String, String, String> {
         String id;
         @Override
@@ -221,7 +315,8 @@ public class JoinActivity extends AppCompatActivity {
         }
     }
     public class JSONTask extends AsyncTask<String, String, String> {
-        String id,pwd,name,birth,email;
+        String id,pwd,name,birth,email,imagepath;
+
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -232,6 +327,7 @@ public class JoinActivity extends AppCompatActivity {
                 jsonObject.accumulate("name", name);
                 jsonObject.accumulate("birth", birth);
                 jsonObject.accumulate("email", email);
+                jsonObject.accumulate("image", imagepath);
 
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
@@ -302,12 +398,13 @@ public class JoinActivity extends AppCompatActivity {
 //            tvData = (TextView)findViewById(R.id.tvData);
 //        tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
-        protected  void content(String id,String pwd,String name,String birth,String email){
+        protected  void content(String id, String pwd, String name, String birth, String email, String imagepath){
             this.id = id;
             this.pwd = pwd;
             this.name = name;
             this.birth = birth;
             this.email = email;
+            this.imagepath = imagepath;
         }
     }
     public class JSONEmail extends AsyncTask<String, String, String> {
