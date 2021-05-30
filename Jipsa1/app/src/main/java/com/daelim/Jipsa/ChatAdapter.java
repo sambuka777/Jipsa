@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,13 +24,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView TextView_nickname;
-        public TextView TextView_msg;
+        public TextView TextView_nickname, my_nickname;
+        public TextView TextView_msg,my_msg;
         public View rootView;
+        public LinearLayout nickname;
+        public RelativeLayout mychat, userchat;
         public MyViewHolder(View v) {
             super(v);
-            TextView_nickname = v.findViewById(R.id.TextView_nickname);
+            /*TextView_nickname = v.findViewById(R.id.TextView_nickname);*/
             TextView_msg = v.findViewById(R.id.TextView_msg);
+            my_nickname = v.findViewById(R.id.my_nickname);
+            my_msg = v.findViewById(R.id.my_msg);
+            nickname = v.findViewById(R.id.nickname);
+            mychat = v.findViewById(R.id.my_chat);
+            userchat = v.findViewById(R.id.user_chat);
+
             rootView = v;
         }
 
@@ -65,16 +74,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
         // - replace the contents of the view with that element
         ChatData chat = mDataset.get(position);
 
-        holder.TextView_nickname.setText(chat.getNickname());
-        holder.TextView_msg.setText(chat.getMsg());
-
         if(chat.getNickname().equals(this.myNickName)) {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            holder.nickname.setVisibility(View.GONE);
+            holder.userchat.setVisibility(View.GONE);
+
+            holder.mychat.setVisibility(View.VISIBLE);
+
+            holder.TextView_msg.setText(chat.getMsg());
+
         }
         else {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            holder.nickname.setVisibility(View.VISIBLE);
+            holder.userchat.setVisibility(View.VISIBLE);
+
+            holder.mychat.setVisibility(View.GONE);
+
+            holder.my_nickname.setText(chat.getNickname());
+            holder.my_msg.setText(chat.getMsg());
+
         }
 
     }
