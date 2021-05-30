@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentsearch.set_id(id);
         fragmentmypage = new FragmentMyPage();
         fragmentmypage.set_id(id);
-        fragmentchatroom = new FragmentChatRoom();
-        fragmentchatroom.set_id(id);
+//        fragmentchatroom = new FragmentChatRoom();
+//        fragmentchatroom.set_id(id);
         fragmentcomuwrite = new FragmentComuWrite();
         fragmentcomuwrite.set_id(id);
         fragmentLost = new FragmentLost();
