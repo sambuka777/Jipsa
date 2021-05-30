@@ -22,25 +22,33 @@
             android:orientation="horizontal"
 
             >
-
+    <LinearLayout
+        android:layout_width="65dp"
+        android:gravity="center"
+        android:background="@drawable/bottomb"
+        android:layout_height="65dp">
 
             <ImageButton
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="centerInside"
+
                 android:background="#FFFFFF"
                 android:id="@+id/menubtn"
                 android:src="@drawable/ic_menu" />
 
+    </LinearLayout>
+
             <ImageView
                 android:layout_width="280dp"
                 android:layout_height="65dp"
-                android:background="@color/white"
+                android:background="@drawable/bottomb"
                 android:src="@drawable/logo"/>
 
             <ImageView
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:background="@color/white"
+                android:background="@drawable/bottomb"
                 android:src="@drawable/wit" />
 
 
@@ -94,10 +102,12 @@
 
             <TextView
                 android:id="@+id/tv_ComuTitle"
-
+                android:layout_marginLeft="12dp"
+                android:fontFamily="@font/tway_air"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:text="커뮤니티"
+
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textColor="#000000"
@@ -177,6 +187,8 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:text="실종 반려동물"
+                android:layout_marginLeft="12dp"
+                android:fontFamily="@font/tway_air"
                 android:textColor="#000000"
                 android:gravity="center"
                 android:textSize="24sp" />
