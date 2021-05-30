@@ -49,10 +49,7 @@ public class Chatroom2 extends AppCompatActivity {
     public RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ChatData> chatList;
-<<<<<<< Updated upstream
     private String nick = "nick1"; // ID 전달 받아서 넣기
-=======
->>>>>>> Stashed changes
     private String id;
     private EditText EditText_chat;
     private Button Button_send;
