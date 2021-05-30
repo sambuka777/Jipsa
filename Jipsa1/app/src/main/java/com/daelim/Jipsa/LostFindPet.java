@@ -158,30 +158,35 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
             public void onClick(View view) {
 
                 if(chr.getText().toString() != "" && name.getText().toString() != "" && sex != null){
+System.out.println(imagepath);
+                    if(imagepath != null){
+                        FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
 
-                    FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+                        StorageReference storageRef = firebaseStorage.getReference();
+                        Uri file = imguri; // 절대경로uri를 file에 할당
 
-                    StorageReference storageRef = firebaseStorage.getReference();
-                    Uri file = imguri; // 절대경로uri를 file에 할당
+                        // stroage images에 절대경로파일 저장
+                        StorageReference riversRef = storageRef.child("lostpet/" + imagepath);
+                        UploadTask uploadTask = riversRef.putFile(file);
 
-                    // stroage images에 절대경로파일 저장
-                    StorageReference riversRef = storageRef.child("lostpet/" + imagepath);
-                    UploadTask uploadTask = riversRef.putFile(file);
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Log.v("알림", "사진 업로드 실패");
+                                exception.printStackTrace();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            Log.v("알림", "사진 업로드 실패");
-                            exception.printStackTrace();
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Log.v("알림", "사진 업로드 성공 ");
+                            }
 
-                            Log.v("알림", "사진 업로드 성공 ");
-                        }
+                        });
+                    }else{
+                        imagepath = "null";
+                    }
 
-                    });
 
                     Map<String,Object> write = new HashMap<>();
 
