@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.Html;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -45,6 +48,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
@@ -60,6 +65,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -67,7 +74,6 @@ import java.util.Locale;
 public class FragmentLost extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
 
         String id;
-    Boolean dis_miss;
         private GoogleMap mMap;
 
         private static final String TAG = "googlemap";
@@ -84,8 +90,8 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
         // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
         String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
 
-        String[] img;
-
+        ArrayList<String> img = new ArrayList<>();
+        ArrayList<String> dismiss = new ArrayList<>();
 
         Location mCurrentLocatiion;
         LatLng currentPosition;
@@ -421,6 +427,9 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
                             LatLng markersLatLng = new LatLng(lostlat , lostlng);
 
+                            img.add((String) document.get("image"));
+                            dismiss.add(String.valueOf(document.get("isdiscovery")));
+
                             MarkerOptions markerOptions = new MarkerOptions();
                             markerOptions.position(markersLatLng);
                             markerOptions.title(lost_petname);
@@ -434,6 +443,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
                             mMap.setOnMarkerClickListener(markerClickListener); // 마커 클릭 이벤트
 
+
                         }
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
@@ -445,12 +455,12 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                 GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
-                        FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
-                        StorageReference storageRef = firebaseStorage.getReference();
+
                         // 정보세팅
                         TextView petname = (TextView)getActivity().findViewById(R.id.info_petname); //펫 이름
                         TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
                         TextView petichr = (TextView)getActivity().findViewById(R.id.info_petchr); // 펫 정보
+                        ImageView imgview = (ImageView)getActivity().findViewById(R.id.imageView4);//이미지
 
                         petname.setText(marker.getTitle());
                         petsex.setText((String)marker.getTag());
@@ -459,12 +469,32 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                         //박스 이름
                         TextView boxname = (TextView)getActivity().findViewById(R.id.boxname);
 
-                        /*if(dis_miss.equals("false")){
+                        String box = dismiss.get(Integer.parseInt(marker.getId().split("m")[1]));
+
+                        if(box.equals("false")){
                             boxname.setText("실종신고 펫 정보");
-                        }else if(dis_miss.equals("true")){
+                        }else if(box.equals("true")){
                             boxname.setText("발견신고 펫 정보");
-                        }*/
-                        boxname.setText("실종신고 펫 정보");
+                        }
+
+                        String l_img = img.get(Integer.parseInt(marker.getId().split("m")[1]));
+
+                        if(l_img.equals("null")) {
+                            imgview.setImageResource(R.drawable.dogicon);
+                        }else{
+                            FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+                            StorageReference storageRef = firebaseStorage.getReference();
+                            storageRef.child("lostpet/"+l_img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Glide.with(FragmentLost.this).load(uri).into(imgview);
+                                }
+                            });
+                        }
+
+
+
+
                         //펫 정보창 보여주기
                         LinearLayout petinfobox = (LinearLayout) mLayout.findViewById(R.id.petinfobox);
                         petinfobox.setVisibility(View.VISIBLE);
