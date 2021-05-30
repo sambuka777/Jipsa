@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,8 @@ public class FragmentQnA extends Fragment {
     private View view;
     private MainActivity mainActivity;
 
-    Button BtnQnABack, BtnQnAUpload;
+    Button BtnQnAUpload;
+    ImageButton ImgBtnQnABack;
     EditText EdQnATitle, EdQnAContents;
 
     public void onAttach(Context context){
@@ -36,8 +38,8 @@ public class FragmentQnA extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_qna, container, false);
 
-        BtnQnABack = view.findViewById(R.id.btn_QnABack);
-        BtnQnABack.setOnClickListener(new View.OnClickListener() {
+        ImgBtnQnABack = view.findViewById(R.id.Imgbtn_QnABack);
+        ImgBtnQnABack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity.setFrag(12, null);

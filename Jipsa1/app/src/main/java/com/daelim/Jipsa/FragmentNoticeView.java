@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FragmentQnAPre extends Fragment {
+public class FragmentNoticeView extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
 
-    ImageButton ImgBtnQpBack, ImgBtnQpWrite;
+    ImageButton ImgbtnNvBack;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -28,28 +28,18 @@ public class FragmentQnAPre extends Fragment {
         mainActivity = null;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_qnapre, container, false);
+        view = inflater.inflate(R.layout.activity_noticeview, container, false);
 
-        ImgBtnQpBack = view.findViewById(R.id.Imgbtn_QpBack);
-        ImgBtnQpBack.setOnClickListener(new View.OnClickListener() {
+        ImgbtnNvBack = view.findViewById(R.id.Imgbtn_NvBack);
+        ImgbtnNvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.setFrag(4, null);
+                mainActivity.setFrag(9, null);
             }
         });
-
-        ImgBtnQpWrite = view.findViewById(R.id.Imgbtn_QpWrite);
-        ImgBtnQpWrite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainActivity.setFrag(10, null);
-            }
-        });
-
 
         return view;
     }

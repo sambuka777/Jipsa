@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class FragmentUser extends Fragment {
     String id,numOfEmail,email,numOfEmailck,pwd,pwdck;
     boolean flag_email=false;
     FirebaseFirestore db;
+    ImageButton ImgBtnUserBack;
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -83,6 +85,15 @@ public class FragmentUser extends Fragment {
                 }
             }
         });
+
+        ImgBtnUserBack = view.findViewById(R.id.Imgbtn_UserBack);
+        ImgBtnUserBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(4, null);
+            }
+        });
+
         btnreCom = view.findViewById(R.id.btn_reCom);
         btnreCom.setOnClickListener(new View.OnClickListener() {
             @Override

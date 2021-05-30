@@ -21,7 +21,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btn_QnABack"
+                    android:id="@+id/Imgbtn_QnABack"
                     android:layout_width="45dp"
                     android:scaleType="centerInside"
                     android:layout_height="25dp"
@@ -50,7 +50,7 @@
                     android:layout_weight="1"/>
 
 
-                <ImageButton
+                <Button
                     android:id="@+id/btn_QnASpace"
                     android:layout_width="45dp"
                     android:scaleType="centerInside"

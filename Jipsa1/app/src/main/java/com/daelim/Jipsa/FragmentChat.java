@@ -1,6 +1,7 @@
 package com.daelim.Jipsa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,14 +41,16 @@ public class FragmentChat extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_chat, container, false);
         System.out.println(id);
-//        chat1 = view.findViewById(R.id.chat_1);
-//        chat1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mainActivity.setFrag(5);
-//            }
-//        });
-//
+        chat1 = view.findViewById(R.id.chat_1);
+        chat1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //mainActivity.setFrag(5);
+                Intent intent = new Intent(getActivity(), Chatroom2.class);
+                startActivity(intent);
+            }
+        });
+
 //        chat2 = view.findViewById(R.id.chat_2);
 //        chat2.setOnClickListener(new View.OnClickListener() {
 //            @Override
