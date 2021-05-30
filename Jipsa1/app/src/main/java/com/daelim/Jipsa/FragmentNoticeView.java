@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ public class FragmentNoticeView extends Fragment {
     private MainActivity mainActivity;
 
     ImageButton ImgbtnNvBack;
+    Button btnNvCheck;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -35,6 +37,14 @@ public class FragmentNoticeView extends Fragment {
 
         ImgbtnNvBack = view.findViewById(R.id.Imgbtn_NvBack);
         ImgbtnNvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(9, null);
+            }
+        });
+
+        btnNvCheck = view.findViewById(R.id.btn_NvCheck);
+        btnNvCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity.setFrag(9, null);

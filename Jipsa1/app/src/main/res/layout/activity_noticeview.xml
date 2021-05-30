@@ -61,7 +61,18 @@
         android:fontFamily="@font/font_nx2"
         android:hint="공지사항 제목"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tv_NvDate"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:fontFamily="@font/font_nx2"
+        android:hint="공지 날짜"
+        android:textColor="#000000"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tv_NvContents"
@@ -72,6 +83,17 @@
         android:fontFamily="@font/font_nx2"
         android:hint="공지사항 내용"
         android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_NvCheck"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/tb"
+        android:text="공지확인"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

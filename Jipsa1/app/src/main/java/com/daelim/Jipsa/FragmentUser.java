@@ -42,6 +42,7 @@ public class FragmentUser extends Fragment {
     boolean flag_email=false;
     FirebaseFirestore db;
     ImageButton ImgBtnUserBack;
+
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
