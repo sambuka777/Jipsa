@@ -56,7 +56,11 @@ public class Chatroom2 extends AppCompatActivity {
     private String nick = "nick1"; // ID 전달 받아서 넣기
     private String id;
     private EditText EditText_chat;
+<<<<<<< HEAD
     private ImageButton Button_send,chatback;
+=======
+    private ImageButton Button_send;
+>>>>>>> main
     private DatabaseReference myRef;
     private FragmentChat FragmentChat;
 
@@ -77,6 +81,7 @@ public class Chatroom2 extends AppCompatActivity {
         // ID 전달 받아서 넣기
         String nick = setnick();
 
+<<<<<<< HEAD
 
 
         chatback = (ImageButton)findViewById(R.id.backchat);
@@ -89,6 +94,8 @@ public class Chatroom2 extends AppCompatActivity {
 
             }
         });
+=======
+>>>>>>> main
         Button_send = (ImageButton)findViewById(R.id.Button_send);
         EditText_chat = (EditText)findViewById(R.id.EditText_chat);
 

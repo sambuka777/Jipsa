@@ -2,6 +2,7 @@ package com.daelim.Jipsa;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +15,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FragmentNotice extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
-
+    FirebaseFirestore db;
     ImageButton ImgBtnNoticeBack;
-
+    private static final String TAG = "FragmentCommu";
+    ArrayList<String> db_id;
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -42,25 +53,44 @@ public class FragmentNotice extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_notice, container, false);
-
+//db
         notitles = new ArrayList<>();
-        notitles.add(new Notitle("머리아프다", "7777-07-77"));
-        notitles.add(new Notitle("나는 누구인가", "8888-08-88"));
-        notitles.add(new Notitle("또 여긴 어디인가", "9999-09-99"));
-        notitles.add(new Notitle("공지사항 제목4", "공지사항 등록일4"));
-        notitles.add(new Notitle("공지사항 제목5", "공지사항 등록일5"));
-
-        ListNotice = view.findViewById(R.id.list_Notice);
-        noticeAdapter = new NoticeAdapter(getContext(), notitles);
-        ListNotice.setAdapter(noticeAdapter);
-        ListNotice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        db = FirebaseFirestore.getInstance();
+        db.collection("Notice").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = view.findViewById(R.id.tv_listNTitle).getTag().toString();
-                Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
-                mainActivity.setFrag(13, null);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+
+                        Date from = new Date(document.getTimestamp("date").toDate().getTime());
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String to = transFormat.format(from);
+                        System.out.println(to);
+
+                        notitles.add(new Notitle(document.get("title").toString(),to));
+                        db_id.add(document.getId());
+                    }
+                    ListNotice = view.findViewById(R.id.list_Notice);
+                    noticeAdapter = new NoticeAdapter(getContext(), notitles);
+                    ListNotice.setAdapter(noticeAdapter);
+                    ListNotice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String selectedItem = view.findViewById(R.id.tv_listNTitle).getTag().toString();
+                            Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
+                            mainActivity.setFrag(13, db_id.get(position));
+                        }
+                    });
+
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
             }
         });
+
+
+
 
         ImgBtnNoticeBack = view.findViewById(R.id.Imgbtn_NoticeBack);
         ImgBtnNoticeBack.setOnClickListener(new View.OnClickListener() {
