@@ -34,6 +34,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,7 +53,7 @@ public class Chatroom2 extends AppCompatActivity {
     private String nick = "nick1"; // ID 전달 받아서 넣기
     private String id;
     private EditText EditText_chat;
-    private Button Button_send;
+    private ImageButton Button_send;
     private DatabaseReference myRef;
 
     @Override
@@ -62,7 +63,7 @@ public class Chatroom2 extends AppCompatActivity {
         // ID 전달 받아서 넣기
         String nick = setnick();
 
-        Button_send = (Button)findViewById(R.id.Button_send);
+        Button_send = (ImageButton)findViewById(R.id.Button_send);
         EditText_chat = (EditText)findViewById(R.id.EditText_chat);
 
         Button_send.setOnClickListener(new View.OnClickListener() {
