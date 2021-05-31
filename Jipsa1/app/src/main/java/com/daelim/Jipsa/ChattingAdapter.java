@@ -13,14 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChattingAdapter extends ArrayAdapter implements AdapterView.OnItemClickListener {
+
     private Context context;
     private List list;
-
-    public ChattingAdapter(Context context, ArrayList list){
-        super(context, 0, list);
-        this.context = context;
-        this.list = list;
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -33,6 +28,13 @@ public class ChattingAdapter extends ArrayAdapter implements AdapterView.OnItemC
         public TextView tv_ChatDate;
     }
 
+    public ChattingAdapter(Context context, ArrayList list){
+        super(context, 0, list);
+        this.context = context;
+        this.list = list;
+    }
+
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -40,7 +42,7 @@ public class ChattingAdapter extends ArrayAdapter implements AdapterView.OnItemC
 
         if (convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-            convertView = layoutInflater.inflate(R.layout.row_noticelistview, parent, false);
+            convertView = layoutInflater.inflate(R.layout.row_chatting, parent, false);
         }
 
         viewHolder = new ViewHolder();
