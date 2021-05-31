@@ -1,5 +1,6 @@
 package com.daelim.Jipsa;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +22,20 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FragmentChat extends Fragment {
 
@@ -35,6 +44,8 @@ public class FragmentChat extends Fragment {
     MainActivity mainActivity;
     LinearLayout chat1;
     String id;
+    FirebaseFirestore db;
+    private static final String TAG = "FragmentCommu";
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -44,24 +55,37 @@ public class FragmentChat extends Fragment {
         super.onDetach();
         mainActivity = null;
     }
-
+    String temp;
     ArrayList<Chat> chats;
     ListView ListChat;
     private static ChattingAdapter chattingAdapter;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_chat, container, false);
         System.out.println(id);
-
+//        db = FirebaseFirestore.getInstance();
+//        CollectionReference ref = db.collection("chat");
+//
+//        ref.whereGreaterThan("user1",id).whereLessThan("user2",id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        Log.d(TAG, document.getId() + " => " + document.getData());
+//
+//                    }
+//
+//                } else {
+//                    Log.w(TAG, "Error getting documents.", task.getException());
+//                }
+//            }
+//        });
+//----------------------------------------------------------
         chats = new ArrayList<>();
-        chats.add(new Chat("김태형", "채팅내역1", "2021-05-31"));
-        chats.add(new Chat("장준철", "채팅내역2", "2021-05-30"));
-        chats.add(new Chat("김찬우", "채팅내역3", "2021-05-29"));
-        chats.add(new Chat("권대웅", "채팅내역4", "2021-05-28"));
-        chats.add(new Chat("실종자", "채팅내역5", "2021-05-27"));
+        chats.add(new Chat("관리자", "채팅내역1", "2021-05-31"));
+
 
         ListChat = view.findViewById(R.id.list_Chat);
         chattingAdapter = new ChattingAdapter(getContext(), chats);
@@ -72,6 +96,9 @@ public class FragmentChat extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = view.findViewById(R.id.ch_name1).getTag().toString();
                 Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), Chatroom2.class);
+                intent.putExtra("id", "관리자");
+                startActivity(intent);
             }
 
 //            FirebaseFirestore db;

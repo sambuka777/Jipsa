@@ -58,7 +58,7 @@ public class Chatroom2 extends AppCompatActivity {
     private String id;
     private EditText EditText_chat;
     private ImageButton Button_send,chatback;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef,temp;
     private FragmentChat FragmentChat;
     MainActivity mainActivity;
 
