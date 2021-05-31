@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         setFrag(2,null);
                         break;
                     case R.id.SearchItem :
-                        setFrag(3,null);
+                        setFrag(7,null);
                         break;
                     case R.id.MyPageItem :
                         setFrag(4,null);
