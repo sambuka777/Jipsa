@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="65dp">
+
         <ImageButton
             android:id="@+id/backchat"
             android:layout_width="45dp"
@@ -19,7 +20,6 @@
             android:layout_height="25dp"
             android:layout_gravity="center"
             android:background="#ffffff"
-
             android:paddingLeft="5dp"
             android:src="@drawable/prev" />
         <View
@@ -51,7 +51,7 @@
             android:paddingLeft="5dp" />
 
     </LinearLayout>
-    
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
@@ -77,18 +77,26 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"/>
+
         <LinearLayout
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
+<<<<<<< Updated upstream
 
             android:gravity="center"
 
+=======
+            android:gravity="center"
+>>>>>>> Stashed changes
             android:background="@drawable/chatbutton_st">
 
             <ImageButton
                 android:id="@+id/Button_send"
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 android:layout_width="35dp"
                 android:layout_marginTop="1.5dp"
                 android:scaleType="centerInside"
@@ -98,7 +106,10 @@
                 android:background="@color/purple_200"
                 android:paddingLeft="5dp"
                 android:src="@drawable/pf" />
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
         </LinearLayout>
 
