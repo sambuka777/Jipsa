@@ -60,11 +60,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:weightSum="1">
+
         <EditText
             android:id="@+id/EditText_chat"
             android:layout_width="200dp"
@@ -79,15 +81,14 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-<<<<<<< HEAD
+
             android:gravity="center"
-=======
->>>>>>> main
+
             android:background="@drawable/chatbutton_st">
 
             <ImageButton
                 android:id="@+id/Button_send"
-<<<<<<< HEAD
+
                 android:layout_width="35dp"
                 android:layout_marginTop="1.5dp"
                 android:scaleType="centerInside"
@@ -97,18 +98,12 @@
                 android:background="@color/purple_200"
                 android:paddingLeft="5dp"
                 android:src="@drawable/pf" />
-=======
-                android:layout_width="40dp"
-                android:scaleType="centerInside"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:background="@color/purple_200"
-                android:paddingLeft="5dp"
-                android:src="@drawable/prev" />
->>>>>>> main
+
 
         </LinearLayout>
 
+
     </LinearLayout>
+
 
 </LinearLayout>
