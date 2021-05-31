@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentUser = new FragmentUser();
         fragmentUser.set_id(id);
         fragmentQnAPre = new FragmentQnAPre();
+        fragmentQnAPre.set_id(id);
         fragmentNoticeView = new FragmentNoticeView();
         fragmentQnApreView = new FragmentQnApreView();
 
