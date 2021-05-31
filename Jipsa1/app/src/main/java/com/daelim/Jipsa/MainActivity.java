@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 13 :
+                fragmentNoticeView.set_commid(temp_id);
                 ft.replace(R.id.MainFrame, fragmentNoticeView);
                 ft.commit();
                 break;
