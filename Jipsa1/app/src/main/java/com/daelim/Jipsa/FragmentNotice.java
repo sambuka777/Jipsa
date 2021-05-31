@@ -54,6 +54,7 @@ public class FragmentNotice extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_notice, container, false);
 //db
+        db_id = new ArrayList<>();
         notitles = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
         db.collection("Notice").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
