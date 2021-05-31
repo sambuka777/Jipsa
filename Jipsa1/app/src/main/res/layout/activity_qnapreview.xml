@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:gravity="center"
+        android:background="@drawable/bottomb"
         android:orientation="horizontal">
 
         <ImageButton
@@ -86,6 +87,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10sp"
         android:fontFamily="@font/font_nx2"
+        android:background="@drawable/edge"
         android:hint="문의사항 답변"
         android:textColor="#000000"
         android:textSize="18sp" />

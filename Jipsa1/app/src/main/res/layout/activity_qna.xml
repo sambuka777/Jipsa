@@ -78,7 +78,10 @@
                 android:layout_height="500sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="15sp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
                 android:gravity="left|top"
+                android:background="@drawable/edge"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="문의 내용을 입력하세요"/>

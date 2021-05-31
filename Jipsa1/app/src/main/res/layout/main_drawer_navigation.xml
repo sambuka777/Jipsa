@@ -27,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            android:text="Bong Can Do"
+            android:text="moo ya ho"
             android:textColor="#000000"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:text="tistory.bongcando.com"
+            android:text="moyaho@email.daelim.ac.kr"
             android:textColor="#EB554C4C"
             android:textSize="15dp" />
     </LinearLayout>

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,22 +57,20 @@ public class Chatroom2 extends AppCompatActivity {
     private String nick = "nick1"; // ID 전달 받아서 넣기
     private String id;
     private EditText EditText_chat;
-<<<<<<< HEAD
     private ImageButton Button_send,chatback;
-=======
-    private ImageButton Button_send;
->>>>>>> main
     private DatabaseReference myRef;
     private FragmentChat FragmentChat;
+    MainActivity mainActivity;
 
 
 
-    public void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.chatroom2x, fragment);
-        fragmentTransaction.commit();
-    }
+
+//    public void replaceFragment(Fragment fragment){
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id., fragment);
+//        fragmentTransaction.commit();
+//    }
 
 
     @Override
@@ -81,7 +80,7 @@ public class Chatroom2 extends AppCompatActivity {
         // ID 전달 받아서 넣기
         String nick = setnick();
 
-<<<<<<< HEAD
+
 
 
         chatback = (ImageButton)findViewById(R.id.backchat);
@@ -89,13 +88,14 @@ public class Chatroom2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                replaceFragment(FragmentChat);
 
+                Intent intent = new Intent(Chatroom2.this, MainActivity.class);
+                intent.putExtra("frag",1);
+                startActivity(intent);
 
             }
         });
-=======
->>>>>>> main
+
         Button_send = (ImageButton)findViewById(R.id.Button_send);
         EditText_chat = (EditText)findViewById(R.id.EditText_chat);
 

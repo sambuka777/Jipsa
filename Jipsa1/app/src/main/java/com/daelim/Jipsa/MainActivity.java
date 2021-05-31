@@ -100,7 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(frag == 7){
             setFrag(7,null);//실종신고 취소 or 등록 후 화면 지정
-        }else{
+        }
+        else if(frag ==1){
+            setFrag(1,null); //첫 시작 프래그먼트 화면 지정
+        }
+        else{
             setFrag(0,null); //첫 시작 프래그먼트 화면 지정
         }
 
