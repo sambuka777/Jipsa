@@ -35,7 +35,7 @@ public class FragmentQnAPre extends Fragment {
     ImageButton ImgBtnQpBack, ImgBtnQpWrite;
     private static final String TAG = "FragmentCommu";
     FirebaseFirestore db;
-
+    ArrayList<String> db_id;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -50,24 +50,21 @@ public class FragmentQnAPre extends Fragment {
     ArrayList<QnApre> qnapres;
     ListView ListQp;
     private static QnApreAdapter qnapreAdapter;
+    String id;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_qnapre, container, false);
+        db_id = new ArrayList<String>();
 
         qnapres = new ArrayList<>();
-        qnapres.add(new QnApre("문의사항입니다.", "2021-05-30"));
-        qnapres.add(new QnApre("나문희세요?", "2021-05-30"));
-        qnapres.add(new QnApre("고구마호박 맛있네요.", "2021-05-30"));
-        qnapres.add(new QnApre("어머니 호박~! 고구마요~", "2021-05-30"));
-        qnapres.add(new QnApre("호.박.고.구.마 호박고구마~!~!~!", "2021-05-30"));
         //
         db = FirebaseFirestore.getInstance();
 //        CollectionReference citiesRef = db.collection("commity");
 //        db.collection("commity").get;
-        db.collection("commity").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("QnAof").document(id).collection("Qoftitle").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -78,24 +75,30 @@ public class FragmentQnAPre extends Fragment {
                         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         String to = transFormat.format(from);
                         System.out.println(to);
+                        db_id.add(document.getId());
+
+                        qnapres.add(new QnApre(document.get("memoOfQ").toString(), to));
+                        //
+
                     }
+                    ListQp = view.findViewById(R.id.list_Qp);
+                    qnapreAdapter = new QnApreAdapter(getContext(), qnapres);
+                    ListQp.setAdapter(qnapreAdapter);
+                    ListQp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String selectedItem = view.findViewById(R.id.tv_listQpQuestion).getTag().toString();
+                            Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
+                            mainActivity.setFrag(14, db_id.get(position));
+                        }
+                    });
 
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
         });
-        ListQp = view.findViewById(R.id.list_Qp);
-        qnapreAdapter = new QnApreAdapter(getContext(), qnapres);
-        ListQp.setAdapter(qnapreAdapter);
-        ListQp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = view.findViewById(R.id.tv_listQpQuestion).getTag().toString();
-                Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
-                mainActivity.setFrag(14, null);
-            }
-        });
+
 
         ImgBtnQpBack = view.findViewById(R.id.Imgbtn_QpBack);
         ImgBtnQpBack.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +118,9 @@ public class FragmentQnAPre extends Fragment {
 
 
         return view;
+    }
+    public void set_id(String id){
+        this.id = id;
     }
 
     class QnApre {
