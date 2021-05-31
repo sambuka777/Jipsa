@@ -100,7 +100,6 @@ public class FragmentCommu extends Fragment{
 
                         actors.add(new Actor(document.get("name").toString(), to, /*document.get("memo").toString(),*/ document.get("title").toString(), document.get("viewnum").toString()));
                         db_id.add(document.getId());
-                        System.out.println(document.getId()+"이거또한 4번 나와야하는문장");
                     }
                     customListView = (ListView) view.findViewById(R.id.listview);
                     CustomAdapter customAdapter = new CustomAdapter(getContext(), actors);

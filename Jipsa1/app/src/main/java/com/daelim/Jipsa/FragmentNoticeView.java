@@ -19,7 +19,7 @@ public class FragmentNoticeView extends Fragment {
 
     ImageButton ImgbtnNvBack;
     Button btnNvCheck;
-
+    String db_id;
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -52,6 +52,9 @@ public class FragmentNoticeView extends Fragment {
         });
 
         return view;
+    }
+    public void set_commid(String id){
+        db_id = id;
     }
 
 }
