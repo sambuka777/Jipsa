@@ -3,6 +3,9 @@ package com.daelim.Jipsa;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,8 +56,23 @@ public class Chatroom2 extends AppCompatActivity {
     private String nick = "nick1"; // ID 전달 받아서 넣기
     private String id;
     private EditText EditText_chat;
+<<<<<<< HEAD
+    private ImageButton Button_send,chatback;
+=======
     private ImageButton Button_send;
+>>>>>>> main
     private DatabaseReference myRef;
+    private FragmentChat FragmentChat;
+
+
+
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.chatroom2x, fragment);
+        fragmentTransaction.commit();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +81,21 @@ public class Chatroom2 extends AppCompatActivity {
         // ID 전달 받아서 넣기
         String nick = setnick();
 
+<<<<<<< HEAD
+
+
+        chatback = (ImageButton)findViewById(R.id.backchat);
+        chatback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                replaceFragment(FragmentChat);
+
+
+            }
+        });
+=======
+>>>>>>> main
         Button_send = (ImageButton)findViewById(R.id.Button_send);
         EditText_chat = (EditText)findViewById(R.id.EditText_chat);
 
