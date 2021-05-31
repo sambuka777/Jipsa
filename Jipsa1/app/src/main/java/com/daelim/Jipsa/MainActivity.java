@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentCommuView.set_id(id);
         fragmentNotice = new FragmentNotice();
         fragmentQnA = new FragmentQnA();
+        fragmentQnA.set_id(id);
         fragmentUser = new FragmentUser();
         fragmentUser.set_id(id);
         fragmentQnAPre = new FragmentQnAPre();
@@ -170,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 14 :
+                fragmentQnApreView.set_QnAid(temp_id);
                 ft.replace(R.id.MainFrame, fragmentQnApreView);
                 ft.commit();
                 break;

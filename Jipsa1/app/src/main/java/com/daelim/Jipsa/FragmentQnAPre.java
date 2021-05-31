@@ -35,7 +35,7 @@ public class FragmentQnAPre extends Fragment {
     ImageButton ImgBtnQpBack, ImgBtnQpWrite;
     private static final String TAG = "FragmentCommu";
     FirebaseFirestore db;
-
+    ArrayList<String> db_id;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -57,6 +57,7 @@ public class FragmentQnAPre extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_qnapre, container, false);
+        db_id = new ArrayList<String>();
 
         qnapres = new ArrayList<>();
         //
@@ -74,6 +75,7 @@ public class FragmentQnAPre extends Fragment {
                         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         String to = transFormat.format(from);
                         System.out.println(to);
+                        db_id.add(document.getId());
 
                         qnapres.add(new QnApre(document.get("memoOfQ").toString(), to));
                         //
@@ -87,7 +89,7 @@ public class FragmentQnAPre extends Fragment {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             String selectedItem = view.findViewById(R.id.tv_listQpQuestion).getTag().toString();
                             Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
-                            mainActivity.setFrag(14, null);
+                            mainActivity.setFrag(14, db_id.get(position));
                         }
                     });
 
