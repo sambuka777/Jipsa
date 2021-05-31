@@ -18,56 +18,74 @@
             android:background="@drawable/dogprofile3"
             android:contentDescription="@string/app_name" />
 
-        <EditText
-            android:id="@+id/Ed3_lostinfor1"
+        <TextView
+            android:id="@+id/tv3_lostinfor1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edittext_style"
             android:hint="이름"
+            android:fontFamily="@font/tb"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/Ed3_lostinfor2"
+        <TextView
+            android:id="@+id/tv3_lostinfor2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/edittext_style"
             android:hint="성별"
+            android:fontFamily="@font/tb"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/Ed3_lostinfor3"
+        <TextView
+            android:id="@+id/tv3_lostinfor3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="105dp"
             android:background="@drawable/edittext_style"
             android:hint="거주지"
+            android:fontFamily="@font/tb"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/Ed3_lostinfor4"
+        <TextView
+            android:id="@+id/tv3_lostinfor4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="210dp"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="150dp"
             android:background="@drawable/edittext_style"
             android:hint="주요특징"
+            android:fontFamily="@font/tb"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv3_lostinfor5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="195dp"
+            android:background="@drawable/edittext_style"
+            android:hint="실종날짜"
+            android:fontFamily="@font/tb"
             android:textSize="16sp" />
 
 

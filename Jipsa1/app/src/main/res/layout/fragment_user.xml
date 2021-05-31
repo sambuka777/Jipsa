@@ -87,12 +87,12 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/ed_reID"
                     android:layout_width="230sp"
                     android:layout_height="40dp"
+                    android:gravity="center|left"
                     android:background="@drawable/edittext_style"
-                    android:ems="10"
                     android:hint="아이디"
                     android:paddingLeft="5dp"
                     android:textSize="20sp"
@@ -198,10 +198,11 @@
                 android:textColor="#000000"
                 android:textSize="22sp"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/ed_reBirth"
                 android:layout_width="350sp"
                 android:layout_height="40dp"
+                android:gravity="center|left"
                 android:background="@drawable/edittext_style"
                 android:layout_gravity="center"
                 android:layout_marginTop="5sp"
