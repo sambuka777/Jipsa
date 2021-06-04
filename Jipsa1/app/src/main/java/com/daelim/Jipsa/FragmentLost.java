@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -96,7 +98,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
         Location mCurrentLocatiion;
         LatLng currentPosition;
-
+        boolean flag_findOrlost;
 
         private FusedLocationProviderClient mFusedLocationClient;
         private LocationRequest locationRequest;
@@ -420,7 +422,7 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                             String lost_petname = (String) document.get("petname");
                             String lost_petchr = (String) document.get("petchr");
                             String lost_petsex = (String) document.get("petsex");
-
+                            flag_findOrlost = document.getBoolean("isdiscovery");
                             GeoPoint geoPoint = document.getGeoPoint("gps");
 
                             double lostlat = geoPoint.getLatitude();
@@ -430,12 +432,23 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
 
                             img.add((String) document.get("image"));
                             dismiss.add(String.valueOf(document.get("isdiscovery")));
+                            int height = 130;
+                            int width = 100;
+                            BitmapDrawable bitmapdraw;
+                            if(flag_findOrlost){
+                                bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.findpet_marker1);
+                            }else{
+                                bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.lostpet_marker);
+                            }
 
+                            Bitmap b = bitmapdraw.getBitmap();
+                            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
                             MarkerOptions markerOptions = new MarkerOptions();
                             markerOptions.position(markersLatLng);
                             markerOptions.title(lost_petname);
                             markerOptions.snippet(lost_petchr);
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.findpet_marker1)); // 커스텀 이미지
+                            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                            //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.findpet_marker1)); // 커스텀 이미지
 
                             Marker lostMarkers = mMap.addMarker(markerOptions);
 
