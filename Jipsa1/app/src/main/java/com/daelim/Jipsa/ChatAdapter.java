@@ -19,26 +19,30 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> {
     private List<ChatData> mDataset;
     private String myNickName;
+    String usernick;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView TextView_nickname, my_nickname;
-        public TextView TextView_msg,my_msg;
+        public TextView TextView_time, my_nickname;
+        public TextView TextView_msg,my_msg,my_time;
         public View rootView;
         public LinearLayout nickname;
         public RelativeLayout mychat, userchat;
+        public TextView txt_username;
+
         public MyViewHolder(View v) {
             super(v);
             /*TextView_nickname = v.findViewById(R.id.TextView_nickname);*/
             TextView_msg = v.findViewById(R.id.TextView_msg);
             my_nickname = v.findViewById(R.id.my_nickname);
             my_msg = v.findViewById(R.id.my_msg);
+            my_time = v.findViewById(R.id.my_time);
             nickname = v.findViewById(R.id.nickname);
             mychat = v.findViewById(R.id.my_chat);
             userchat = v.findViewById(R.id.user_chat);
-
+            TextView_time = v.findViewById(R.id.TextView_time);
             rootView = v;
         }
 
@@ -81,9 +85,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
             holder.mychat.setVisibility(View.VISIBLE);
 
             holder.TextView_msg.setText(chat.getMsg());
+            holder.TextView_time.setText(chat.getTime());
 
         }
         else {
+            usernick(chat.getNickname());
             holder.nickname.setVisibility(View.VISIBLE);
             holder.userchat.setVisibility(View.VISIBLE);
 
@@ -91,12 +97,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
             holder.my_nickname.setText(chat.getNickname());
             holder.my_msg.setText(chat.getMsg());
+            holder.my_time.setText(chat.getTime());
 
         }
 
     }
-
-
+    public void usernick(String nick){
+        this.usernick = nick;
+    }
+    public String getnick(){
+        return this.usernick;
+    }
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {

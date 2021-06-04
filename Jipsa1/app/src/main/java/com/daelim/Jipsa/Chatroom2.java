@@ -23,7 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -39,12 +42,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,12 +61,12 @@ public class Chatroom2 extends AppCompatActivity {
     private List<ChatData> chatList;
     private String nick = "nick1"; // ID 전달 받아서 넣기
     private String id;
+    private TextView txt_chatWithUser;
     private EditText EditText_chat;
     private ImageButton Button_send,chatback;
     private DatabaseReference myRef,temp;
     private FragmentChat FragmentChat;
     MainActivity mainActivity;
-
 
 
 
@@ -79,8 +84,7 @@ public class Chatroom2 extends AppCompatActivity {
         setContentView(R.layout.activity_chatroom2);
         // ID 전달 받아서 넣기
         String nick = setnick();
-
-
+        txt_chatWithUser = findViewById(R.id.opponent_id);
 
 
         chatback = (ImageButton)findViewById(R.id.backchat);
@@ -108,6 +112,11 @@ public class Chatroom2 extends AppCompatActivity {
                     ChatData chat = new ChatData();
                     chat.setNickname(nick);
                     chat.setMsg(msg);
+                    Date from = new Date();
+                    SimpleDateFormat transFormat = new SimpleDateFormat("a hh:mm");
+                    String to = transFormat.format(from);
+                    System.out.println(to);
+                    chat.setTime(to);
                     myRef.push().setValue(chat);
                     EditText_chat.setText("");
                 }
@@ -122,7 +131,6 @@ public class Chatroom2 extends AppCompatActivity {
 
         chatList = new ArrayList<>();
         mAdapter = new ChatAdapter(chatList, Chatroom2.this, setnick());
-
         mRecyclerView.setAdapter(mAdapter);
 
         // Write a message to the database
@@ -137,8 +145,8 @@ public class Chatroom2 extends AppCompatActivity {
                 Log.d("CHATCHAT", dataSnapshot.getValue().toString());
                 ChatData chat = dataSnapshot.getValue(ChatData.class);
                 ((ChatAdapter) mAdapter).addChat(chat);
-            }
 
+            }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -159,6 +167,7 @@ public class Chatroom2 extends AppCompatActivity {
 
             }
         });
+        txt_chatWithUser.setText("관리자2");
 
     }
     public String setnick(){
@@ -166,5 +175,6 @@ public class Chatroom2 extends AppCompatActivity {
         System.out.println(getIntent.getExtras().getString("id"));
         return getIntent.getExtras().getString("id");
     }
+
 
 }

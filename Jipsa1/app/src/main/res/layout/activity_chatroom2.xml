@@ -34,7 +34,7 @@
             android:layout_height="65dp"
             android:fontFamily="@font/tb"
             android:gravity="center"
-            android:hint="무야호"
+            android:text="undefind"
             android:textColor="#000000"
             android:textSize="27sp" />
 
