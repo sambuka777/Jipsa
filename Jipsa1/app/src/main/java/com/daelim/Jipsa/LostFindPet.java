@@ -28,12 +28,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,11 +52,6 @@ import com.google.firebase.storage.UploadTask;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -153,7 +146,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
             }
         });
 
-        Button BtnUpload = (Button)findViewById(R.id.btn_Upload);
+        Button BtnUpload = (Button)findViewById(R.id.btn_chat);
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

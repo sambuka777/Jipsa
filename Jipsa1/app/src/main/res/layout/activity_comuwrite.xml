@@ -91,7 +91,7 @@
             android:hint="글의 내용을 입력하시오" />
 
         <Button
-            android:id="@+id/btn_Upload"
+            android:id="@+id/btn_chat"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

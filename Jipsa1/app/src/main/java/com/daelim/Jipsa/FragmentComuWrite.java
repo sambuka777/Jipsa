@@ -52,7 +52,7 @@ public class FragmentComuWrite extends Fragment {
         ed_title = view.findViewById(R.id.ed_WTitle);
         ed_memo = view.findViewById(R.id.ed_WContents);
 
-        BtnUpload = view.findViewById(R.id.btn_Upload);
+        BtnUpload = view.findViewById(R.id.btn_chat);
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
