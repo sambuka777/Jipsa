@@ -44,6 +44,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -201,6 +202,7 @@ public class LostFindPet extends AppCompatActivity implements AutoPermissionsLis
                     write.put("petsex",sex);
                     write.put("image", imagepath);
                     write.put("gps", new GeoPoint(Clatlng.latitude, Clatlng.longitude));
+                    write.put("time", Timestamp.now());
                     db = FirebaseFirestore.getInstance();
                     db.collection("petofmiss")
                             .add(write)
