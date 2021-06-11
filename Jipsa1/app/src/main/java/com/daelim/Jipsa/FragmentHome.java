@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -32,9 +35,17 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,14 +65,15 @@ public class FragmentHome extends Fragment {
     private String id;
     private DrawerLayout dw;
     private NavigationView dwv;
-
-
+    FirebaseFirestore db;
+    TextView txt_commu_view1,txt_commu_view2,txt_commu_view3,txt_commu_view4,txt_commu_view5;
     ImageView ViewPager;
-    TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4, TvLostAnimal;
+    TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4,TvComuList5, TvLostAnimal;
     Button BtnComuMore, BtnLostAniMore;
     ImageButton IbLost1, IbLost2, IbLost3,BtnMenu;
     LinearLayout menuu;
-
+    ArrayList<String> db_comtilte;
+    ArrayList<String> db_comint;
 
 
     MainActivity mainActivity;
@@ -109,6 +121,49 @@ public class FragmentHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home, container, false);
         System.out.println(id);
+        db_comint = new ArrayList<>();
+        db_comtilte = new ArrayList<>();
+        //commuity view line
+        TvComuList1= view.findViewById(R.id.tv_comulist1);
+        TvComuList2= view.findViewById(R.id.tv_comulist2);
+        TvComuList3= view.findViewById(R.id.tv_comulist3);
+        TvComuList4= view.findViewById(R.id.tv_comulist4);
+        TvComuList5= view.findViewById(R.id.tv_comulist5);
+        txt_commu_view1=view.findViewById(R.id.tv_comulistv1);
+        txt_commu_view2=view.findViewById(R.id.tv_comulistv2);
+        txt_commu_view3=view.findViewById(R.id.tv_comulistv3);
+        txt_commu_view4=view.findViewById(R.id.tv_comulistv4);
+        txt_commu_view5=view.findViewById(R.id.tv_comulistv5);
+
+        db = FirebaseFirestore.getInstance();
+//        CollectionReference citiesRef = db.collection("commity");
+//        db.collection("commity").get;
+        db.collection("commity").orderBy("viewnum", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("TAG", document.getId() + " => " + document.getData());
+                        db_comtilte.add(document.get("title").toString());
+                        db_comint.add(document.get("viewnum").toString());
+                    }
+                    TvComuList1.setText(db_comtilte.get(0));
+                    TvComuList2.setText(db_comtilte.get(1));
+                    TvComuList3.setText(db_comtilte.get(2));
+                    TvComuList4.setText(db_comtilte.get(3));
+                    TvComuList5.setText(db_comtilte.get(4));
+                    txt_commu_view1.setText(db_comint.get(0));
+                    txt_commu_view2.setText(db_comint.get(1));
+                    txt_commu_view3.setText(db_comint.get(2));
+                    txt_commu_view4.setText(db_comint.get(3));
+                    txt_commu_view5.setText(db_comint.get(4));
+
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.getException());
+                }
+            }
+        });
+
         //ViewPager2
         mPager = view.findViewById(R.id.ViewPager_lost);
         //Adapter
