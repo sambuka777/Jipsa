@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
@@ -148,21 +149,46 @@ public class JoinActivity extends AppCompatActivity {
                                 JSONTask js = new JSONTask();
                                 js.content(id, pwd, name, birth, email, imagepath);
                                 js.execute("http://192.168.6.1:3000/post");
-                                Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                                builder.setTitle("회원가입");
+                                builder.setMessage("회원가입 성공 ");
+                                builder.setPositiveButton("확인", null);
+                                builder.create().show();
+//                                Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
                                 Intent JoinIntent = new Intent(JoinActivity.this, LoginActivity.class);
                                 startActivity(JoinIntent);
 
                             }else{
-                                Toast.makeText(getApplicationContext(), "이메일인증을 완료해 주십시오", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                                builder.setTitle("이메일 인증");
+                                builder.setMessage("이메일인증을 완료해 주십시오");
+                                builder.setPositiveButton("확인", null);
+                                builder.create().show();
+//                                Toast.makeText(getApplicationContext(), "이메일인증을 완료해 주십시오", Toast.LENGTH_SHORT).show();
                             }
                         }else{
-                            Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                            builder.setTitle("비밀번호 오류");
+                            builder.setMessage("비밀번호가 일치하지 않습니다");
+                            builder.setPositiveButton("확인", null);
+                            builder.create().show();
+//                            Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        Toast.makeText(getApplicationContext(), "모든 항목을 입력해 주십시오", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                        builder.setTitle("오류");
+                        builder.setMessage("모든 항목을 입력해 주십시오");
+                        builder.setPositiveButton("확인", null);
+                        builder.create().show();
+//                        Toast.makeText(getApplicationContext(), "모든 항목을 입력해 주십시오", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getApplicationContext(), "중복확인 인증을 부탁드립니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                    builder.setTitle("중복확인 오류");
+                    builder.setMessage("중복확인 인증을 부탁드립니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(getApplicationContext(), "중복확인 인증을 부탁드립니다", Toast.LENGTH_SHORT).show();
                 }
                 //AsyncTask 시작시킴
 //                new JSONTask().execute("http://192.168.6.1:3000/post");//AsyncTask 시작시킴
@@ -178,7 +204,12 @@ public class JoinActivity extends AppCompatActivity {
                     JE.setEmail(email);
                     JE.execute("http://192.168.6.1:3000/mail");
                 }else{
-                    Toast.makeText(getApplicationContext(), "이메일을 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                    builder.setTitle("이메일 오류");
+                    builder.setMessage("이메일을 입력해주시기 바랍니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(getApplicationContext(), "이메일을 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -189,12 +220,27 @@ public class JoinActivity extends AppCompatActivity {
                     numOfEmailck=String.valueOf(edFCerNum.getText());
                     if(numOfEmail.equals(numOfEmailck)){
                         flag_email=true;
-                        Toast.makeText(getApplicationContext(), "이메일 인증 성공", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                        builder.setTitle("이메일 인증");
+                        builder.setMessage("이메일 인증 성공");
+                        builder.setPositiveButton("확인", null);
+                        builder.create().show();
+//                        Toast.makeText(getApplicationContext(), "이메일 인증 성공", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                        builder.setTitle("인증번호 오류");
+                        builder.setMessage("인증번호가 일치하지 않습니다");
+                        builder.setPositiveButton("확인", null);
+                        builder.create().show();
+//                        Toast.makeText(getApplicationContext(), "인증번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getApplicationContext(), "인증번호를 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                    builder.setTitle("인증번호 오류");
+                    builder.setMessage("인증번호를 입력해주시기 바랍니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(getApplicationContext(), "인증번호를 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -302,10 +348,20 @@ public class JoinActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("No!")) {
-                Toast.makeText(getApplicationContext(), "Pressed OK", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                builder.setTitle("성공");
+                builder.setMessage("Pressed OK");
+                builder.setPositiveButton("확인", null);
+                builder.create().show();
+//                Toast.makeText(getApplicationContext(), "Pressed OK", Toast.LENGTH_SHORT).show();
                 btnOl.setEnabled(false);
                 flag_idok = true;
             }else
+//                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+//                builder.setTitle("실패");
+//                builder.setMessage("no!");
+//                builder.setPositiveButton("확인", null);
+//                builder.create().show();
                 Toast.makeText(getApplicationContext(), "no!", Toast.LENGTH_SHORT).show();
 //            tvData = (TextView)findViewById(R.id.tvData);
 //        tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부

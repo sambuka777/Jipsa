@@ -81,7 +81,7 @@
     <TextView
         android:id="@+id/tv_QpvContents"
         android:layout_width="380dp"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
         android:layout_marginLeft="5dp"
         android:paddingLeft="5dp"
         android:layout_gravity="center"

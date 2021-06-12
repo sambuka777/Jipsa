@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,12 +66,22 @@ public class FindIDActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 if(name.equals(document.get("name"))&&email.equals(document.get("email"))){
-                                    Toast.makeText(FindIDActivity.this, "고객님의 아이디는"+document.getId()+"입니다", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(FindIDActivity.this);
+                                    builder.setTitle("아이디 찾기");
+                                    builder.setMessage("고객님의 아이디는"+document.getId()+"입니다");
+                                    builder.setPositiveButton("확인", null);
+                                    builder.create().show();
+//                                    Toast.makeText(FindIDActivity.this, "고객님의 아이디는"+document.getId()+"입니다", Toast.LENGTH_SHORT).show();
                                     Intent FIComIntent = new Intent(FindIDActivity.this, LoginActivity.class);
                                     startActivity(FIComIntent);
                                 }
                                 else{
-                                    Toast.makeText(FindIDActivity.this, "정보가없습니다", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(FindIDActivity.this);
+                                    builder.setTitle("아이디 찾기");
+                                    builder.setMessage("정보가없습니다");
+                                    builder.setPositiveButton("확인", null);
+                                    builder.create().show();
+//                                    Toast.makeText(FindIDActivity.this, "정보가없습니다", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -92,7 +103,12 @@ public class FindIDActivity extends AppCompatActivity {
                     Ji.setEmail(email);
                     Ji.execute("http://192.168.6.1:3000/mail");
                 }else{
-                    Toast.makeText(FindIDActivity.this, "이메일을 입력해주십시오", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FindIDActivity.this);
+                    builder.setTitle("이메일 오류");
+                    builder.setMessage("이메일을 입력해주십시오");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(FindIDActivity.this, "이메일을 입력해주십시오", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -105,9 +121,19 @@ public class FindIDActivity extends AppCompatActivity {
                     System.out.println(EdFCerNum.getText().toString());
                     System.out.println(numOfEmail);
                     flag_email=true;
-                    Toast.makeText(FindIDActivity.this, "인증되었습니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FindIDActivity.this);
+                    builder.setTitle("이메일 인증");
+                    builder.setMessage("인증되었습니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(FindIDActivity.this, "인증되었습니다", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(FindIDActivity.this, "인증번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FindIDActivity.this);
+                    builder.setTitle("인증번호 오류");
+                    builder.setMessage("인증번호를 확인해주세요");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(FindIDActivity.this, "인증번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                 }
 
             }

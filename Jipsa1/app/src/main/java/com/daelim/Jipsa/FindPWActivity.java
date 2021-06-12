@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,7 +61,12 @@ public class FindPWActivity extends AppCompatActivity {
                     Intent FIComIntent = new Intent(FindPWActivity.this, LoginActivity.class);
                     startActivity(FIComIntent);
                 }else {
-                    Toast.makeText(getApplicationContext(), "이메일 인증을 부탁드립니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
+                    builder.setTitle("인증 오류");
+                    builder.setMessage("이메일 인증을 부탁드립니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(getApplicationContext(), "이메일 인증을 부탁드립니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -83,15 +89,30 @@ public class FindPWActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
                                     if(name.equals(document.get("name"))&&email.equals(document.get("email"))){
-                                        Toast.makeText(getApplicationContext(), "고객님의 이메일로 비번전송", Toast.LENGTH_SHORT).show();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
+                                        builder.setTitle("전송 완료");
+                                        builder.setMessage("고객님의 이메일로 비번전송");
+                                        builder.setPositiveButton("확인", null);
+                                        builder.create().show();
+//                                        Toast.makeText(getApplicationContext(), "고객님의 이메일로 비번전송", Toast.LENGTH_SHORT).show();
                                         JSONEmail Ji = new JSONEmail();
                                         Ji.setEmail(email);
                                         Ji.execute("http://192.168.6.1:3000/pwdmail");
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "정보 불일치", Toast.LENGTH_SHORT).show();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
+                                        builder.setTitle("오류");
+                                        builder.setMessage("정보 불일치");
+                                        builder.setPositiveButton("확인", null);
+                                        builder.create().show();
+//                                        Toast.makeText(getApplicationContext(), "정보 불일치", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "없는 아이디 입니다", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
+                                    builder.setTitle("오류");
+                                    builder.setMessage("없는 아이디 입니다");
+                                    builder.setPositiveButton("확인", null);
+                                    builder.create().show();
+//                                    Toast.makeText(getApplicationContext(), "없는 아이디 입니다", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 Log.d(TAG, "get failed with ", task.getException());
@@ -100,7 +121,12 @@ public class FindPWActivity extends AppCompatActivity {
                     });
                     flag_email = true;
                 }else{
-                    Toast.makeText(getApplicationContext(), "정보를 입력", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
+                    builder.setTitle("오류");
+                    builder.setMessage("정보를 입력");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+//                    Toast.makeText(getApplicationContext(), "정보를 입력", Toast.LENGTH_SHORT).show();
                 }
 
             }

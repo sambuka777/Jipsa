@@ -22,6 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
+                android:background="@drawable/bottomb"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -55,8 +56,8 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <Button
-                    android:id="@+id/btn_UserSpace"
+                <TextView
+                    android:id="@+id/tv_UserSpace"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center"

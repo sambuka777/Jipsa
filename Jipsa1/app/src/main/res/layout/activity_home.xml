@@ -6,23 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/main_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:id="@+id/menuu"
-            android:orientation="horizontal"
+            android:orientation="horizontal">
 
-            >
             <LinearLayout
                 android:layout_width="65dp"
                 android:gravity="center"
@@ -33,7 +28,6 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:scaleType="centerInside"
-
                     android:background="#FFFFFF"
                     android:id="@+id/menubtn"
                     android:src="@drawable/ic_menu" />
@@ -46,17 +40,13 @@
                 android:background="@drawable/bottomb"
                 android:src="@drawable/logo"/>
 
-            <ImageView
+            <TextView
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:background="@drawable/bottomb"
                 android:src="@drawable/wit" />
 
-
-
         </LinearLayout>
-
-
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/main_navigationView"
@@ -68,15 +58,9 @@
 
         </com.google.android.material.navigation.NavigationView>
 
-
-
-
-
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,7 +92,6 @@
                             android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:text="커뮤니티"
-
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:textColor="#000000"
@@ -119,7 +102,6 @@
                             android:layout_weight="1"/>
 
                         <Button
-
                             android:id="@+id/btn_ComuMore"
                             android:layout_width="50sp"
                             android:layout_height="20sp"
@@ -131,7 +113,6 @@
 
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="350dp"
@@ -139,6 +120,7 @@
                         android:gravity="center"
                         android:background="@drawable/homecomu2"
                         android:layout_height="25dp">
+
                         <TextView
                             android:id="@+id/tv_comulist1"
                             android:paddingLeft="8dp"
@@ -148,16 +130,19 @@
                             android:layout_weight="1"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
                             android:text="조회 "/>
+
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:background="@color/black"/>
+
                         <TextView
                             android:id="@+id/tv_comulistv1"
                             android:paddingLeft="8dp"
@@ -167,6 +152,7 @@
                             android:text="330"
                             android:layout_marginRight="15dp"
                             android:textColor="#000000" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -176,6 +162,7 @@
                         android:gravity="center"
                         android:background="@drawable/homecomu"
                         android:layout_height="25dp">
+
                         <TextView
                             android:id="@+id/tv_comulist2"
                             android:paddingLeft="8dp"
@@ -185,16 +172,19 @@
                             android:layout_weight="1"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
                             android:text="조회 "/>
+
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:background="@color/black"/>
+
                         <TextView
                             android:id="@+id/tv_comulistv2"
                             android:paddingLeft="8dp"
@@ -204,6 +194,7 @@
                             android:text="330"
                             android:layout_marginRight="15dp"
                             android:textColor="#000000" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -213,6 +204,7 @@
                         android:gravity="center"
                         android:background="@drawable/homecomu"
                         android:layout_height="25dp">
+
                         <TextView
                             android:id="@+id/tv_comulist3"
                             android:paddingLeft="8dp"
@@ -222,16 +214,19 @@
                             android:layout_weight="1"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
                             android:text="조회 "/>
+
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:background="@color/black"/>
+
                         <TextView
                             android:id="@+id/tv_comulistv3"
                             android:paddingLeft="8dp"
@@ -241,6 +236,7 @@
                             android:text="330"
                             android:layout_marginRight="15dp"
                             android:textColor="#000000" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -250,6 +246,7 @@
                         android:gravity="center"
                         android:background="@drawable/homecomu"
                         android:layout_height="25dp">
+
                         <TextView
                             android:id="@+id/tv_comulist4"
                             android:paddingLeft="8dp"
@@ -259,16 +256,19 @@
                             android:layout_weight="1"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
                             android:text="조회 "/>
+
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:background="@color/black"/>
+
                         <TextView
                             android:id="@+id/tv_comulistv4"
                             android:paddingLeft="8dp"
@@ -278,6 +278,7 @@
                             android:text="330"
                             android:layout_marginRight="15dp"
                             android:textColor="#000000" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,6 +288,7 @@
                         android:gravity="center"
                         android:background="@drawable/homecomu"
                         android:layout_height="25dp">
+
                         <TextView
                             android:id="@+id/tv_comulist5"
                             android:paddingLeft="8dp"
@@ -296,16 +298,19 @@
                             android:layout_weight="1"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
                             android:text="조회 "/>
+
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:background="@color/black"/>
+
                         <TextView
                             android:id="@+id/tv_comulistv5"
                             android:paddingLeft="8dp"
@@ -315,6 +320,7 @@
                             android:text="330"
                             android:layout_marginRight="15dp"
                             android:textColor="#000000" />
+
                     </LinearLayout>
 
 
@@ -386,7 +392,7 @@
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/ViewPager_lost"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/frameSize"
+                            android:layout_height="368dp"
                             android:clipChildren="false"
                             android:clipToPadding="false" />
 
@@ -394,12 +400,17 @@
                             android:id="@+id/indicator"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
+                            android:layout_marginBottom="48dp"
                             android:layout_gravity="bottom" />
 
                     </FrameLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </ScrollView>
+
     </androidx.drawerlayout.widget.DrawerLayout>
+
 </LinearLayout>

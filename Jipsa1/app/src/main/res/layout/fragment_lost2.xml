@@ -7,14 +7,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/frameSize"
-        android:layout_marginLeft="@dimen/pageMarginAndOffset"
-        android:layout_marginRight="@dimen/pageMarginAndOffset"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실종신고"
+            android:fontFamily="@font/tb"
+            android:textSize="24sp"
+            android:textColor="#000000"/>
+
         <ImageView
-            android:id="@+id/imgBanner4"
-            android:layout_width="200dp"
-            android:layout_height="230dp"
+            android:id="@+id/imgBanner2"
+            android:layout_width="180dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/dogprofile2"
             android:contentDescription="@string/app_name" />
 
@@ -22,73 +31,106 @@
             android:id="@+id/tv2_lostinfor1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edittext_style"
-            android:hint="이름"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/tb"
+            android:text="이름"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv2_lostinfor1_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250sp"
+            android:layout_marginTop="43dp"
+            android:fontFamily="@font/tb"
+            android:hint="펫 이름"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv2_lostinfor2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/edittext_style"
-            android:hint="성별"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="@font/tb"
+            android:text="성별"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv2_lostinfor2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250sp"
+            android:layout_marginTop="83dp"
+            android:fontFamily="@font/tb"
+            android:hint="펫 성별"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv2_lostinfor3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="105dp"
-            android:background="@drawable/edittext_style"
-            android:hint="거주지"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="120dp"
             android:fontFamily="@font/tb"
+            android:text="위치"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv2_lostinfor3_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250sp"
+            android:layout_marginTop="123dp"
+            android:fontFamily="@font/tb"
+            android:hint="실종위치"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv2_lostinfor4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="150dp"
-            android:background="@drawable/edittext_style"
-            android:hint="주요특징"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="160dp"
             android:fontFamily="@font/tb"
+            android:text="날짜"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv2_lostinfor4_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250sp"
+            android:layout_marginTop="163dp"
+            android:fontFamily="@font/tb"
+            android:hint="실종날짜"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv2_lostinfor5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="195dp"
-            android:background="@drawable/edittext_style"
-            android:hint="실종날짜"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="200dp"
             android:fontFamily="@font/tb"
+            android:text="특징"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv2_lostinfor5_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210sp"
+            android:layout_marginTop="235dp"
+            android:fontFamily="@font/tb"
+            android:hint="주요 특징"
             android:textSize="16sp" />
-
-
 
     </RelativeLayout>
 
