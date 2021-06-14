@@ -1,6 +1,8 @@
 package com.daelim.Jipsa;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
+import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by KPlo on 2018. 10. 28..
@@ -31,7 +47,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
         public LinearLayout nickname;
         public RelativeLayout mychat, userchat;
         public TextView txt_username;
-
+        CircleImageView img_prof;
+        FirebaseFirestore db;
+        String img;
         public MyViewHolder(View v) {
             super(v);
             /*TextView_nickname = v.findViewById(R.id.TextView_nickname);*/
@@ -43,6 +61,40 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
             mychat = v.findViewById(R.id.my_chat);
             userchat = v.findViewById(R.id.user_chat);
             TextView_time = v.findViewById(R.id.TextView_time);
+            img_prof = v.findViewById(R.id.chat_img);
+            db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("members").document("admin");//여기
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d("TAG", "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
+
+                            img = document.get("image").toString();
+
+                            //프로필 이미지 세팅
+                            if(img.equals("null")) {
+                                img_prof.setImageResource(R.drawable.profile_user);
+                            }else{
+                                FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+                                StorageReference storageRef = firebaseStorage.getReference();
+                                storageRef.child("profile/"+img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Glide.with(itemView).load(uri).into(img_prof);
+                                    }
+                                });
+                            }
+                        } else {
+                            Log.d("TAG", "No such document");
+                        }
+                    } else {
+                        Log.d("TAG", "get failed with ", task.getException());
+                    }
+                }
+            });
             rootView = v;
         }
 

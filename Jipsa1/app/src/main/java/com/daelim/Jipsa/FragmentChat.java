@@ -97,7 +97,7 @@ public class FragmentChat extends Fragment {
                 String selectedItem = view.findViewById(R.id.ch_name1).getTag().toString();
                 Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), Chatroom2.class);
-                intent.putExtra("id", "관리자");
+                intent.putExtra("id", "관리자2");
                 startActivity(intent);
             }
 

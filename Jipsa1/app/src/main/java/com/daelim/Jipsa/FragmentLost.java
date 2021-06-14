@@ -475,7 +475,15 @@ public class FragmentLost extends Fragment implements OnMapReadyCallback, Activi
                         TextView petsex = (TextView)getActivity().findViewById(R.id.info_petsex); // 펫 성별
                         TextView petichr = (TextView)getActivity().findViewById(R.id.info_petchr); // 펫 정보
                         ImageView imgview = (ImageView)getActivity().findViewById(R.id.imageView4);//이미지
-
+                        Button btn_chat =  (Button) getActivity().findViewById(R.id.btn_chat);
+                        btn_chat.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), Chatroom2.class);
+                                intent.putExtra("id", "관리자");
+                                startActivity(intent);
+                            }
+                        });
                         petname.setText(marker.getTitle());
                         petsex.setText((String)marker.getTag());
                         petichr.setText(Html.fromHtml(marker.getSnippet().replaceAll("InE", "<br/>")));
