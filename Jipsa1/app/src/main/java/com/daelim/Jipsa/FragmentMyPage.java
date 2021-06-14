@@ -1,6 +1,7 @@
 package com.daelim.Jipsa;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -126,7 +128,24 @@ public class FragmentMyPage extends Fragment {
                 mainActivity.setFrag(11, id);
             }
         });
+        LayoutLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("로그아웃");
+                builder.setMessage("정말 로그아웃 하시겠습니까?");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent JoinIntent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(JoinIntent);
+                    }
+                });
+                builder.setNegativeButton("취소",null);
+                builder.create().show();
 
+            }
+        });
         return view;    }
     public void set_id(String id){
         this.id = id;
