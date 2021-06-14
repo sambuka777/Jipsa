@@ -109,7 +109,7 @@ public class FragmentCommu extends Fragment{
                         public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                             //각 아이템을 분간 할 수 있는 position과 뷰
                             String selectedItem = (String) view.findViewById(R.id.Ed_cname3).getTag().toString();
-                            Toast.makeText(getContext(), "Clicked: " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "Clicked: " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
                             mainActivity.setFrag(8,db_id.get(position));
                         }
                     });
