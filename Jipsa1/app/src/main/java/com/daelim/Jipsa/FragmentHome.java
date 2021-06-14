@@ -69,7 +69,7 @@ public class FragmentHome extends Fragment {
     TextView txt_commu_view1,txt_commu_view2,txt_commu_view3,txt_commu_view4,txt_commu_view5;
     ImageView ViewPager;
     TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4,TvComuList5, TvLostAnimal;
-    Button BtnComuMore, BtnLostAniMore;
+    Button BtnComuMore, BtnLostAniMore,btnmlost,btnmcomu,btnmchat,btnmmy,btnmgong,btnmmoon,btnmjang;
     ImageButton IbLost1, IbLost2, IbLost3,BtnMenu;
     LinearLayout menuu;
     ArrayList<String> db_comtilte;
@@ -204,6 +204,64 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 dw.openDrawer(dwv);
+
+            }
+        });
+
+        btnmlost = view.findViewById(R.id.menulost);
+        btnmcomu = view.findViewById(R.id.menucomu);
+        btnmchat = view.findViewById(R.id.menuchat);
+        btnmmy = view.findViewById(R.id.menumy);
+        btnmgong = view.findViewById(R.id.menugong);
+        btnmmoon = view.findViewById(R.id.menumoon);
+        btnmjang = view.findViewById(R.id.menujang);
+
+        btnmlost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(7,null);
+
+            }
+        });
+        btnmcomu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(8,null);
+
+            }
+        });
+        btnmchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(1,null);
+
+            }
+        });
+        btnmmy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(11,null);
+
+            }
+        });
+        btnmgong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(9,null);
+
+            }
+        });
+        btnmmoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(10,null);
+
+            }
+        });
+        btnmjang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.setFrag(11,null);
 
             }
         });
