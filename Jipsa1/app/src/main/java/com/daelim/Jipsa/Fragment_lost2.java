@@ -109,14 +109,19 @@ public class Fragment_lost2 extends Fragment {
                             if(img.equals("null")) {
                                 iv.setImageResource(R.drawable.dogicon);
                             }else{
-                                FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
-                                StorageReference storageRef = firebaseStorage.getReference();
-                                storageRef.child("lostpet/"+img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        Glide.with(Fragment_lost2.this).load(uri).into(iv);
-                                    }
-                                });
+//                                FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+//                                StorageReference storageRef = firebaseStorage.getReference();
+//                                storageRef.child("lostpet/"+img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                    @Override
+//                                    public void onSuccess(Uri uri) {
+//                                        try {
+//                                            Glide.with(Fragment_lost2.this).load(uri).into(iv);
+//                                        }catch (Exception e){
+//                                            iv.setImageResource(R.drawable.dogicon);
+//                                        }
+//                                    }
+//                                });
+                                iv.setImageResource(R.drawable.dogicon);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
