@@ -249,20 +249,21 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/home_comm1"
                         android:layout_width="350dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:background="@drawable/homecomu2"
-                        android:layout_height="25dp">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_comulist1"
-                            android:paddingLeft="8dp"
                             android:layout_width="350dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:paddingLeft="8dp"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
 
@@ -270,41 +271,42 @@
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
-                            android:text="조회 "/>
+                            android:text="조회 " />
 
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:background="@color/black"/>
+                            android:background="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_comulistv1"
-                            android:paddingLeft="8dp"
                             android:layout_width="40dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
-                            android:text="330"
+                            android:layout_gravity="center"
                             android:layout_marginRight="15dp"
+                            android:paddingLeft="8dp"
+                            android:text="330"
                             android:textColor="#000000" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/home_comm2"
                         android:layout_width="350dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:background="@drawable/homecomu"
-                        android:layout_height="25dp">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_comulist2"
-                            android:paddingLeft="8dp"
                             android:layout_width="350dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:paddingLeft="8dp"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
 
@@ -312,41 +314,42 @@
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
-                            android:text="조회 "/>
+                            android:text="조회 " />
 
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:background="@color/black"/>
+                            android:background="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_comulistv2"
-                            android:paddingLeft="8dp"
                             android:layout_width="40dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
-                            android:text="330"
+                            android:layout_gravity="center"
                             android:layout_marginRight="15dp"
+                            android:paddingLeft="8dp"
+                            android:text="330"
                             android:textColor="#000000" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/home_comm3"
                         android:layout_width="350dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:background="@drawable/homecomu"
-                        android:layout_height="25dp">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_comulist3"
-                            android:paddingLeft="8dp"
                             android:layout_width="350dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:paddingLeft="8dp"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
 
@@ -354,41 +357,42 @@
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
-                            android:text="조회 "/>
+                            android:text="조회 " />
 
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:background="@color/black"/>
+                            android:background="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_comulistv3"
-                            android:paddingLeft="8dp"
                             android:layout_width="40dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
-                            android:text="330"
+                            android:layout_gravity="center"
                             android:layout_marginRight="15dp"
+                            android:paddingLeft="8dp"
+                            android:text="330"
                             android:textColor="#000000" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/home_comm4"
                         android:layout_width="350dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:background="@drawable/homecomu"
-                        android:layout_height="25dp">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_comulist4"
-                            android:paddingLeft="8dp"
                             android:layout_width="350dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:paddingLeft="8dp"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
 
@@ -396,41 +400,42 @@
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
-                            android:text="조회 "/>
+                            android:text="조회 " />
 
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:background="@color/black"/>
+                            android:background="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_comulistv4"
-                            android:paddingLeft="8dp"
                             android:layout_width="40dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
-                            android:text="330"
+                            android:layout_gravity="center"
                             android:layout_marginRight="15dp"
+                            android:paddingLeft="8dp"
+                            android:text="330"
                             android:textColor="#000000" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/home_comm5"
                         android:layout_width="350dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:background="@drawable/homecomu"
-                        android:layout_height="25dp">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_comulist5"
-                            android:paddingLeft="8dp"
                             android:layout_width="350dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:paddingLeft="8dp"
                             android:text="존나 귀찮음"
                             android:textColor="#000000" />
 
@@ -438,22 +443,22 @@
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:gravity="center"
-                            android:text="조회 "/>
+                            android:text="조회 " />
 
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:background="@color/black"/>
+                            android:background="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_comulistv5"
-                            android:paddingLeft="8dp"
                             android:layout_width="40dp"
-                            android:layout_gravity="center"
                             android:layout_height="20dp"
-                            android:text="330"
+                            android:layout_gravity="center"
                             android:layout_marginRight="15dp"
+                            android:paddingLeft="8dp"
+                            android:text="330"
                             android:textColor="#000000" />
 
                     </LinearLayout>

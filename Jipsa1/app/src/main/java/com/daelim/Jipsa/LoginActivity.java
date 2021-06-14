@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -79,9 +80,14 @@ public class LoginActivity extends AppCompatActivity {
                                         JoinIntent.putExtra("id",id);
                                         startActivity(JoinIntent);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setTitle("로그인 실패");
+                                    builder.setMessage("아이디 또는 비밀번호를 확인해 주십시오");
+                                    builder.setPositiveButton("확인", null);
+                                    builder.create().show();
                                     Log.d(TAG, "No such document");
                                 }
                             } else {
@@ -91,7 +97,12 @@ public class LoginActivity extends AppCompatActivity {
                     });
 
                 }else{
-                    Toast.makeText(getApplicationContext(), "입력좀", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "입력좀", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle("로그인 실패");
+                    builder.setMessage("아이디 또는 비밀번호를 입력해 주십시오");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
                 }
             }
 

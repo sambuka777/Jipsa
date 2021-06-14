@@ -3,18 +3,26 @@ package com.daelim.Jipsa;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONObject;
@@ -29,6 +37,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FragmentUser extends Fragment {
 
@@ -37,12 +47,12 @@ public class FragmentUser extends Fragment {
     MainActivity mainActivity;
 
     Button btn_email,btn_emailck, btnreCom;
-    EditText ed_pwd,ed_pwdck,ed_email,ed_emailck;
+    EditText ed_pwd,ed_pwdck,ed_email,ed_emailck,ed_name;
+    TextView ed_id,ed_birth;
     String id,numOfEmail,email,numOfEmailck,pwd,pwdck;
     boolean flag_email=false;
     FirebaseFirestore db;
     ImageButton ImgBtnUserBack;
-
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity= (MainActivity) getActivity();
@@ -57,6 +67,31 @@ public class FragmentUser extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user, container, false);
+        ed_id = view.findViewById(R.id.ed_reID);
+        ed_id.setText(id);
+        //ed_id.getFreezesText();
+        ed_name= view.findViewById(R.id.ed_reName);
+        ed_birth = view.findViewById(R.id.ed_reBirth);
+        db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("members").document(id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("TAG", "DocumentSnapshot data: " + document.getData()+document.get("title")+document.get("memo"));
+                        ed_name.setText(document.get("name").toString());
+                        ed_birth.setText(document.get("birth").toString());
+                        ed_birth.getFreezesText();
+                    } else {
+                        Log.d("TAG", "No such document");
+                    }
+                } else {
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            }
+        });
         btn_email = view.findViewById(R.id.btn_reEM);
         btn_email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +102,18 @@ public class FragmentUser extends Fragment {
                     JSONEmail JE = new JSONEmail();
                     JE.setEmail(email);
                     JE.execute("http://192.168.6.1:3000/mail");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("이메일 전송 성공");
+                    builder.setMessage("고객님의 이메일로 인증번호를 송부하였습니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
                 }else{
-                    Toast.makeText(mainActivity.getApplicationContext(), "이메일을 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("이메일 전송 실패");
+                    builder.setMessage("메일을 확인해 주시기 바랍니다");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
+                    //Toast.makeText(mainActivity.getApplicationContext(), "이메일을 입력해주시기 바랍니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });

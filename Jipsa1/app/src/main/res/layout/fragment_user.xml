@@ -90,25 +90,14 @@
 
                 <TextView
                     android:id="@+id/ed_reID"
-                    android:layout_width="230sp"
+                    android:layout_width="348dp"
                     android:layout_height="40dp"
-                    android:gravity="center|left"
                     android:background="@drawable/edittext_style"
+                    android:gravity="center|left"
                     android:hint="아이디"
+                    android:inputType="textPersonName"
                     android:paddingLeft="5dp"
-                    android:textSize="20sp"
-                    android:inputType="textPersonName"/>
-
-                <Button
-                    android:id="@+id/btn_reOl"
-                    android:layout_width="100sp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:fontFamily="@font/nx2gof"
-                    android:text="중복검사"
-                    android:textColor="#FFFFFF"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

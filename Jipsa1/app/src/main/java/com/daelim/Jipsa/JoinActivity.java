@@ -203,6 +203,11 @@ public class JoinActivity extends AppCompatActivity {
                     JSONEmail JE = new JSONEmail();
                     JE.setEmail(email);
                     JE.execute("http://192.168.6.1:3000/mail");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                    builder.setTitle("이메일 전송");
+                    builder.setMessage("고객님의 이메일로 인증번호를 송부했습니다.");
+                    builder.setPositiveButton("확인", null);
+                    builder.create().show();
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
                     builder.setTitle("이메일 오류");
@@ -349,20 +354,21 @@ public class JoinActivity extends AppCompatActivity {
             super.onPostExecute(result);
             if(result.equals("No!")) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
-                builder.setTitle("성공");
-                builder.setMessage("Pressed OK");
+                builder.setTitle("아이디 중복확인 성공");
+                builder.setMessage("중복되지 않은 아이디 입니다");
                 builder.setPositiveButton("확인", null);
                 builder.create().show();
 //                Toast.makeText(getApplicationContext(), "Pressed OK", Toast.LENGTH_SHORT).show();
                 btnOl.setEnabled(false);
                 flag_idok = true;
-            }else
-//                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
-//                builder.setTitle("실패");
-//                builder.setMessage("no!");
-//                builder.setPositiveButton("확인", null);
-//                builder.create().show();
-                Toast.makeText(getApplicationContext(), "no!", Toast.LENGTH_SHORT).show();
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                builder.setTitle("아이디 중복확인 실패 ");
+                builder.setMessage("중복되는 아이디 입니다");
+                builder.setPositiveButton("확인", null);
+                builder.create().show();
+                //Toast.makeText(getApplicationContext(), "no!", Toast.LENGTH_SHORT).show();
+            }
 //            tvData = (TextView)findViewById(R.id.tvData);
 //        tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }

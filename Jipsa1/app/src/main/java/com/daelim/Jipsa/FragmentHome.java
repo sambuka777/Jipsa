@@ -71,10 +71,10 @@ public class FragmentHome extends Fragment {
     TextView TvComuTitle, TvComuList1, TvComuList2, TvComuList3, TvComuList4,TvComuList5, TvLostAnimal;
     Button BtnComuMore, BtnLostAniMore,btnmlost,btnmcomu,btnmchat,btnmmy,btnmgong,btnmmoon,btnmjang;
     ImageButton IbLost1, IbLost2, IbLost3,BtnMenu;
-    LinearLayout menuu;
+    LinearLayout menuu,commu1,commu2,commu3,commu4,commu5;
     ArrayList<String> db_comtilte;
     ArrayList<String> db_comint;
-
+    ArrayList<String> db_id;
 
     MainActivity mainActivity;
 
@@ -123,6 +123,7 @@ public class FragmentHome extends Fragment {
         System.out.println(id);
         db_comint = new ArrayList<>();
         db_comtilte = new ArrayList<>();
+        db_id = new ArrayList<>();
         //commuity view line
         TvComuList1= view.findViewById(R.id.tv_comulist1);
         TvComuList2= view.findViewById(R.id.tv_comulist2);
@@ -134,6 +135,11 @@ public class FragmentHome extends Fragment {
         txt_commu_view3=view.findViewById(R.id.tv_comulistv3);
         txt_commu_view4=view.findViewById(R.id.tv_comulistv4);
         txt_commu_view5=view.findViewById(R.id.tv_comulistv5);
+        commu1 = view.findViewById(R.id.home_comm1);
+        commu2 = view.findViewById(R.id.home_comm2);
+        commu3 = view.findViewById(R.id.home_comm3);
+        commu4 = view.findViewById(R.id.home_comm4);
+        commu5 = view.findViewById(R.id.home_comm5);
 
         db = FirebaseFirestore.getInstance();
 //        CollectionReference citiesRef = db.collection("commity");
@@ -146,6 +152,7 @@ public class FragmentHome extends Fragment {
                         Log.d("TAG", document.getId() + " => " + document.getData());
                         db_comtilte.add(document.get("title").toString());
                         db_comint.add(document.get("viewnum").toString());
+                        db_id.add(document.getId());
                     }
                     TvComuList1.setText(db_comtilte.get(0));
                     TvComuList2.setText(db_comtilte.get(1));
@@ -163,7 +170,36 @@ public class FragmentHome extends Fragment {
                 }
             }
         });
-
+        commu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8,db_id.get(0));
+            }
+        });
+        commu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8,db_id.get(1));
+            }
+        });
+        commu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8,db_id.get(2));
+            }
+        });
+        commu4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8,db_id.get(3));
+            }
+        });
+        commu5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.setFrag(8,db_id.get(4));
+            }
+        });
         //ViewPager2
         mPager = view.findViewById(R.id.ViewPager_lost);
         //Adapter
