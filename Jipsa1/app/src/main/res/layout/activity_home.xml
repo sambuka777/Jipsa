@@ -50,11 +50,143 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/main_navigationView"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            app:headerLayout="@layout/main_drawer_navigation"
-            app:menu="@menu/main_drawer_navi">
+            android:background="#FFFFFF"
+            android:layout_gravity="left">
+<!--            app:headerLayout="@layout/main_drawer_navigation"-->
+<!--            app:menu="@menu/main_drawer_navi">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/header_icon"
+                    android:layout_width="150dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/menu_st"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo"/>
+
+                <LinearLayout
+                    android:layout_width="370dp"
+                    android:layout_height="89dp"
+                    android:background="@drawable/slide_menu_st"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="moo ya ho"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="moyaho@email.daelim.ac.kr"
+                        android:textColor="#EB554C4C"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/menulost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/tb"
+                    android:gravity="left"
+                    android:textSize="18dp"
+                    android:text="실종 발견신고" />
+
+                <Button
+                    android:id="@+id/menucomu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/tb"
+                    android:gravity="left"
+                    android:textSize="18dp"
+                    android:text="커뮤니티" />
+
+                <Button
+                    android:id="@+id/menuchat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/tb"
+                    android:gravity="left"
+                    android:textSize="18dp"
+                    android:text="채팅" />
+
+                <Button
+                    android:id="@+id/menumy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/tb"
+                    android:gravity="left"
+                    android:textSize="18dp"
+                    android:text="마이페이지" />
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="10dp"/>
+
+                <Button
+                    android:id="@+id/menugong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:gravity="left"
+                    android:textSize="10dp"
+                    android:text="마이페이지" />
+                <Button
+                    android:id="@+id/menumoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:gravity="left"
+                    android:textSize="10dp"
+                    android:text="문의사항" />
+                <Button
+                    android:id="@+id/menujang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:background="#00ff0000"
+                    android:gravity="left"
+                    android:textSize="10dp"
+                    android:text="내 정보수정" />
+            </LinearLayout>
+
 
         </com.google.android.material.navigation.NavigationView>
 
