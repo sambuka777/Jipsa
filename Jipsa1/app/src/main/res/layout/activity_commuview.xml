@@ -57,6 +57,69 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rere"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_gravity="right"
+        android:visibility="gone"
+        android:background="@drawable/rerer"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rerer"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:scaleType="centerInside"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/edit"/>
+
+            <Button
+                android:id="@+id/rew"
+                android:layout_width="130dp"
+                android:gravity="left|center"
+                android:paddingLeft="5dp"
+                android:layout_height="40dp"
+                android:background="#00ff0000"
+                android:fontFamily="@font/tway_air"
+                android:textSize="18dp"
+                android:text="게시글 수정"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rerem"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:scaleType="centerInside"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/delete"/>
+
+            <Button
+                android:id="@+id/rem"
+                android:layout_width="130dp"
+                android:gravity="left|center"
+                android:paddingLeft="5dp"
+                android:layout_height="40dp"
+                android:background="#00ff0000"
+                android:fontFamily="@font/tway_air"
+                android:textSize="18dp"
+                android:text="게시글 삭제"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txt_title"

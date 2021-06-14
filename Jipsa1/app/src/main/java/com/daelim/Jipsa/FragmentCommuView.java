@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,8 @@ public class FragmentCommuView extends Fragment {
     private View view;
     String id,commid;
     TextView txt_title,txt_memo,txt_id,txt_viewnum,txt_date;
+    LinearLayout rere;
+    ImageButton remore;
     int viewAnInt;
     private static final String TAG = "FragmentCommu";
     FirebaseFirestore db;
@@ -103,7 +106,16 @@ public class FragmentCommuView extends Fragment {
             }
         });
 
+        rere = view.findViewById(R.id.rere);
+        remore = view.findViewById(R.id.comumore);
 
+        remore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rere.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         return view;    }
     public void set_id(String id){
