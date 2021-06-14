@@ -42,7 +42,8 @@ public class Fragment_lost1 extends Fragment {
     ArrayList<String> db_missmemo;
     List<Address> db_gps;
     ImageView iv;
-    TextView txt_name,txt_sex,txt_gps,txt_memo,txt_date;
+    String img;
+    TextView txt_name,txt_sex,txt_gps,txt_memo,txt_date,txt_missOrfind;
     String temp;
     @Nullable
     @Override
@@ -55,11 +56,13 @@ public class Fragment_lost1 extends Fragment {
         db_missgps = new ArrayList<>();
         db_missmemo = new ArrayList<>();
         db_missname = new ArrayList<>();
-        txt_name = rootView.findViewById(R.id.tv_lostinfor1);
-        txt_sex = rootView.findViewById(R.id.tv_lostinfor2);
-        txt_gps = rootView.findViewById(R.id.tv_lostinfor3);
-        txt_memo = rootView.findViewById(R.id.tv_lostinfor4);
-        txt_date = rootView.findViewById(R.id.tv_lostinfor5);
+        txt_name = rootView.findViewById(R.id.tv_lostinfor1_1);
+        txt_sex = rootView.findViewById(R.id.tv_lostinfor2_1);
+        txt_gps = rootView.findViewById(R.id.tv_lostinfor3_1);
+        txt_date = rootView.findViewById(R.id.tv_lostinfor4_1);
+        txt_memo = rootView.findViewById(R.id.tv_lostinfor5_1);
+        txt_missOrfind = rootView.findViewById(R.id.txt_missOrfind1);
+        iv = rootView.findViewById(R.id.imgBanner1);
         db = FirebaseFirestore.getInstance();
 //        CollectionReference citiesRef = db.collection("commity");
 //        db.collection("commity").get;
@@ -86,15 +89,35 @@ public class Fragment_lost1 extends Fragment {
                                 strbuf.append(buf + "\n");
                             }
                             Area = strbuf.toString();
-                            System.out.println(Area);
+                            String n = Area.substring(Area.lastIndexOf("국")+2);
+                            System.out.println(Area.substring(Area.length()-5,Area.length()));
                             txt_name.setText(document.get("petname").toString());
-                            txt_memo.setText(document.get("petchr").toString());
+                            txt_memo.setText(document.get("petchr").toString().replaceAll("InE", "<br/>"));
                             txt_sex.setText(document.get("petsex").toString());
-                            txt_gps.setText(Area);
+                            txt_gps.setText(n);
                             Date from = new Date(document.getTimestamp("time").toDate().getTime());
                             SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                             String to = transFormat.format(from);
                             txt_date.setText(to);
+                            if(document.getBoolean("isdiscovery")){
+                                txt_missOrfind.setText("발견신고");
+                            }else{
+                                txt_missOrfind.setText("실종신고");
+                            }
+
+                            img = document.get("image").toString();
+                            if(img.equals("null")) {
+                                iv.setImageResource(R.drawable.dogicon);
+                            }else{
+                                FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+                                StorageReference storageRef = firebaseStorage.getReference();
+                                storageRef.child("lostpet/"+img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Glide.with(Fragment_lost1.this).load(uri).into(iv);
+                                    }
+                                });
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
