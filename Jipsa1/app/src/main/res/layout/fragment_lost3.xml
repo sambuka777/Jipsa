@@ -12,19 +12,20 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txt_missOrfind3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="실종신고"
             android:fontFamily="@font/tb"
-            android:textSize="24sp"
-            android:textColor="#000000"/>
+            android:text="실종신고"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/imgBanner3"
             android:layout_width="180dp"
             android:layout_height="220dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/dogprofile3"
+            android:background="@color/black"
             android:contentDescription="@string/app_name" />
 
         <TextView
@@ -88,7 +89,7 @@
             android:layout_marginTop="123dp"
             android:fontFamily="@font/tb"
             android:hint="실종위치"
-            android:textSize="16sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/tv3_lostinfor4"
@@ -102,14 +103,14 @@
             android:textColor="#000000"/>
 
         <TextView
-            android:id="@+id/tv2_lostinfor4_1"
+            android:id="@+id/tv3_lostinfor4_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="250sp"
             android:layout_marginTop="163dp"
             android:fontFamily="@font/tb"
             android:hint="실종날짜"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv3_lostinfor5"
@@ -123,14 +124,14 @@
             android:textColor="#000000"/>
 
         <TextView
-            android:id="@+id/tv2_lostinfor5_1"
+            android:id="@+id/tv3_lostinfor5_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="210sp"
             android:layout_marginTop="235dp"
             android:fontFamily="@font/tb"
             android:hint="주요 특징"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

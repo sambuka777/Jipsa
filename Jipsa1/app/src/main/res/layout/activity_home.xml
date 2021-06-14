@@ -472,13 +472,13 @@
 
                         <TextView
                             android:id="@+id/tv_LostAnimal"
-                            android:layout_width="150dp"
+                            android:layout_width="203dp"
                             android:layout_height="40dp"
-                            android:text="실종 반려동물"
                             android:layout_marginLeft="25dp"
                             android:fontFamily="@font/tway_air"
-                            android:textColor="#000000"
                             android:gravity="center"
+                            android:text="실종·발견 반려동물"
+                            android:textColor="#000000"
                             android:textSize="24sp" />
                         <View
                             android:layout_width="0dp"
