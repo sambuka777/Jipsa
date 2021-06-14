@@ -107,7 +107,7 @@ public class FragmentMyPage extends Fragment {
         LayoutNotice = view.findViewById(R.id.layout_notice);
         LayoutQnA = view.findViewById(R.id.layout_qna);
         LayoutUser = view.findViewById(R.id.layout_user);
-
+        LayoutLogout =view.findViewById(R.id.layout_logout);
         LayoutNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
