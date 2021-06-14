@@ -90,8 +90,8 @@ public class FindPWActivity extends AppCompatActivity {
                                     Log.d(TAG, "DocumentSnapshot data: " + document.getData()+document.get("pwd"));
                                     if(name.equals(document.get("name"))&&email.equals(document.get("email"))){
                                         AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
-                                        builder.setTitle("전송 완료");
-                                        builder.setMessage("고객님의 이메일로 비번전송");
+                                        builder.setTitle("비밀번호 전송");
+                                        builder.setMessage("고객님의 이메일로 비밀번호를 전송하였습니다");
                                         builder.setPositiveButton("확인", null);
                                         builder.create().show();
 //                                        Toast.makeText(getApplicationContext(), "고객님의 이메일로 비번전송", Toast.LENGTH_SHORT).show();

@@ -114,7 +114,12 @@ public class Fragment_lost3 extends Fragment {
                                 storageRef.child("lostpet/"+img).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Glide.with(Fragment_lost3.this).load(uri).into(iv);
+                                        try {
+                                            Glide.with(Fragment_lost3.this).load(uri).into(iv);
+                                        }catch (Exception e){
+                                            iv.setImageResource(R.drawable.dogicon);
+                                        }
+
                                     }
                                 });
                             }

@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 11 :
+                fragmentUser.set_id(temp_id);
                 ft.replace(R.id.MainFrame, fragmentUser);
                 ft.commit();
                 break;
