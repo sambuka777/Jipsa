@@ -84,7 +84,7 @@ public class FragmentChat extends Fragment {
 //        });
 //----------------------------------------------------------
         chats = new ArrayList<>();
-        chats.add(new Chat("관리자", "채팅내역1", "2021-05-31"));
+        chats.add(new Chat("관리자", "만나서 반갑습니다 ㅎㅎ", "2021-06-10"));//여기
 
 
         ListChat = view.findViewById(R.id.list_Chat);
@@ -97,7 +97,7 @@ public class FragmentChat extends Fragment {
                 String selectedItem = view.findViewById(R.id.ch_name1).getTag().toString();
                 Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), Chatroom2.class);
-                intent.putExtra("id", "관리자2");
+                intent.putExtra("id", "관리자2");//여기
                 startActivity(intent);
             }
 

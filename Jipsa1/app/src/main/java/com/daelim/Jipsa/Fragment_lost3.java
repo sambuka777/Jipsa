@@ -92,7 +92,7 @@ public class Fragment_lost3 extends Fragment {
                             System.out.println(Area);
                             String n = Area.substring(Area.lastIndexOf("국")+2);
                             txt_name.setText(document.get("petname").toString());
-                            txt_memo.setText(document.get("petchr").toString().replaceAll("InE", "<br/>"));
+                            txt_memo.setText(document.get("petchr").toString().replaceAll("InE", " "));
                             txt_sex.setText(document.get("petsex").toString());
                             txt_gps.setText(n);
                             Date from = new Date(document.getTimestamp("time").toDate().getTime());

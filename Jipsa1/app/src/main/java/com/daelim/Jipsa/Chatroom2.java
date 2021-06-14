@@ -167,7 +167,7 @@ public class Chatroom2 extends AppCompatActivity {
 
             }
         });
-        txt_chatWithUser.setText("관리자2");//여기
+        txt_chatWithUser.setText("관리자");//여기
 
     }
     public String setnick(){
